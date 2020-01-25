@@ -18,6 +18,8 @@ import { collapsedSidebarAction } from 'Actions';
 // components
 import SearchForm from './SearchForm';
 import MobileSearchForm from './MobileSearchForm';
+import Cart from './Cart';
+import Notifications from './Notifications';
 
 
 class Header extends Component {
@@ -114,7 +116,9 @@ class Header extends Component {
 						}
 					</div>
 					<ul className="navbar-right list-inline mb-0">
-						<li className="list-inline-item">
+					    <Notifications />
+						<Cart />
+					    <li className="list-inline-item">
 							<Tooltip title="Full Screen" placement="bottom">
 								<IconButton aria-label="settings" onClick={() => this.toggleScreenFull()}>
 									<i className="zmdi zmdi-crop-free"></i>

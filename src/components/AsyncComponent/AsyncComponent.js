@@ -8,45 +8,23 @@ import Loadable from 'react-loadable';
 // rct page loader
 import RctPageLoader from 'Components/RctPageLoader/RctPageLoader';
 
-// ecommerce dashboard
-const AsyncEcommerceDashboardComponent = Loadable({
-   loader: () => import("Routes/dashboard/ecommerce"),
-   loading: () => <RctPageLoader />,
-});
 
-// agency dashboard
-const AsyncSaasDashboardComponent = Loadable({
-   loader: () => import("Routes/dashboard/saas"),
-   loading: () => <RctPageLoader />,
-});
 
-// agency dashboard
-const AsyncAgencyDashboardComponent = Loadable({
-   loader: () => import("Routes/dashboard/agency"),
-   loading: () => <RctPageLoader />,
-});
 
-// boxed dashboard
-const AsyncNewsDashboardComponent = Loadable({
-   loader: () => import("Routes/dashboard/news"),
-   loading: () => <RctPageLoader />,
-});
-// crm dashboard
-const AsyncCrmComponent = Loadable({
-   loader: () => import("Routes/crm/dashboard"),
-   loading: () => <RctPageLoader />,
-});
 // shop 
 const AsyncShopComponent = Loadable({
 	loader: () => import("Routes/ecommerce/shop"),
 	loading: () => <RctPageLoader />,
 });
 
-export {
-   AsyncEcommerceDashboardComponent,
-   AsyncSaasDashboardComponent,
-   AsyncAgencyDashboardComponent,
-   AsyncNewsDashboardComponent,
-   AsyncCrmComponent,
-   AsyncShopComponent
+// cart 
+const AsyncCartComponent = Loadable({
+	loader: () => import("Routes/ecommerce/cart"),
+	loading: () => <RctPageLoader />,
+});
+
+
+export { 
+	AsyncShopComponent,
+	AsyncCartComponent
 };
