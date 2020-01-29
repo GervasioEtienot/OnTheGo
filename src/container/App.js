@@ -35,7 +35,8 @@ class App extends Component {
    render() {
       const { location, match, user } = this.props;
       if (location.pathname === '/') {
-         return <Redirect to={'/app/dashboard/ecommerce'} />;
+       //  return <Redirect to={'/app/dashboard/ecommerce'} />;
+         return <Redirect to={'/app/ecommerce/shop'} />;
       }
       return (
          <RctThemeProvider>
