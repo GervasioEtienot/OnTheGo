@@ -52,10 +52,10 @@ class Hit extends Component {
 			<RctCard customClasses="d-flex  mb-0 flex-column justify-content-between overflow-hidden">
 				<div className="overlay-wrap overflow-hidden">
 					<div className="text-center p-4">
-						<img src={hit.image} className="img-fluid" alt="product" />
+						<img src={hit.snippet.thumbnails.medium.url} className="img-fluid" alt="product" />
 					</div>
 					<div className="overlay-content d-flex align-items-end">
-						{!this.isItemExistInCart(hit.objectID) ? (
+						{!this.isItemExistInCart(hit.id.videoId) ? (
 							<a href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.onPressAddToCart(hit, e)}>
 								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> : 'Add To Cart'}
 							</a>
@@ -69,11 +69,11 @@ class Hit extends Component {
 				</div>
 				<div className="product-info border-top p-3">
 					<div className="d-flex justify-content-between">
-						<h2 className="text-danger">$ {hit.price}</h2>
+						<h2 className="text-danger">$ 100{/* hit.price */}</h2>
 					</div>
-					<h4 className="text-dark">{textTruncate(hit.name, 25)}</h4>
+					<h4 className="text-dark">{textTruncate(hit.snippet.title, 25)}</h4>
 					<p className="mb-5 text-muted font-xs">
-						{textTruncate(hit.description, 50)}
+						{textTruncate(hit.snippet.description, 50)}
 					</p>
 				</div>
 			</RctCard>
