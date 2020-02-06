@@ -31,6 +31,8 @@ import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 // Api de prueba
 import Youtube from '../../../apis/Youtube';
 
+import Grid from '@material-ui/core/Grid';
+
 /* const client = algoliasearch(
 	'latency',
 	'6be0576ff61c053d5f9a3225e2a90f76'
@@ -51,7 +53,7 @@ export default class Shop extends Component {
 		params: {
 			part: 'snippet',
 			q: 'auriculares',
-			maxResults: 4,
+			maxResults: 9,
 			key: 'AIzaSyCbQ8FgcsEUVDOu1QKpuAHBaCEa7oR7i6g'
 		}
 	});
@@ -100,12 +102,18 @@ export default class Shop extends Component {
 										showLoadingIndicator
 									/> */}
 									{loading == true ? 'Cargando...'  : ( 
-										
-										videos.map((video) => {
-										  return(
-											 <Hit hit={video} />
-										  );
-										}))
+										<Grid container spacing={3}>
+											{
+											   videos.map((video) => {
+											     return(
+													<Grid item xs={4}>
+														<Hit hit={video} />
+													</Grid>
+											     );
+											   })
+											}
+										</Grid>
+										)
 									}
 									
 									<div className="pagination mb-30">

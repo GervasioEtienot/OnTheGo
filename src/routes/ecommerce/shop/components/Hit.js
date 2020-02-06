@@ -9,6 +9,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // Card Component
 import { RctCard } from 'Components/RctCard';
 
+// Icono más (+)
+import AddIcon from '@material-ui/icons/Add';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+
 //Actions
 import { onAddItemToCart } from "../../../../actions/EcommerceActions";
 
@@ -70,6 +75,12 @@ class Hit extends Component {
 				<div className="product-info border-top p-3">
 					<div className="d-flex justify-content-between">
 						<h2 className="text-danger">$ 100{/* hit.price */}</h2>
+						{/* <IconButton aria-label="upload picture" component="span">
+						  <AddIcon/>
+						</IconButton> */}
+						<Link to="/app/ecommerce/cart">
+						  <AddIcon/>
+						</Link>
 					</div>
 					<h4 className="text-dark">{textTruncate(hit.snippet.title, 25)}</h4>
 					<p className="mb-5 text-muted font-xs">
