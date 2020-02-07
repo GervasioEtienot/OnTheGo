@@ -1,8 +1,10 @@
 module.exports = {
    "sidebar.accesorios": "Accesorios",
-   "sidebar.repuestos": "Repuestos",
-   "sidebar.ofertas": "Ofertas",
-   "sidebar.historial": "Historial",
+   "sidebar.partes": "Partes",
+   "sidebar.baterias": "Baterías",
+   "sidebar.lensum": "Lensum",
+   "sidebar.promos": "Promos",
+   "sidebar.liquidacion": "Liquidación",
    "sidebar.app": "Aplicación",
    "sidebar.horizontal": "Horizontal",
    "sidebar.horizontalMenu": "Menú horizontal",

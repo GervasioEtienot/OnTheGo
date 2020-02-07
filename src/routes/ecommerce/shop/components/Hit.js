@@ -75,16 +75,10 @@ class Hit extends Component {
 				<div className="product-info border-top p-3">
 					<div className="d-flex justify-content-between">
 						<h2 className="text-danger">$ 100{/* hit.price */}</h2>
-						{/* <IconButton aria-label="upload picture" component="span">
-						  <AddIcon/>
-						</IconButton> */}
-						<Link to="/app/ecommerce/cart">
-						  <AddIcon/>
-						</Link>
 					</div>
 					<h4 className="text-dark">{textTruncate(hit.snippet.title, 25)}</h4>
 					<p className="mb-5 text-muted font-xs">
-						{textTruncate(hit.snippet.description, 50)}
+						{textTruncate(hit.snippet.description, 70)}
 					</p>
 				</div>
 			</RctCard>
