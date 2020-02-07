@@ -62,11 +62,11 @@ class Hit extends Component {
 					<div className="overlay-content d-flex align-items-end">
 						{!this.isItemExistInCart(hit.id.videoId) ? (
 							<a href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.onPressAddToCart(hit, e)}>
-								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> : 'Add To Cart'}
+								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> : 'Agregar al carrito'}
 							</a>
 						) : (
 								<Link to="/app/ecommerce/cart" className="bg-secondary text-center w-100 cart-link text-white py-2">
-									View Cart
+									Ver carro
 								</Link>
 							)
 						}
