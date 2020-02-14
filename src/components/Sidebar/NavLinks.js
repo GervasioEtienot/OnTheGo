@@ -8,37 +8,37 @@ export default {
          "new_item": false,
          "child_routes":  [
              {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/accesorios",
                "new_item": false,
                "menu_title": "sidebar.accesorios",
                "menu_icon": "zmdi zmdi-headset"
             }, 
             {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/partes",
                "new_item": false,
                "menu_title": "sidebar.partes",
                "menu_icon": "zmdi zmdi-smartphone-iphone"
             },
             {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/baterias",
                "new_item": false,
                "menu_title": "sidebar.baterias",
                "menu_icon": "zmdi zmdi-battery-flash"
             },
             {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/lensum",
                "new_item": false,
                "menu_title": "sidebar.lensum",
                "menu_icon": "zmdi zmdi-bookmark"
             }, 
             {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/promos",
                "new_item": false,
                "menu_title": "sidebar.promos",
                "menu_icon": "zmdi zmdi-star"
             }, 
             {
-               "path": "/app/ecommerce/shop",
+               "path": "/app/ecommerce/liquidacion",
                "new_item": false,
                "menu_title": "sidebar.liquidacion",
                "menu_icon": "zmdi zmdi-local-offer"

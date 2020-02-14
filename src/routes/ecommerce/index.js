@@ -18,7 +18,7 @@ const Ecommerce = ({ match }) => (
 		</Helmet>
 		<Switch>
 			<Redirect exact from={`${match.url}/`} to={`${match.url}/shop-list`} />
-			<Route path={`${match.url}/shop`} component={AsyncShopComponent} />
+			<Route path={`${match.url}/accesorios`} component={AsyncShopComponent} />
 			<Route path={`${match.url}/cart`} component={AsyncCartComponent} />
 		</Switch>
 	</div>

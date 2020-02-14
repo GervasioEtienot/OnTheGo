@@ -108,7 +108,7 @@ class Header extends Component {
 					<ul className="navbar-right list-inline mb-0">
 					    <Cart />
 					    <li className="list-inline-item">
-							<Tooltip title="Full Screen" placement="bottom">
+							<Tooltip title="Pantalla completa" placement="bottom">
 								<IconButton aria-label="settings" onClick={() => this.toggleScreenFull()}>
 									<i className="zmdi zmdi-crop-free"></i>
 								</IconButton>

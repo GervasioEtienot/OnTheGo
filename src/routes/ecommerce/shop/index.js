@@ -29,9 +29,12 @@ import IntlMessages from 'Util/IntlMessages';
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 
 // Api de prueba
+import Productos from '../../../apis/Productos';
 import Youtube from '../../../apis/Youtube';
 
 import Grid from '@material-ui/core/Grid';
+
+ 
 
 /* const client = algoliasearch(
 	'latency',
@@ -49,16 +52,18 @@ export default class Shop extends Component {
     }
 
     busquedaDePrueba = async () => {
-	  const respuesta = await Youtube.get('/search',{
+	  const categoria = '/search'
+	  const respuesta = await Youtube.get(categoria,{
 		params: {
 			part: 'snippet',
 			q: 'auriculares',
-			maxResults: 9,
+			maxResults: 30,
 			key: 'AIzaSyCbQ8FgcsEUVDOu1QKpuAHBaCEa7oR7i6g'
 		}
 	});
 	console.log(respuesta.data.items);
 	this.setState( { videos: respuesta.data.items, loading: false } );
+	
 }
 	render() {
 		const { match } = this.props;
@@ -107,7 +112,7 @@ export default class Shop extends Component {
 											   videos.map((video) => {
 											     return(
 													<Grid item xs={4}>
-														<Hit hit={video} />
+														<Hit hit={video} key={video.id.videoId} />
 													</Grid>
 											     );
 											   })

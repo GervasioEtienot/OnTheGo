@@ -46,7 +46,7 @@ class Carts extends Component {
 		return (
 			<UncontrolledDropdown nav className="list-inline-item cart-dropdown">
 				<DropdownToggle nav className="p-0">
-					<Tooltip title="Shopping Cart" placement="bottom">
+					<Tooltip title="Carro" placement="bottom">
 						<IconButton aria-label="bag">
 							<i className="zmdi zmdi-shopping-cart"></i>
 							<Badge

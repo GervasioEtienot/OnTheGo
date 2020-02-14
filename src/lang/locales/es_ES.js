@@ -376,7 +376,7 @@ module.exports = {
    "components.print": "Impresión",
    "components.cart": "Carro",
    "components.viewCart": "Ver carro",
-   "components.checkout": "Revisa",
+   "components.checkout": "Confirmar",
    "widgets.QuickLinks": "enlaces rápidos",
    "widgets.upgrade": "mejorar",
    "widgets.app": "Aplicación",
