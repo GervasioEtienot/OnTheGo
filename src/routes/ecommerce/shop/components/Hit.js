@@ -80,7 +80,7 @@ class Hit extends Component {
 			<RctCard customClasses="d-flex  mb-0 flex-column justify-content-between overflow-hidden">
 				<div className="overlay-wrap overflow-hidden">
 					<div className="text-center p-4">
-						<img src={hit.snippet.thumbnails.medium.url} className="img-fluid" alt="product" />
+						<img src={require('../product-2.png')} className="img-fluid" alt="product" />
 					</div>
 					<Collapse in={showCantidad} timeout={500} > 
 						<div style={{margin: "1rem"}}>Disponibles: 11</div>
@@ -115,11 +115,11 @@ class Hit extends Component {
 					
 					<div  >
 						<div className="d-flex justify-content-between">
-						<h2 className="text-danger">$ 100{/* hit.price */}</h2>
+						<h2 className="text-danger">${hit.precio_producto}</h2>
 						</div>
-						<h4 className="text-dark">{textTruncate(hit.snippet.title, 25)}</h4>
+						<h4 className="text-dark">{textTruncate(hit.codigo, 25)}</h4>
 						<p className="mb-5 text-muted font-xs">
-							{textTruncate(hit.snippet.description, 70)}
+							{textTruncate(hit.descripcion, 70)}
 						</p>
 					</div>
 					

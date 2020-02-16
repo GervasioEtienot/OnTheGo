@@ -52,17 +52,15 @@ export default class Shop extends Component {
     }
 
     busquedaDePrueba = async () => {
-	  const categoria = '/search'
-	  const respuesta = await Youtube.get(categoria,{
+	  const categoria = '/accesorios'
+	  const respuesta = await Productos.get(categoria,{
 		params: {
-			part: 'snippet',
-			q: 'auriculares',
 			maxResults: 30,
-			key: 'AIzaSyCbQ8FgcsEUVDOu1QKpuAHBaCEa7oR7i6g'
+			
 		}
 	});
-	console.log(respuesta.data.items);
-	this.setState( { videos: respuesta.data.items, loading: false } );
+	console.log(respuesta.data.data);
+	this.setState( { videos: respuesta.data.data, loading: false } );
 	
 }
 	render() {
@@ -112,7 +110,7 @@ export default class Shop extends Component {
 											   videos.map((video) => {
 											     return(
 													<Grid item xs={4}>
-														<Hit hit={video} key={video.id.videoId} />
+														<Hit hit={video} key={video.id} />
 													</Grid>
 											     );
 											   })
