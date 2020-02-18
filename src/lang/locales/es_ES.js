@@ -719,6 +719,7 @@ module.exports = {
    "sidebar.cart": "Carro",
    "sidebar.checkout": "Revisa",
    "components.product": "Producto",
+   "components.availables": "Disponibles",
    "components.quantity": "Cantidad",
    "components.totalPrice": "Precio total",
    "components.removeProduct": "Eliminar producto",

@@ -61,6 +61,7 @@ class Carts extends Component {
                         <tr>
                            <th className="w-10"></th>
                            <th className="w-50"><IntlMessages id="components.product" /></th>
+                           <th className="w-10 text-center"><IntlMessages id="components.availables" /></th>
                            <th className="w-10 text-center"><IntlMessages id="components.quantity" /></th>
                            <th className="w-10 text-center"><IntlMessages id="widgets.price" /></th>
                            <th className="w-10 text-center"><IntlMessages id="components.totalPrice" /></th>
@@ -76,6 +77,7 @@ class Carts extends Component {
                                  <span className="fs-14 d-block text-muted">{textTruncate(cart.descripcion, 80)}</span>
                                  {/* <span className="fs-14 d-block text-muted">{cart.brand}</span> */}
                               </td>
+                              <td className="text-bold text-center">{cart.cantidad_deposito_item}</td>
                               <td>
                                  <Input
                                     type="number"

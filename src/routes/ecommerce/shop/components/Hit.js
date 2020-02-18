@@ -13,7 +13,7 @@ import { Button, Backdrop } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Actions
-import { onAddItemToCart, onChangeProductQuantity } from "../../../../actions/EcommerceActions";
+import { onAddItemToCart, onChangeProductQuantity, deleteItemFromCart } from "../../../../actions/EcommerceActions";
 
 //Helper
 import { textTruncate } from "Helpers/helpers"
@@ -75,6 +75,13 @@ class Hit extends Component {
 		return existence;
 	}
 
+	cancelarItem(e){
+		const { cart, deleteItemFromCart } = this.props;
+		event.preventDefault(e);
+		deleteItemFromCart(cart[cart.length-1]);
+		this.setState({ showCantidad: false, loading: false });
+	}
+
 	render() {
 		const { hit, cart } = this.props;
 		const { loading, cantidad, showCantidad } = this.state;
@@ -86,7 +93,7 @@ class Hit extends Component {
 						<img src={require('../product-2.png')} className="img-fluid" alt="product" />
 					</div>
 					<Collapse in={showCantidad} timeout={500} > 
-						<div style={{margin: "1rem"}}>Disponibles: 11</div>
+						<div style={{margin: "1rem"}}>Disponibles: {hit.cantidad_deposito_item} </div>
 						<div style={{flexDirection: "row", margin: "1rem"}} >
 							<label>Cantidad:  </label>
 							<Input
@@ -101,7 +108,7 @@ class Hit extends Component {
 						</div>
 						<div style={{display: "block", textAlign: "center", margin: "2rem 0" }}>
 							<Button color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false})} >Confirmar</Button>
-							<Button color="default" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false}) } >Cancelar</Button>
+							<Button color="default" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.cancelarItem(e) } >Cancelar</Button>
 						</div>
 					</Collapse>
 					<div className="d-flex align-items-end">
@@ -148,4 +155,4 @@ const useStyles = makeStyles(theme => ({
 	},
   }));
 
-export default connect(mapStateToProps, { onAddItemToCart, onChangeProductQuantity })(Hit);
+export default connect(mapStateToProps, { onAddItemToCart, onChangeProductQuantity, deleteItemFromCart })(Hit);

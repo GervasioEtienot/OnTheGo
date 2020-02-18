@@ -98,6 +98,7 @@ export default (state = INIT_STATE, action) => {
 				descripcion: action.payload.descripcion,
 				// brand: action.payload.brand,
 				precio_producto: action.payload.precio_producto,
+				cantidad_deposito_item: action.payload.cantidad_deposito_item,
 				productQuantity: 1,
 				totalPrice: action.payload.precio_producto
 			};
