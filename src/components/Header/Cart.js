@@ -28,7 +28,7 @@ class Carts extends Component {
 		const { cart } = this.props;
 		let totalPrice = 0;
 		for (const item of cart) {
-			totalPrice += item.totalPrice
+			totalPrice = parseFloat(totalPrice) + parseFloat(item.totalPrice);
 		}
 		return totalPrice.toFixed(2);
 	}
@@ -77,16 +77,16 @@ class Carts extends Component {
 												<li className="d-flex justify-content-between" key={key}>
 													<div className="media overflow-hidden w-75">
 														<div className="mr-15">
-															<img src={cart.image} alt="products" className="media-object" width="63" height="63" />
+															<img src={require('../../assets/img/product-2.png')} alt="products" className="media-object" width="63" height="63" />
 														</div>
 														<div className="media-body">
-															<span className="fs-14 d-block">{textTruncate(cart.name, 25)}</span>
-															<span className="fs-12 d-block text-muted">{textTruncate(cart.description, 50)}</span>
-															<span className="fs-12 d-block text-muted">{cart.brand}</span>
+															<span className="fs-14 d-block">{textTruncate(cart.codigo, 25)}</span>
+															<span className="fs-12 d-block text-muted">{textTruncate(cart.descripcion, 50)}</span>
+															{/* <span className="fs-12 d-block text-muted">{cart.brand}</span> */}
 														</div>
 													</div>
 													<div className="text-center">
-														<span className="text-muted fs-12 d-block mb-10">$ {cart.price} X {cart.productQuantity}</span>
+														<span className="text-muted fs-12 d-block mb-10">$ {cart.precio_producto} X {cart.productQuantity}</span>
 														<a
 															 href="#"
 															className="hover-close"

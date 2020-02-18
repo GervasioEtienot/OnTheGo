@@ -32,14 +32,14 @@ class Hit extends Component {
 	}
 
 	//Add Item to cart
-	/* onPressAddToCart(cartItem, e) {
+	onPressAddToCart(cartItem, e) {
 		this.setState({ loading: true })
 		setTimeout(() => {
 			this.props.onAddItemToCart(cartItem);
 		}, 1000)
 		e.preventDefault();
 		this.setState({showCantidad: true})
-	} */
+	}
 
 	
 	
@@ -49,11 +49,13 @@ class Hit extends Component {
 	/* handleToggle = () => {
 		this.setState({open: !this.state.open});
 	}; */
-	onChangeQuantity(quantity, cartItem) {
+	onChangeQuantity(quantity) {
+		const { cart } = this.props;
+		
 		if (quantity > 0) {
-		   this.props.onChangeProductQuantity(quantity, cartItem);
+		   this.props.onChangeProductQuantity(quantity, cart[cart.length-1]);
 		}
-		this.setState({showCantidad: false});
+	
 	 }
 
 	/**
@@ -63,9 +65,10 @@ class Hit extends Component {
 	 */
 	isItemExistInCart(id) {
 		const { cart } = this.props;
+		// debugger;
 		let existence = false
 		for (const item of cart) {
-			if (item.objectID === id) {
+			if (item.id === id) {
 				existence = true
 			}
 		}
@@ -73,7 +76,7 @@ class Hit extends Component {
 	}
 
 	render() {
-		const { hit } = this.props;
+		const { hit, cart } = this.props;
 		const { loading, cantidad, showCantidad } = this.state;
 		
 		return (
@@ -89,18 +92,21 @@ class Hit extends Component {
 							<Input
 								type="number"
 								value={cantidad}
-								onChange={(e) => this.setState({cantidad: e.target.value})}
+								onChange={(e) => {
+											this.onChangeQuantity(e.target.value);
+											this.setState({ cantidad: e.target.value });
+										}}
 								style={{ maxWidth: '90px', display:"inline", marginLeft:"5px"}}
 							/>
 						</div>
 						<div style={{display: "block", textAlign: "center", margin: "2rem 0" }}>
-							<Button color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (cantidad, hit) => this.onChangeQuantity(cantidad, hit)} >Confirmar</Button>
+							<Button color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false})} >Confirmar</Button>
 							<Button color="default" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false}) } >Cancelar</Button>
 						</div>
 					</Collapse>
 					<div className="d-flex align-items-end">
-						{!this.isItemExistInCart(hit.id.videoId) ? (
-							<a hidden={showCantidad} href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.setState({showCantidad: true}) }>
+						{!this.isItemExistInCart(hit.id) ? (
+							<a hidden={showCantidad} href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.onPressAddToCart(hit, e) }>
 								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> : 'Agregar al carrito'}
 							</a>
 						) : (

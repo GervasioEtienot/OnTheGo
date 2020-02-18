@@ -36,9 +36,9 @@ class Carts extends Component {
       const { cart } = this.props;
       let totalPrice = 0;
       for (const item of cart) {
-         totalPrice += item.totalPrice
+         totalPrice = parseFloat(totalPrice) + parseFloat(item.totalPrice);
       }
-      return totalPrice.toFixed(2);
+      return Math.round(totalPrice*1000)/1000;
    }
 
    //Is Cart Empty
@@ -70,11 +70,11 @@ class Carts extends Component {
                      <tbody>
                         {!this.isCartEmpty() ? cart.map((cart, key) => (
                            <tr key={key}>
-                              <td className="w-10 text-center"><img src={cart.image} alt="products" className="media-object" width="100" height="100" /></td>
+                              <td className="w-10 text-center"><img src={require('../../../assets/img/product-2.png')} alt="products" className="media-object" width="100" height="100" /></td>
                               <td className="w-50">
-                                 <h3>{textTruncate(cart.name, 40)}</h3>
-                                 <span className="fs-14 d-block text-muted">{textTruncate(cart.description, 80)}</span>
-                                 <span className="fs-14 d-block text-muted">{cart.brand}</span>
+                                 <h3>{textTruncate(cart.codigo, 40)}</h3>
+                                 <span className="fs-14 d-block text-muted">{textTruncate(cart.descripcion, 80)}</span>
+                                 {/* <span className="fs-14 d-block text-muted">{cart.brand}</span> */}
                               </td>
                               <td>
                                  <Input
@@ -83,8 +83,8 @@ class Carts extends Component {
                                     onChange={(e) => this.onChangeQuantity(e.target.value, cart)}
                                  />
                               </td>
-                              <td className="text-danger text-center">$ {cart.price}</td>
-                              <td className="text-bold text-center">$ {cart.totalPrice.toFixed(2)}</td>
+                              <td className="text-danger text-center">$ {cart.precio_producto}</td>
+                              <td className="text-bold text-center">$ {cart.totalPrice}</td>
                               <td className="text-center">
                                  <IconButton onClick={() => deleteItemFromCart(cart)}>
                                     <i className="zmdi zmdi-close"></i>
