@@ -51,18 +51,21 @@ export default class Shop extends Component {
 	   this.busquedaDePrueba();
     }
 
-    busquedaDePrueba = async () => {
-	  const categoria = '/accesorios'
-	  const respuesta = await Productos.get(categoria,{
+	async busquedaDePrueba() {
+	  
+	  const { match } = this.props;
+	
+	  
+	  const respuesta = await Productos.get(match.params.id,{
 		params: {
 			maxResults: 30,
 			
 		}
 	});
-	console.log(respuesta.data.data);
-	this.setState( { videos: respuesta.data.data, loading: false } );
+		console.log(respuesta.data.data);
+		this.setState( { videos: respuesta.data.data, loading: false } );
 	
-}
+	}
 	render() {
 		const { match } = this.props;
 		const { videos, loading } = this.state;

@@ -56,7 +56,7 @@ class SidebarContent extends Component {
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
                                  <ListItem button component="li" key={index} className= "list-item">
-                                    <NavLink to={subMenu.path} activeClassName="item-active" >
+                                    <NavLink to={`${subMenu.path}/accesorios`} activeClassName="item-active" >
                                        <ListItemIcon className="menu-icon" style={{minWidth: 29}}>
                                           <i className={subMenu.menu_icon}></i> 
                                        </ListItemIcon> 
