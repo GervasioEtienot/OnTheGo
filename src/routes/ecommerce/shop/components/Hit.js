@@ -99,6 +99,7 @@ class Hit extends Component {
 							<Input
 								type="number"
 								value={cantidad}
+								max={hit.cantidad_deposito_item}
 								onChange={(e) => {
 											this.onChangeQuantity(e.target.value);
 											this.setState({ cantidad: e.target.value });

@@ -82,6 +82,7 @@ class Carts extends Component {
                                  <Input
                                     type="number"
                                     value={cart.productQuantity}
+                                    max={cart.cantidad_deposito_item}
                                     onChange={(e) => this.onChangeQuantity(e.target.value, cart)}
                                  />
                               </td>
