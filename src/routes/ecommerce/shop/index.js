@@ -44,19 +44,27 @@ import Grid from '@material-ui/core/Grid';
 export default class Shop extends Component {
 	state = {
 		     videos: [],
-			 loading: true 
+			 loading: true,
+			//  categ: 'accesorios' 
 			}
 
-    componentDidMount(){
+    componentWillMount(){
 	   this.busquedaDePrueba();
-    }
+	}
+	
+	componentWillReceiveProps(nextProps){
+		this.busquedaDePrueba();
+	}
 
 	async busquedaDePrueba() {
 	  
 	  const { match } = this.props;
-	
+	  var categ = match.params.categoria;
+	//   const { categ } = this.state;
+	  console.log(match.params.categoria);
 	  
-	  const respuesta = await Productos.get(match.params.id,{
+	  
+	  const respuesta = await Productos.get(match.params.categoria,{
 		params: {
 			maxResults: 30,
 			
@@ -66,9 +74,17 @@ export default class Shop extends Component {
 		this.setState( { videos: respuesta.data.data, loading: false } );
 	
 	}
+	// prueba(){
+	//    const { match } = this.props;
+	//    const { categ } = this.state;
+	//    if(match.params.categoria === categ){
+	// 	   this.setState({ categ: match.params.categoria })
+	//    } 
+    // }
 	render() {
 		const { match } = this.props;
 		const { videos, loading } = this.state;
+		
 		return (
 			<div className="shop-wrapper">
 				<PageTitleBar title={<IntlMessages id="sidebar.shop" />} match={match} />
@@ -107,13 +123,14 @@ export default class Shop extends Component {
 										className="mb-30"
 										showLoadingIndicator
 									/> */}
+									
 									{loading == true ? 'Cargando...'  : ( 
 										<Grid container spacing={3}>
 											{
-											   videos.map((video) => {
+											   videos.map((video, index) => {
 											     return(
 													<Grid item xs={4}>
-														<Hit hit={video} key={video.id} />
+														<Hit hit={video} key={index} />
 													</Grid>
 											     );
 											   })

@@ -11,37 +11,43 @@ export default {
                "path": "/app/ecommerce/accesorios",
                "new_item": false,
                "menu_title": "sidebar.accesorios",
-               "menu_icon": "zmdi zmdi-headset"
+               "menu_icon": "zmdi zmdi-headset",
+               "categoria": "accesorios"
             }, 
             {
                "path": "/app/ecommerce/partes",
                "new_item": false,
                "menu_title": "sidebar.partes",
-               "menu_icon": "zmdi zmdi-smartphone-iphone"
+               "menu_icon": "zmdi zmdi-smartphone-iphone",
+               "categoria": "partes"
             },
             {
                "path": "/app/ecommerce/baterias",
                "new_item": false,
                "menu_title": "sidebar.baterias",
-               "menu_icon": "zmdi zmdi-battery-flash"
+               "menu_icon": "zmdi zmdi-battery-flash",
+               "categoria": "baterias"
             },
             {
-               "path": "/app/ecommerce/lensum",
+               "path": "/app/ecommerce/Lensum",
                "new_item": false,
                "menu_title": "sidebar.lensum",
-               "menu_icon": "zmdi zmdi-bookmark"
+               "menu_icon": "zmdi zmdi-bookmark",
+               "categoria": "lensum"
             }, 
             {
                "path": "/app/ecommerce/promos",
                "new_item": false,
                "menu_title": "sidebar.promos",
-               "menu_icon": "zmdi zmdi-star"
+               "menu_icon": "zmdi zmdi-star",
+               "categoria": "promos"
             }, 
             {
                "path": "/app/ecommerce/liquidacion",
                "new_item": false,
                "menu_title": "sidebar.liquidacion",
-               "menu_icon": "zmdi zmdi-local-offer"
+               "menu_icon": "zmdi zmdi-local-offer",
+               "categoria": "liquidacion"
             } 
          ]
       }

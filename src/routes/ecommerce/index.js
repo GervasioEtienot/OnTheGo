@@ -19,8 +19,13 @@ const Ecommerce = ({ match }) => {
 				<meta name="description" content="Reactify Ecommerce Shop" />
 			</Helmet>
 			<Switch>
-				<Redirect exact from={`${match.url}/`} to={`${match.url}/shop-list`} />
-				<Route exact path={`${match.url}/accesorios/:id`} component={Shop} />
+				<Redirect exact from={`${match.url}/`} to={`${match.url}/accesorios/accesorios`} />
+				<Route exact path={`${match.url}/accesorios/:categoria`} component={Shop} />} />
+				<Route exact path={`${match.url}/partes/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/baterias/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/Lensum/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/promos/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/liquidacion/:categoria`} component={Shop} />
 				<Route path={`${match.url}/cart`} component={AsyncCartComponent} />
 			</Switch>
 		</div>

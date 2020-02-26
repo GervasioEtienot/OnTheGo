@@ -11,6 +11,8 @@ import IntlMessages from 'Util/IntlMessages';
 
 // get display string
 const getDisplayString = (sub) => {
+   // console.log(sub);
+   
    const arr = sub.split("-");
    if (arr.length > 1) {
       return <IntlMessages id={`sidebar.${arr[0].charAt(0) + arr[0].slice(1) + arr[1].charAt(0).toUpperCase() + arr[1].slice(1)}`} />
@@ -31,7 +33,11 @@ const getUrlString = (path, sub, index) => {
 
 const PageTitleBar = ({ title, match, enableBreadCrumb }) => {
    const path = match.path.substr(1);
-   const subPath = path.split('/');
+   const prePath = path.slice(0,path.indexOf(':')-1);
+   
+   // console.log(prePath);
+   
+   const subPath = prePath.split('/');
    return (
       <div className="page-title d-flex justify-content-between align-items-center">
          {title &&
