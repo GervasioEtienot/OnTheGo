@@ -45,7 +45,7 @@ export default class Shop extends Component {
 	state = {
 		     videos: [],
 			 loading: true,
-			//  categ: 'accesorios' 
+			 termino: '' 
 			}
 
     componentWillMount(){
@@ -59,14 +59,15 @@ export default class Shop extends Component {
 	async busquedaDePrueba() {
 	  
 	  const { match } = this.props;
-	  var categ = match.params.categoria;
-	//   const { categ } = this.state;
+	  
+	  const { termino } = this.state;
 	  console.log(match.params.categoria);
 	  
 	  
 	  const respuesta = await Productos.get(match.params.categoria,{
 		params: {
 			maxResults: 30,
+			q: `${termino}`
 			
 		}
 	});
@@ -74,13 +75,15 @@ export default class Shop extends Component {
 		this.setState( { videos: respuesta.data.data, loading: false } );
 	
 	}
-	// prueba(){
-	//    const { match } = this.props;
-	//    const { categ } = this.state;
-	//    if(match.params.categoria === categ){
-	// 	   this.setState({ categ: match.params.categoria })
-	//    } 
-    // }
+	filtrarTermino(term){
+	//    const { termino } = this.state;
+	   
+		   this.setState({ termino: term });
+		   console.log(term);
+		     
+		//    this.busquedaDePrueba();
+	   
+    }
 	render() {
 		const { match } = this.props;
 		const { videos, loading } = this.state;
@@ -107,7 +110,7 @@ export default class Shop extends Component {
 						</div>
 						<div className="row">
 							<div className="col-lg-3 col-md-4 d-none d-md-block">
-								{/* <Filters /> */}
+								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} />
 							</div>
 							<div className="col-lg-9 col-md-8 col-sm-12">
 								<div className="shop-content">
