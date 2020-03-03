@@ -45,29 +45,34 @@ export default class Shop extends Component {
 	state = {
 		     videos: [],
 			 loading: true,
-			 termino: '' 
+			 termino: ''
 			}
 
     componentWillMount(){
-	   this.busquedaDePrueba();
+	  const { match } = this.props;
+	//   debugger;
+	  this.busquedaDePrueba(match.params);
 	}
 	
-	componentWillReceiveProps(nextProps){
-		this.busquedaDePrueba();
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps.match.params);
+		
+		
+		this.busquedaDePrueba(nextProps.match.params);
 	}
 
-	async busquedaDePrueba() {
-	  
+	async busquedaDePrueba({ categoria }) {
+	//   debugger;
 	  const { match } = this.props;
 	  
 	  const { termino } = this.state;
-	  console.log(match.params.categoria);
+	  console.log("lo que recibo: " + categoria);
 	  
 	  
-	  const respuesta = await Productos.get(match.params.categoria,{
+	  const respuesta = await Productos.get(categoria,{
 		params: {
 			maxResults: 30,
-			q: `${termino}`
+			// q: `${termino}`
 			
 		}
 	});
@@ -114,12 +119,12 @@ export default class Shop extends Component {
 							</div>
 							<div className="col-lg-9 col-md-8 col-sm-12">
 								<div className="shop-content">
-									<div className="stats-info d-flex mb-30 justify-content-between align-items-center">
+									{/* <div className="stats-info d-flex mb-30 justify-content-between align-items-center">
 										<div className="app-selectbox-sm w-30">
 											
 										</div>
 										
-									</div>
+									</div> */}
 									{/* <Configure hitsPerPage={9} /> */}
 									{/* <Hits
 										hitComponent={(props) => <Hit {...props} />}

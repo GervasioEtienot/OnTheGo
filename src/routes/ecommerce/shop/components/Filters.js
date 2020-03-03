@@ -12,19 +12,41 @@ import { Button } from '@material-ui/core';
 
 
 class Filters extends Component {
-   state = { filtros: {
-                     marca:[
-                           "SAMSUNG","MOTOROLA","APPLE","ALCATEL","BLACKBERRY","LUMIA\/MICROSOFT","SONY","LG","HUAWEI"
-                     ],
-                     calidad:[
-                             "ORIGINAL","ALTA COPIA","COPIA AAA","COPIA AA"
-                     ]
-             },
-             loading: false,
-             chequeados: [ false, false, false, false, false, false, false, false, false ]
+   state = { 
+      filtros: {
+         marca:[
+            "SAMSUNG",
+            "MOTOROLA",
+            "APPLE",
+            "ALCATEL",
+            "BLACKBERRY",
+            "LUMIA\/MICROSOFT",
+            "SONY",
+            "LG",
+            "HUAWEI"
+         ],
+         calidad:[
+            "ORIGINAL",
+            "ALTA COPIA",
+            "COPIA AAA",
+            "COPIA AA"
+         ]
+      },
+      loading: false,
+      chequeados: []
+   }
+   componentDidMount() {
+      const { filtros, chequeados } = this.state;
+      let aux = [];
+      for (let i=0; i < filtros.marca.length; i++) {
+         aux[i] = false;
+      }
+      this.setState({ chequeados: aux });
+      console.log(chequeados);
+      
    }
    
-   handleChange(index){
+   handleChange(index) {
       const { chequeados, filtros } = this.state;
       let auxChequeados = chequeados;
       auxChequeados[index] = !chequeados[index];
@@ -45,31 +67,29 @@ class Filters extends Component {
    
    render(){
       const { filtros, chequeados, chequeado, loading } = this.state;
-      console.log(chequeados);
-      
+     
       return (
          <div className="filters-wrapper">
             <RctCard>
                <RctCardContent>
-                  <FormGroup column>
-                     { loading === true ? 'cargando...' 
+                  <FormGroup >
+                     { loading ? 'cargando...' 
                      : ( 
-                        filtros.marca.map( (filtro, index) => {
+                        filtros.marca.map((filtro, index) => {
                            return (
                               <FormControlLabel 
-                                    key={index} 
-                                    control={
-                                          <Checkbox checked={chequeados[index]} 
-                                                   onChange={ () => {this.handleChange(index)} } 
-                                                   value= {chequeados[index]} 
-                                          />
-                                    }
-                                    label={filtro} 
-                              /> 
-                                
-                              
+                                 key={index} 
+                                 control={
+                                       <Checkbox 
+                                          checked={chequeados[index]} 
+                                          onChange={() => { this.handleChange(index) }} 
+                                          value={filtro} 
+                                       />
+                                 }
+                                 label={filtro} 
+                              />
                            );
-                        } ) 
+                        }) 
                       ) 
                      }
                            

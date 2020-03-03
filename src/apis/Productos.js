@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default axios.create({
     // baseURL: 'http://testshop.onthego.com.ar/shop',
-    baseURL: 'http://149.56.237.70/shop/',
+    baseURL: 'http://149.56.237.70:81/shop/',
     params: {
         
         maxResults: 9,
