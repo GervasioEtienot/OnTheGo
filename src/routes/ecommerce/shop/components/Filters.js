@@ -9,36 +9,40 @@ import Checkbox from '@material-ui/core/Checkbox';
 // Card Component
 import { RctCard, RctCardContent } from 'Components/RctCard';
 import { Button } from '@material-ui/core';
+import Filtros from '../../../../apis/Filtros';
 
 
 class Filters extends Component {
    state = { 
-      filtros: {
-         marca:[
-            "SAMSUNG",
-            "MOTOROLA",
-            "APPLE",
-            "ALCATEL",
-            "BLACKBERRY",
-            "LUMIA\/MICROSOFT",
-            "SONY",
-            "LG",
-            "HUAWEI"
-         ],
-         calidad:[
-            "ORIGINAL",
-            "ALTA COPIA",
-            "COPIA AAA",
-            "COPIA AA"
-         ]
-      },
-      loading: false,
+      // filtros: {
+      //    marca:[
+      //       "SAMSUNG",
+      //       "MOTOROLA",
+      //       "APPLE",
+      //       "ALCATEL",
+      //       "BLACKBERRY",
+      //       "LUMIA\/MICROSOFT",
+      //       "SONY",
+      //       "LG",
+      //       "HUAWEI"
+      //    ],
+      //    calidad:[
+      //       "ORIGINAL",
+      //       "ALTA COPIA",
+      //       "COPIA AAA",
+      //       "COPIA AA"
+      //    ]
+      // },
+      marcas: [],
+      loading: true,
       chequeados: []
    }
+   
    componentDidMount() {
-      const { filtros, chequeados } = this.state;
+      const { marcas, chequeados } = this.state;
+      this.getFilters();
       let aux = [];
-      for (let i=0; i < filtros.marca.length; i++) {
+      for (let i=0; i < marcas.length; i++) {
          aux[i] = false;
       }
       this.setState({ chequeados: aux });
@@ -47,14 +51,14 @@ class Filters extends Component {
    }
    
    handleChange(index) {
-      const { chequeados, filtros } = this.state;
+      const { chequeados, marcas } = this.state;
       let auxChequeados = chequeados;
       auxChequeados[index] = !chequeados[index];
       this.setState({ chequeados: auxChequeados });
       let filtrar = [];
       chequeados.map((check, index) => {
          if(check === true){
-             filtrar.push(filtros.marca[index])
+             filtrar.push(marcas[index])
          }
          else{
             filtrar.splice(index, 1)
@@ -64,37 +68,57 @@ class Filters extends Component {
       
 
    }
+
+   async getFilters(){
+      // const { match } = this.props;
+	  
+      // const { termino } = this.state;
+      // console.log("lo que recibo: " + categoria);
+      this.setState({ loading: true });
+      
+      const response = await Filtros.get('partes',{
+         params: {
+            // maxResults: 30,
+            // q: `${termino}`
+            
+         }
+      });
+         console.log(response.data);
+         this.setState( { marcas: response.data.brand, loading: false } );
+   }
    
    render(){
-      const { filtros, chequeados, chequeado, loading } = this.state;
-     
+      const { marcas, chequeados, chequeado, loading } = this.state;
       return (
          <div className="filters-wrapper">
             <RctCard>
                <RctCardContent>
-                  <FormGroup >
-                     { loading ? 'cargando...' 
-                     : ( 
-                        filtros.marca.map((filtro, index) => {
-                           return (
-                              <FormControlLabel 
-                                 key={index} 
-                                 control={
-                                       <Checkbox 
-                                          checked={chequeados[index]} 
-                                          onChange={() => { this.handleChange(index) }} 
-                                          value={filtro} 
-                                       />
-                                 }
-                                 label={filtro} 
-                              />
-                           );
-                        }) 
-                      ) 
-                     }
+                  <div style={{ marginBottom:"5px", fontWeight:"bold" }} >Marca</div>
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                     <FormGroup >
+                        
+                        { loading ? 'cargando...' 
+                        : ( 
                            
-                  </FormGroup>
-               
+                           marcas.map((filtro, index) => {
+                              return (
+                                 <div className='ui checkbox' >
+                                    <input 
+                                                // checked={chequeados[index]} 
+                                                type='checkbox'
+                                                id= {filtro}
+                                                onChange={() => { this.handleChange(index) }} 
+                                                value={chequeados[index]} 
+                                             />
+                                    <label> {filtro} </label>
+                                 </div>
+                              );
+                           }) 
+                        ) 
+                        }
+                              
+                     </FormGroup>
+                  </div>
                </RctCardContent>
             </RctCard>
             <RctCard className="brand">
