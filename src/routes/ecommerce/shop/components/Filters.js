@@ -17,10 +17,14 @@ class Filters extends Component {
       marcas: [],
       color: [],
       quality: [],
-      loading: true,
       chequeados: [],
       colorChecked: [],
-      qualityChecked: []
+      qualityChecked: [],
+      loading: true,
+      brandsToFilter: [],
+      colorsToFilter: [],
+      qualitysToFilter: []
+      
    }
    
    componentDidMount() {
@@ -38,32 +42,92 @@ class Filters extends Component {
       for (let i=0; i < quality.length; i++) {
          auxQuality[i] = false;
       }
-      this.setState({ chequeados: auxMarcas, color: auxColor, quality: auxQuality });
+      this.setState({ chequeados: auxMarcas, colorChecked: auxColor, qualityChecked: auxQuality });
       console.log(chequeados);
-      console.log(color);
-      console.log(quality);
+      console.log(colorChecked);
+      console.log(qualityChecked);
       
       
       
    }
-   
-   handleChange(index) {
-      const { chequeados, marcas } = this.state;
-      let auxChequeados = chequeados;
-      auxChequeados[index] = !chequeados[index];
-      this.setState({ chequeados: auxChequeados });
+   agreeToFilter(aFiltrar, tipo){
+      const { brandsToFilter, colorsToFilter, qualityToFilter } = this.state;
+      if(tipo === 'marcas'){
+         this.setState({ brandsToFilter: aFiltrar });
+      }
+      else if(tipo === 'color'){
+         this.setState({ colorsToFilter: aFiltrar });
+      }
+      else if(tipo === 'quality'){
+         this.setState({ qualityToFilter: aFiltrar });
+      }
+      let arrayDeFiltros = []
+      if(brandsToFilter !== null){
+         arrayDeFiltros = arrayDeFiltros.concat(brandsToFilter);
+      }
+      if(colorsToFilter !== null){
+         arrayDeFiltros = arrayDeFiltros.concat(colorsToFilter);
+      } 
+      if(qualityToFilter !== null){
+         arrayDeFiltros = arrayDeFiltros.concat(qualityToFilter);
+      }       
+      // let arrayDeFiltros = [...brandsToFilter || [], ...colorsToFilter || [], ...qualityToFilter || []];
+      // console.log(arrayDeFiltros);
+      
+      // arrayDeFiltros.filter(this.checkFilters);
+      
+      this.props.onFiltrarTermino(arrayDeFiltros);
+
+   }
+   checkNulls(dato){
+      return dato !== null;
+   }
+   checkFilters(checkeds, valores){
       let filtrar = [];
-      chequeados.map((check, index) => {
+      checkeds.map((check, index) => {
          if(check === true){
-             filtrar.push(marcas[index])
+             filtrar.push(valores[index])
          }
          else{
             filtrar.splice(index, 1)
          }
       } )
-      console.log(filtrar);
-      this.props.onFiltrarTermino(filtrar);
+      return filtrar;
+   }
+   handleChange(index) {
+      const { chequeados, marcas } = this.state;
+      let auxChequeados = chequeados;
+      auxChequeados[index] = !chequeados[index];
+      this.setState({ chequeados: auxChequeados });
+      
+      let f = this.checkFilters(chequeados, marcas);
+      console.log(f);
+      // this.props.onFiltrarTermino(filtrar);
+      this.agreeToFilter(f, 'marcas');
+   }
 
+   handleChangeColor(index) {
+      const { colorChecked, color } = this.state;
+      let aux = colorChecked;
+      aux[index] = !colorChecked[index];
+      this.setState({ colorChecked: aux });
+      
+      let f = this.checkFilters(colorChecked, color);
+      console.log(f);
+      // this.props.onFiltrarTermino(filtrar);
+      this.agreeToFilter(f, 'color');
+   }
+
+   handleChangeQuality(index) {
+      const { qualityChecked, quality } = this.state;
+      let aux = qualityChecked;
+      aux[index] = !qualityChecked[index];
+      this.setState({ qualityChecked: aux });
+      
+      let f = this.checkFilters(qualityChecked, quality);
+      console.log(f);
+      // this.props.onFiltrarTermino(filtrar);
+      this.agreeToFilter(f, 'quality');
    }
 
    async getFilters(){
@@ -138,7 +202,7 @@ class Filters extends Component {
                                                 // checked={chequeados[index]} 
                                                 type='checkbox'
                                                 id= {filtro}
-                                                onChange={() => { this.handleChange(index) }} 
+                                                onChange={() => { this.handleChangeColor(index) }} 
                                                 value={colorChecked[index]} 
                                              />
                                     <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
@@ -152,7 +216,7 @@ class Filters extends Component {
                   </div>
                </RctCardContent>
             </RctCard>
-            <RctCard className="price">
+            <RctCard className="categories">
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
                   <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
@@ -168,7 +232,7 @@ class Filters extends Component {
                                                 // checked={chequeados[index]} 
                                                 type='checkbox'
                                                 id= {filtro}
-                                                onChange={() => { this.handleChange(index) }} 
+                                                onChange={() => { this.handleChangeQuality(index) }} 
                                                 value={qualityChecked[index]} 
                                              />
                                     <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
