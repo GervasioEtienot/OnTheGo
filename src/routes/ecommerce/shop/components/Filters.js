@@ -14,39 +14,36 @@ import Filtros from '../../../../apis/Filtros';
 
 class Filters extends Component {
    state = { 
-      // filtros: {
-      //    marca:[
-      //       "SAMSUNG",
-      //       "MOTOROLA",
-      //       "APPLE",
-      //       "ALCATEL",
-      //       "BLACKBERRY",
-      //       "LUMIA\/MICROSOFT",
-      //       "SONY",
-      //       "LG",
-      //       "HUAWEI"
-      //    ],
-      //    calidad:[
-      //       "ORIGINAL",
-      //       "ALTA COPIA",
-      //       "COPIA AAA",
-      //       "COPIA AA"
-      //    ]
-      // },
       marcas: [],
+      color: [],
+      quality: [],
       loading: true,
-      chequeados: []
+      chequeados: [],
+      colorChecked: [],
+      qualityChecked: []
    }
    
    componentDidMount() {
-      const { marcas, chequeados } = this.state;
+      const { marcas, color, quality, chequeados, colorChecked, qualityChecked } = this.state;
       this.getFilters();
-      let aux = [];
+      let auxMarcas = [];
       for (let i=0; i < marcas.length; i++) {
-         aux[i] = false;
+         auxMarcas[i] = false;
       }
-      this.setState({ chequeados: aux });
+      let auxColor = [];
+      for (let i=0; i < color.length; i++) {
+         auxColor[i] = false;
+      }
+      let auxQuality = [];
+      for (let i=0; i < quality.length; i++) {
+         auxQuality[i] = false;
+      }
+      this.setState({ chequeados: auxMarcas, color: auxColor, quality: auxQuality });
       console.log(chequeados);
+      console.log(color);
+      console.log(quality);
+      
+      
       
    }
    
@@ -65,15 +62,12 @@ class Filters extends Component {
          }
       } )
       console.log(filtrar);
-      
+      this.props.onFiltrarTermino(filtrar);
 
    }
 
    async getFilters(){
-      // const { match } = this.props;
-	  
-      // const { termino } = this.state;
-      // console.log("lo que recibo: " + categoria);
+      
       this.setState({ loading: true });
       
       const response = await Filtros.get('partes',{
@@ -84,16 +78,16 @@ class Filters extends Component {
          }
       });
          console.log(response.data);
-         this.setState( { marcas: response.data.brand, loading: false } );
+         this.setState( { marcas: response.data.brand, color: response.data.color, quality: response.data.quality, loading: false } );
    }
    
    render(){
-      const { marcas, chequeados, chequeado, loading } = this.state;
+      const { marcas, chequeados, color, colorChecked, quality, qualityChecked, loading } = this.state;
       return (
          <div className="filters-wrapper">
             <RctCard>
                <RctCardContent>
-                  <div style={{ marginBottom:"5px", fontWeight:"bold" }} >Marca</div>
+                  <div style={{ marginBottom:"5px", fontWeight:"700" }} >MARCA</div>
                   <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
                      <FormGroup >
                         
@@ -102,7 +96,7 @@ class Filters extends Component {
                            
                            marcas.map((filtro, index) => {
                               return (
-                                 <div className='ui checkbox' >
+                                 <div /* className='ui checkbox' */ >
                                     <input 
                                                 // checked={chequeados[index]} 
                                                 type='checkbox'
@@ -110,7 +104,7 @@ class Filters extends Component {
                                                 onChange={() => { this.handleChange(index) }} 
                                                 value={chequeados[index]} 
                                              />
-                                    <label> {filtro} </label>
+                                    <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
                                  </div>
                               );
                            }) 
@@ -130,43 +124,62 @@ class Filters extends Component {
             </RctCard>
             <RctCard className="categories">
                <RctCardContent>
-                  {/* <Panel header="Category">
-                     <HierarchicalMenu
-                        attributes={[
-                           'hierarchicalCategories.lvl0',
-                           'hierarchicalCategories.lvl1',
-                           'hierarchicalCategories.lvl2',
-                        ]}
-                     />
-                  </Panel> */}
+                  <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                     <FormGroup >
+                        
+                        { loading ? 'cargando...' 
+                        : ( 
+                           
+                           color.map((filtro, index) => {
+                              return (
+                                 <div /* className='ui checkbox' */ >
+                                    <input 
+                                                // checked={chequeados[index]} 
+                                                type='checkbox'
+                                                id= {filtro}
+                                                onChange={() => { this.handleChange(index) }} 
+                                                value={colorChecked[index]} 
+                                             />
+                                    <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                 </div>
+                              );
+                           }) 
+                        ) 
+                        }
+                              
+                     </FormGroup>
+                  </div>
                </RctCardContent>
             </RctCard>
             <RctCard className="price">
                <RctCardContent>
-                  {/* <Panel
-                     header="Price"
-                     className="mb-20"
-                  >
-                     <NumericMenu
-                        attribute="price"
-                        items={[
-                           { end: 10, label: 'Below $10' },
-                           { start: 10, end: 100, label: '$10 - $100' },
-                           { start: 100, end: 500, label: '$100 - $500' },
-                           { start: 500, label: 'Above $500' },
-                        ]}
-                     />
-                  </Panel>
-                  <Panel header="Enter Price Range">
-                     <RangeInput
-                        attribute="price"
-                        className="py-2"
-                        translations={{
-                           submit: 'Go',
-                           separator: '-'
-                        }}
-                     />
-                  </Panel> */}
+                  <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                     <FormGroup >
+                        
+                        { loading ? 'cargando...' 
+                        : ( 
+                           
+                           quality.map((filtro, index) => {
+                              return (
+                                 <div /* className='ui checkbox' */ >
+                                    <input 
+                                                // checked={chequeados[index]} 
+                                                type='checkbox'
+                                                id= {filtro}
+                                                onChange={() => { this.handleChange(index) }} 
+                                                value={qualityChecked[index]} 
+                                             />
+                                    <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                 </div>
+                              );
+                           }) 
+                        ) 
+                        }
+                              
+                     </FormGroup>
+                  </div>
                </RctCardContent>
             </RctCard>
             <RctCard>
