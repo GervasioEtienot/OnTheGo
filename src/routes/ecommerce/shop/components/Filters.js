@@ -21,9 +21,9 @@ class Filters extends Component {
       colorChecked: [],
       qualityChecked: [],
       loading: true,
-      brandsToFilter: [],
-      colorsToFilter: [],
-      qualitysToFilter: []
+      brandsToFilter: '',
+      colorsToFilter: '',
+      qualitysToFilter: ''
       
    }
    
@@ -61,18 +61,18 @@ class Filters extends Component {
       else if(tipo === 'quality'){
          this.setState({ qualityToFilter: aFiltrar });
       }
-      let arrayDeFiltros = []
+      let arrayDeFiltros = ['nada', 'nada', 'nada']
       if(brandsToFilter !== null){
-         arrayDeFiltros = arrayDeFiltros.concat(brandsToFilter);
+         arrayDeFiltros[0] = brandsToFilter;
       }
       if(colorsToFilter !== null){
-         arrayDeFiltros = arrayDeFiltros.concat(colorsToFilter);
+         arrayDeFiltros[1] = colorsToFilter;
       } 
       if(qualityToFilter !== null){
-         arrayDeFiltros = arrayDeFiltros.concat(qualityToFilter);
+         arrayDeFiltros[2] = qualityToFilter;
       }       
       // let arrayDeFiltros = [...brandsToFilter || [], ...colorsToFilter || [], ...qualityToFilter || []];
-      // console.log(arrayDeFiltros);
+      console.log(arrayDeFiltros);
       
       // arrayDeFiltros.filter(this.checkFilters);
       
@@ -83,14 +83,12 @@ class Filters extends Component {
       return dato !== null;
    }
    checkFilters(checkeds, valores){
-      let filtrar = [];
+      let filtrar = ''
       checkeds.map((check, index) => {
          if(check === true){
-             filtrar.push(valores[index])
+             filtrar = `${filtrar}-${valores[index]}` 
          }
-         else{
-            filtrar.splice(index, 1)
-         }
+         
       } )
       return filtrar;
    }
