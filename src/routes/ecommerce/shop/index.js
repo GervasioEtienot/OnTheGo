@@ -45,7 +45,6 @@ export default class Shop extends Component {
 	state = {
 		     videos: [],
 			 loading: true,
-			 filtros: []
 			}
 
     componentWillMount(){
@@ -61,17 +60,14 @@ export default class Shop extends Component {
 		this.busquedaDePrueba(nextProps.match.params);
 	}
 
-	async busquedaDePrueba({ categoria }) {
-	  const { match } = this.props;
+	async busquedaDePrueba({ categoria }, term) {
 	  
-	  const { filtros } = this.state;
 	  console.log("lo que recibo: " + categoria);
-	  
-	  
+	  	 
 	  const respuesta = await Productos.get(categoria,{
 		params: {
 			maxResults: 30,
-			data: [filtros]
+			data: [term]
 		}
 	});
 		console.log(respuesta.data.data);
@@ -80,11 +76,11 @@ export default class Shop extends Component {
 	}
 	filtrarTermino(term){
 	   const { match } = this.props;
-	   
+	       
 		   this.setState({ filtros: term });
 		   console.log(term);
 		     
-		   this.busquedaDePrueba(match.params);
+		   this.busquedaDePrueba(match.params, term);
 	   
     }
 	render() {

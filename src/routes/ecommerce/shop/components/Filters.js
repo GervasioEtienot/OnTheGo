@@ -51,37 +51,26 @@ class Filters extends Component {
       
    }
    agreeToFilter(aFiltrar, tipo){
-      const { brandsToFilter, colorsToFilter, qualityToFilter } = this.state;
+      const { brandsToFilter, colorsToFilter, qualitysToFilter } = this.state;
+      let arrayDeFiltros = [ "", "", "" ]
       if(tipo === 'marcas'){
+         arrayDeFiltros = [ aFiltrar, colorsToFilter, qualitysToFilter ]
          this.setState({ brandsToFilter: aFiltrar });
       }
       else if(tipo === 'color'){
+         arrayDeFiltros = [ brandsToFilter, aFiltrar, qualitysToFilter ]
          this.setState({ colorsToFilter: aFiltrar });
       }
       else if(tipo === 'quality'){
-         this.setState({ qualityToFilter: aFiltrar });
+         arrayDeFiltros = [ brandsToFilter, colorsToFilter, aFiltrar ]
+         this.setState({ qualitysToFilter: aFiltrar });
       }
-      let arrayDeFiltros = ['nada', 'nada', 'nada']
-      if(brandsToFilter !== null){
-         arrayDeFiltros[0] = brandsToFilter;
-      }
-      if(colorsToFilter !== null){
-         arrayDeFiltros[1] = colorsToFilter;
-      } 
-      if(qualityToFilter !== null){
-         arrayDeFiltros[2] = qualityToFilter;
-      }       
-      // let arrayDeFiltros = [...brandsToFilter || [], ...colorsToFilter || [], ...qualityToFilter || []];
       console.log(arrayDeFiltros);
-      
-      // arrayDeFiltros.filter(this.checkFilters);
       
       this.props.onFiltrarTermino(arrayDeFiltros);
 
    }
-   checkNulls(dato){
-      return dato !== null;
-   }
+   
    checkFilters(checkeds, valores){
       let filtrar = ''
       checkeds.map((check, index) => {
@@ -100,7 +89,7 @@ class Filters extends Component {
       
       let f = this.checkFilters(chequeados, marcas);
       console.log(f);
-      // this.props.onFiltrarTermino(filtrar);
+      
       this.agreeToFilter(f, 'marcas');
    }
 
