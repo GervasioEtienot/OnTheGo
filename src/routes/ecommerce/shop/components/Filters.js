@@ -10,17 +10,23 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { RctCard, RctCardContent } from 'Components/RctCard';
 import { Button } from '@material-ui/core';
 import Filtros from '../../../../apis/Filtros';
+import Collapse from '@material-ui/core/Collapse';
+
 
 
 class Filters extends Component {
-   state = { 
+   state = {
+      filtrosRecibidos: {}, 
       marcas: [],
       color: [],
       quality: [],
       chequeados: [],
       colorChecked: [],
       qualityChecked: [],
+      models: [],
+      modelChecked: [],
       loading: true,
+      showModels: false,
       brandsToFilter: '',
       colorsToFilter: '',
       qualitysToFilter: ''
@@ -46,10 +52,8 @@ class Filters extends Component {
       console.log(chequeados);
       console.log(colorChecked);
       console.log(qualityChecked);
-      
-      
-      
    }
+
    agreeToFilter(aFiltrar, tipo){
       const { brandsToFilter, colorsToFilter, qualitysToFilter } = this.state;
       let arrayDeFiltros = [ "", "", "" ]
@@ -66,7 +70,7 @@ class Filters extends Component {
          this.setState({ qualitysToFilter: aFiltrar });
       }
       console.log(arrayDeFiltros);
-      
+            
       this.props.onFiltrarTermino(arrayDeFiltros);
 
    }
@@ -82,15 +86,26 @@ class Filters extends Component {
       return filtrar;
    }
    handleChange(index) {
-      const { chequeados, marcas } = this.state;
+      const { chequeados, marcas, filtrosRecibidos, models } = this.state;
       let auxChequeados = chequeados;
       auxChequeados[index] = !chequeados[index];
       this.setState({ chequeados: auxChequeados });
-      
+      let modelos = auxChequeados.filter(this.searchModels);
+      if(modelos.length === 1){
+         this.setState({ showModels: true, models: filtrosRecibidos[`${marcas[index].toLowerCase()}`] });
+         // console.log( filtrosRecibidos[`${marcas[index].toLowerCase()}`]);
+      }
+      else{
+         this.setState({ showModels: false });
+      }
       let f = this.checkFilters(chequeados, marcas);
       console.log(f);
       
       this.agreeToFilter(f, 'marcas');
+   }
+
+   searchModels(dato){
+      return dato === true;
    }
 
    handleChangeColor(index) {
@@ -129,11 +144,11 @@ class Filters extends Component {
          }
       });
          console.log(response.data);
-         this.setState( { marcas: response.data.brand, color: response.data.color, quality: response.data.quality, loading: false } );
+         this.setState( { filtrosRecibidos: response.data, marcas: response.data.brand, color: response.data.color, quality: response.data.quality, loading: false } );
    }
    
    render(){
-      const { marcas, chequeados, color, colorChecked, quality, qualityChecked, loading } = this.state;
+      const { marcas, chequeados, color, colorChecked, quality, qualityChecked, loading, models, modelChecked, showModels } = this.state;
       return (
          <div className="filters-wrapper">
             <RctCard>
@@ -149,7 +164,6 @@ class Filters extends Component {
                               return (
                                  <div /* className='ui checkbox' */ >
                                     <input 
-                                                // checked={chequeados[index]} 
                                                 type='checkbox'
                                                 id= {filtro}
                                                 onChange={() => { this.handleChange(index) }} 
@@ -166,13 +180,35 @@ class Filters extends Component {
                   </div>
                </RctCardContent>
             </RctCard>
-            <RctCard className="brand">
-               <RctCardContent>
-                  {/* <Panel header="Brand">
-                     <RefinementList attribute="brand" limit={5} />
-                  </Panel> */}
-               </RctCardContent>
-            </RctCard>
+            <Collapse in={showModels} timeout={500} >
+               <RctCard className="brand">
+                  <RctCardContent>
+                     <div style={{ marginBottom:"5px", fontWeight:"700" }} >MODELO</div>
+                     <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                        <FormGroup >
+                           { 
+                             models.map((filtro, index) => {
+                                 return (
+                                    <div /* className='ui checkbox' */ >
+                                       <input 
+                                                   // checked={chequeados[index]} 
+                                                   type='checkbox'
+                                                   id= {filtro}
+                                                   // onChange={() => { this.handleChange(index) }} 
+                                                   value={modelChecked[index]} 
+                                                />
+                                       <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                    </div>
+                                 );
+                             }) 
+                            
+                           }
+                                 
+                        </FormGroup>
+                     </div>
+                  </RctCardContent>
+               </RctCard>
+            </Collapse>
             <RctCard className="categories">
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
