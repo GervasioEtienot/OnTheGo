@@ -105,8 +105,8 @@ class Carts extends Component {
                      </tbody>
                      <tfoot>
                         <tr className="text-center">
-                           <td colSpan="2"><Input type="text" placeholder="Enter Promo Code" /></td>
-                           <td><Button variant="contained" color="secondary" className="text-white"><IntlMessages id="widgets.apply" /></Button></td>
+                           <td colSpan="2">{/* <Input type="text" placeholder="Enter Promo Code" /> */}</td>
+                           <td>{/* <Button variant="contained" color="secondary" className="text-white"><IntlMessages id="widgets.apply" /></Button> */}</td>
                            <td><span className="font-weight-bold"><IntlMessages id="widgets.total" /></span></td>
                            <td><span className="font-weight-bold">$ {this.getTotalPrice()}</span></td>
                            <td>

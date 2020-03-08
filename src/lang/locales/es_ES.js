@@ -5,7 +5,7 @@ module.exports = {
    "sidebar.lensum": "Lensum",
    "sidebar.promos": "Promos",
    "sidebar.liquidacion": "Liquidación",
-   "sidebar.app": "Aplicación",
+   "sidebar.app": "Inicio",
    "sidebar.horizontal": "Horizontal",
    "sidebar.horizontalMenu": "Menú horizontal",
    "sidebar.general": "General",

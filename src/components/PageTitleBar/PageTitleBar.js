@@ -11,7 +11,7 @@ import IntlMessages from 'Util/IntlMessages';
 
 // get display string
 const getDisplayString = (sub) => {
-   // console.log(sub);
+   console.log(sub);
    // debugger;
    const arr = sub.split("-");
 
@@ -35,11 +35,11 @@ const getUrlString = (path, sub, index) => {
 
 const PageTitleBar = ({ title, match, enableBreadCrumb }) => {
    const path = match.path.substr(1);
-   const prePath = path.slice(0,path.indexOf(':')-1);
+   const prePath = path.includes("cart") ? path : path.slice(0,path.indexOf(':')-1);
+   const prePath1 = `${prePath.slice(0, prePath.indexOf('/'))}${prePath.slice(13)}`
+   console.log(path);
    
-   // console.log(prePath);
-   
-   const subPath = prePath.split('/');
+   const subPath = prePath1.split('/');
    return (
       <div className="page-title d-flex justify-content-between align-items-center">
          {title &&

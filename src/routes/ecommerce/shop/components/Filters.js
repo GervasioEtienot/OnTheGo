@@ -11,6 +11,7 @@ import { RctCard, RctCardContent } from 'Components/RctCard';
 import { Button } from '@material-ui/core';
 import Filtros from '../../../../apis/Filtros';
 import Collapse from '@material-ui/core/Collapse';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -29,7 +30,8 @@ class Filters extends Component {
       showModels: false,
       brandsToFilter: '',
       colorsToFilter: '',
-      qualitysToFilter: ''
+      qualitysToFilter: '',
+      modelsToFilter: ''
       
    }
    
@@ -54,21 +56,28 @@ class Filters extends Component {
       console.log(qualityChecked);
    }
 
-   agreeToFilter(aFiltrar, tipo){
-      const { brandsToFilter, colorsToFilter, qualitysToFilter } = this.state;
-      let arrayDeFiltros = [ "", "", "" ]
-      if(tipo === 'marcas'){
-         arrayDeFiltros = [ aFiltrar, colorsToFilter, qualitysToFilter ]
-         this.setState({ brandsToFilter: aFiltrar });
+   agreeToFilter(aFiltrar, tipo, borrarModelsToFilter){
+      const { brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter } = this.state;
+      let arrayDeFiltros = [ "", "", "", "" ]
+      switch(tipo){
+         case "marcas": if(borrarModelsToFilter){
+                           arrayDeFiltros = [ aFiltrar, "", colorsToFilter, qualitysToFilter ]
+                        }
+                        else{ arrayDeFiltros = [ aFiltrar, modelsToFilter, colorsToFilter, qualitysToFilter ] }
+                        this.setState({ brandsToFilter: aFiltrar });
+                        break;
+         case "models": arrayDeFiltros = [ brandsToFilter, aFiltrar, colorsToFilter, qualitysToFilter ]
+                        this.setState({ modelsToFilter: aFiltrar });
+                        break;
+         case "color": arrayDeFiltros = [ brandsToFilter, modelsToFilter, aFiltrar, qualitysToFilter ]
+                        this.setState({ colorsToFilter: aFiltrar });
+                        break;
+         case "quality": arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, aFiltrar ]
+                        this.setState({ qualitysToFilter: aFiltrar });
+                        break;
+         
       }
-      else if(tipo === 'color'){
-         arrayDeFiltros = [ brandsToFilter, aFiltrar, qualitysToFilter ]
-         this.setState({ colorsToFilter: aFiltrar });
-      }
-      else if(tipo === 'quality'){
-         arrayDeFiltros = [ brandsToFilter, colorsToFilter, aFiltrar ]
-         this.setState({ qualitysToFilter: aFiltrar });
-      }
+            
       console.log(arrayDeFiltros);
             
       this.props.onFiltrarTermino(arrayDeFiltros);
@@ -86,26 +95,55 @@ class Filters extends Component {
       return filtrar;
    }
    handleChange(index) {
-      const { chequeados, marcas, filtrosRecibidos, models } = this.state;
+      const { chequeados, marcas, filtrosRecibidos, modelChecked, models } = this.state;
+      let borrarModelsToFilter = false
       let auxChequeados = chequeados;
       auxChequeados[index] = !chequeados[index];
       this.setState({ chequeados: auxChequeados });
       let modelos = auxChequeados.filter(this.searchModels);
       if(modelos.length === 1){
-         this.setState({ showModels: true, models: filtrosRecibidos[`${marcas[index].toLowerCase()}`] });
-         // console.log( filtrosRecibidos[`${marcas[index].toLowerCase()}`]);
+         this.setState({ showModels: true, models: filtrosRecibidos[`${marcas[auxChequeados.indexOf(true)].toLowerCase()}`] });
+         let auxModels = [];
+         for (let i=0; i < filtrosRecibidos[`${marcas[auxChequeados.indexOf(true)].toLowerCase()}`].length; i++) {
+            auxModels[i] = false;
+         }
+         this.setState({ modelChecked: auxModels });
+         console.log(auxModels);
+         
+         // this.setState({ modelChecked: auxModels });
       }
       else{
-         this.setState({ showModels: false });
+         borrarModelsToFilter = true
+         let auxParaBorrar = modelChecked;
+         modelChecked.map((item, indice) => {
+            if(item === true){
+               auxParaBorrar[indice] = false; 
+            }
+         } )
+         
+         this.setState( (prevState) => { return { showModels: false, models: prevState.models !== [null] ? [null] : prevState.models, modelChecked: auxParaBorrar, modelsToFilter: ""}});
       }
       let f = this.checkFilters(chequeados, marcas);
       console.log(f);
+      console.log(models);
       
-      this.agreeToFilter(f, 'marcas');
+      this.agreeToFilter(f, 'marcas', borrarModelsToFilter);
    }
 
    searchModels(dato){
       return dato === true;
+   }
+
+   handleChangeModels(index) {
+      const { modelChecked, models } = this.state;
+      let aux = modelChecked;
+      aux[index] = !modelChecked[index];
+      this.setState({ modelChecked: aux });
+      
+      let f = this.checkFilters(modelChecked, models);
+      console.log(f);
+      // this.props.onFiltrarTermino(filtrar);
+      this.agreeToFilter(f, 'models');
    }
 
    handleChangeColor(index) {
@@ -157,7 +195,7 @@ class Filters extends Component {
                   <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
                      <FormGroup >
                         
-                        { loading ? 'cargando...' 
+                        { loading ? <CircularProgress /> 
                         : ( 
                            
                            marcas.map((filtro, index) => {
@@ -194,10 +232,10 @@ class Filters extends Component {
                                                    // checked={chequeados[index]} 
                                                    type='checkbox'
                                                    id= {filtro}
-                                                   // onChange={() => { this.handleChange(index) }} 
+                                                   onChange={() => { this.handleChangeModels(index) }} 
                                                    value={modelChecked[index]} 
                                                 />
-                                       <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                       <label style={{ marginLeft: "5px" }}> {filtro/* .toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1) */} </label>
                                     </div>
                                  );
                              }) 
@@ -215,7 +253,7 @@ class Filters extends Component {
                   <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
                      <FormGroup >
                         
-                        { loading ? 'cargando...' 
+                        { loading ? <CircularProgress /> 
                         : ( 
                            
                            color.map((filtro, index) => {
@@ -245,7 +283,7 @@ class Filters extends Component {
                   <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
                      <FormGroup >
                         
-                        { loading ? 'cargando...' 
+                        { loading ? <CircularProgress /> 
                         : ( 
                            
                            quality.map((filtro, index) => {
