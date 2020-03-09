@@ -73,7 +73,7 @@ class UserBlock extends Component {
 							tag="div"
 							className="d-flex align-items-center"
 						>
-							<div className="user-profile">
+							<div hidden={true} className="user-profile">
 								<img
 									src={require('Assets/avatars/user-15.jpg')}
 									alt="user profile"

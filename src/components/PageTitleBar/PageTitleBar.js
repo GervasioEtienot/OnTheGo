@@ -11,11 +11,15 @@ import IntlMessages from 'Util/IntlMessages';
 
 // get display string
 const getDisplayString = (sub) => {
+   console.log(sub);
+   // debugger;
    const arr = sub.split("-");
+
    if (arr.length > 1) {
+
       return <IntlMessages id={`sidebar.${arr[0].charAt(0) + arr[0].slice(1) + arr[1].charAt(0).toUpperCase() + arr[1].slice(1)}`} />
    } else {
-      return <IntlMessages id={`sidebar.${sub.charAt(0) + sub.slice(1)}`} />
+      return <IntlMessages id={`sidebar.${sub.charAt(0).toLowerCase() + sub.slice(1)}`} />
    }
 
 };
@@ -31,7 +35,11 @@ const getUrlString = (path, sub, index) => {
 
 const PageTitleBar = ({ title, match, enableBreadCrumb }) => {
    const path = match.path.substr(1);
-   const subPath = path.split('/');
+   const prePath = path.includes("cart") ? path : path.slice(0,path.indexOf(':')-1);
+   const prePath1 = `${prePath.slice(0, prePath.indexOf('/'))}${prePath.slice(13)}`
+   console.log(path);
+   
+   const subPath = prePath1.split('/');
    return (
       <div className="page-title d-flex justify-content-between align-items-center">
          {title &&
