@@ -15,7 +15,7 @@ const Ecommerce = ({ match }) => {
 	return (
 		<div className="content-wrapper">
 			<Helmet>
-				<title>Ecommerce | Shop</title>
+				<title>ON THE GO</title>
 				<meta name="description" content="Reactify Ecommerce Shop" />
 			</Helmet>
 			<Switch>
