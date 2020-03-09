@@ -108,7 +108,7 @@ class Hit extends Component {
 							/>
 						</div>
 						<div style={{display: "block", textAlign: "center", margin: "2rem 0" }}>
-							<Button color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false})} >Confirmar</Button>
+							<Button disabled={ hit.cantidad_deposito_item === 0 ? true : false } color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false})} >Confirmar</Button>
 							<Button color="default" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.cancelarItem(e) } >Cancelar</Button>
 						</div>
 					</Collapse>

@@ -307,25 +307,27 @@ class Filters extends Component {
                   </div>
                </RctCardContent>
             </RctCard>
-            <RctCard>
-               <RctCardContent>
-                  {/* <Panel header="Rating Menu">
-                     <RatingMenu
-                        attribute="rating"
-                        min={1}
-                        max={5}
-                        translations={{
-                           ratingLabel: ""
-                        }}
-                     />
-                  </Panel> */}
-               </RctCardContent>
-            </RctCard>
-            <RctCard>
-               <RctCardContent>
-               {/* <ClearRefinements /> */}
-               </RctCardContent>
-            </RctCard> 
+            {
+            // <RctCard>
+            //    <RctCardContent>
+            //       {/* <Panel header="Rating Menu">
+            //          <RatingMenu
+            //             attribute="rating"
+            //             min={1}
+            //             max={5}
+            //             translations={{
+            //                ratingLabel: ""
+            //             }}
+            //          />
+            //       </Panel> */}
+            //    </RctCardContent>
+            // </RctCard>
+            // <RctCard>
+            //    <RctCardContent>
+            //    {/* <ClearRefinements /> */}
+            //    </RctCardContent>
+            // </RctCard> 
+               }
          </div>
       )
    }

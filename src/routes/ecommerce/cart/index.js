@@ -22,6 +22,7 @@ import IntlMessages from 'Util/IntlMessages';
 
 // page title bar
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
+import Axios from 'axios';
 
 class Carts extends Component {
 
@@ -46,6 +47,14 @@ class Carts extends Component {
       const { cart } = this.props;
       if (cart.length === 0) {
          return true;
+      }
+   }
+
+   enviarPedido() {
+      let confirmacion = confirm("¿Está seguro que desea confirmar el pedido?")
+      // Agregar axios.post()
+      if(confirmacion){
+         alert("Pedido enviado");
       }
    }
 
@@ -110,7 +119,10 @@ class Carts extends Component {
                            <td><span className="font-weight-bold"><IntlMessages id="widgets.total" /></span></td>
                            <td><span className="font-weight-bold">$ {this.getTotalPrice()}</span></td>
                            <td>
-                              <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
+                              {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
+                                 <IntlMessages id="components.checkout" />
+                              </Button> */}
+                              <Button variant="contained" size="large" color="primary" className="text-white" onClick={this.enviarPedido} >
                                  <IntlMessages id="components.checkout" />
                               </Button>
                            </td>

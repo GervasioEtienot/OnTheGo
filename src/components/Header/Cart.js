@@ -62,7 +62,7 @@ class Carts extends Component {
 					<div className="dropdown-content">
 						<div className="dropdown-top d-flex justify-content-between rounded-top bg-primary">
 							<span className="text-white font-weight-bold"><IntlMessages id="components.cart" /></span>
-							<Badge color="warning">4 NEW</Badge>
+							{/* <Badge color="warning">4 NEW</Badge> */}
 						</div>
 						{this.isCartEmpty() ? (
 							<div className="text-center p-4">
