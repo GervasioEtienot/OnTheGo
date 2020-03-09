@@ -29,9 +29,9 @@ export default {
                "categoria": "baterias"
             },
             {
-               "path": "/app/ecommerce/Lensum",
+               "path": "/app/ecommerce/Lensun",
                "new_item": false,
-               "menu_title": "sidebar.lensum",
+               "menu_title": "sidebar.lensun",
                "menu_icon": "zmdi zmdi-bookmark",
                "categoria": "lensum"
             }, 

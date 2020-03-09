@@ -23,7 +23,7 @@ const Ecommerce = ({ match }) => {
 				<Route exact path={`${match.url}/accesorios/:categoria`} component={Shop} />} />
 				<Route exact path={`${match.url}/partes/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/baterias/:categoria`} component={Shop} />
-				<Route exact path={`${match.url}/Lensum/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/Lensun/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/promos/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/liquidacion/:categoria`} component={Shop} />
 				<Route path={`${match.url}/cart`} component={AsyncCartComponent} />
