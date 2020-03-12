@@ -23,8 +23,12 @@ import IntlMessages from 'Util/IntlMessages';
 // page title bar
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 import Axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert'
 
 class Carts extends Component {
+   state = {
+      success: false
+   }
 
    onChangeQuantity(quantity, cartItem) {
       if (quantity > 0) {
@@ -50,16 +54,25 @@ class Carts extends Component {
       }
    }
 
-   enviarPedido() {
-      let confirmacion = confirm("¿Está seguro que desea confirmar el pedido?")
-      // Agregar axios.post()
-      if(confirmacion){
-         alert("Pedido enviado");
+   // enviarPedido(){
+   //    // Hacer POST request
+   //    this.openAlert('success');
+   // }
+   onConfirm(key) {
+      this.setState({ [key]: false })
+   }
+
+	openAlert(key) {
+      const { cart } = this.props;
+      if (cart) {
+         console.log(cart);
       }
+      this.setState({ [key]: true });
    }
 
    render() {
       const { cart, deleteItemFromCart, match } = this.props;
+      const { success } = this.state;
       return (
          <div className="cart-wrapper">
             <PageTitleBar title={<IntlMessages id="sidebar.cart" />} match={match} />
@@ -122,9 +135,16 @@ class Carts extends Component {
                               {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
                                  <IntlMessages id="components.checkout" />
                               </Button> */}
-                              <Button variant="contained" size="large" color="primary" className="text-white" onClick={this.enviarPedido} >
+                              <Button variant="contained" size="large" color="primary" className="text-white" onClick={() => this.openAlert('success')} >
                                  <IntlMessages id="components.checkout" />
                               </Button>
+                              <SweetAlert
+                                 success
+                                 show={success}
+                                 title="Tu pedido se realizó con éxito!"
+                                 btnSize="sm"
+                                 onConfirm={() => this.onConfirm('success')}
+                              />
                            </td>
                         </tr>
                      </tfoot>
