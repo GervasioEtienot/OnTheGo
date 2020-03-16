@@ -25,6 +25,9 @@ import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 import Axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert'
 
+// Api de prueba
+import EnviarCarrito from '../../../apis/EnviarCarrito';
+
 class Carts extends Component {
    state = {
       success: false
@@ -66,6 +69,14 @@ class Carts extends Component {
       const { cart } = this.props;
       if (cart) {
          console.log(cart);
+         EnviarCarrito.post('', {
+            carrito: cart,
+          })
+          .then(response => {
+            console.log(response);
+          }).catch(e => {
+            console.log(e);
+        });
       }
       this.setState({ [key]: true });
    }

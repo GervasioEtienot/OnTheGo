@@ -8,7 +8,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 // Card Component
 import { RctCard, RctCardContent } from 'Components/RctCard';
-import { Button } from '@material-ui/core';
+import { Button, Hidden } from '@material-ui/core';
 import Filtros from '../../../../apis/Filtros';
 import Collapse from '@material-ui/core/Collapse';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -51,9 +51,9 @@ class Filters extends Component {
          auxQuality[i] = false;
       }
       this.setState({ chequeados: auxMarcas, colorChecked: auxColor, qualityChecked: auxQuality });
-      console.log(chequeados);
-      console.log(colorChecked);
-      console.log(qualityChecked);
+      // console.log(chequeados);
+      // console.log(colorChecked);
+      // console.log(qualityChecked);
    }
 
    agreeToFilter(aFiltrar, tipo, borrarModelsToFilter){
@@ -125,7 +125,7 @@ class Filters extends Component {
       }
       let f = this.checkFilters(chequeados, marcas);
       console.log(f);
-      console.log(models);
+      console.log(modelChecked);
       
       this.agreeToFilter(f, 'marcas', borrarModelsToFilter);
    }
@@ -192,7 +192,7 @@ class Filters extends Component {
             <RctCard>
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >MARCA</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
                      <FormGroup >
                         
                         { loading ? <CircularProgress /> 
@@ -222,7 +222,7 @@ class Filters extends Component {
                <RctCard className="brand">
                   <RctCardContent>
                      <div style={{ marginBottom:"5px", fontWeight:"700" }} >MODELO</div>
-                     <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                     <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto'  }} >
                         <FormGroup >
                            { 
                              models.map((filtro, index) => {
@@ -250,7 +250,7 @@ class Filters extends Component {
             <RctCard className="categories">
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto'  }} >
                      <FormGroup >
                         
                         { loading ? <CircularProgress /> 
@@ -280,7 +280,7 @@ class Filters extends Component {
             <RctCard className="categories">
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'scroll'  }} >
+                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto'  }} >
                      <FormGroup >
                         
                         { loading ? <CircularProgress /> 

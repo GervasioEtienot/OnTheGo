@@ -69,7 +69,10 @@ export default class Shop extends Component {
 	  const respuesta = await Productos.get(categoria,{
 		params: {
 			page: actualPage === 0 ? paginaActual : actualPage,
-			data: [term]
+			marca: term === undefined ? '': term[0],
+			modelo: term === undefined ? '': term[1],
+			color: term === undefined ? '': term[2],
+			calidad: term === undefined ? '': term[3]
 		}
 	});
 		console.log(respuesta.data);
