@@ -46,33 +46,36 @@ export default class Shop extends Component {
 		     videos: [],
 			 loading: true,
 			 paginaActual: 1,
-			 dataCompleta: {}
+			 dataCompleta: {},
+			 filtros: ['', '', '', '']
 			}
 
     componentWillMount(){
-	  const { match } = this.props;
+	    const { paginaActual } = this.state;
+		const { match } = this.props;
 	//   debugger;
-	  this.busquedaDePrueba(match.params);
+	  this.busquedaDePrueba(match.params, paginaActual);
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps.match.params);
+		const { paginaActual } = this.state;
 		
-		
+		console.log(nextProps.match.params, paginaActual);
+			
 		this.busquedaDePrueba(nextProps.match.params);
 	}
 
 	async busquedaDePrueba({ categoria }, actualPage, term) {
-	  const { paginaActual } = this.state;
+	  const { paginaActual, filtros } = this.state;
 	  console.log("lo que recibo: " + categoria);
 	  	  
 	  const respuesta = await Productos.get(categoria,{
 		params: {
 			page: actualPage === 0 ? paginaActual : actualPage,
-			marca: term === undefined ? '': term[0],
-			modelo: term === undefined ? '': term[1],
-			color: term === undefined ? '': term[2],
-			calidad: term === undefined ? '': term[3]
+			marca: term === undefined ? filtros[0] : term[0],
+			modelo: term === undefined ? filtros[1] : term[1],
+			color: term === undefined ? filtros[2] : term[2],
+			calidad: term === undefined ? filtros[3] : term[3]
 		}
 	});
 		console.log(respuesta.data);
@@ -174,8 +177,9 @@ export default class Shop extends Component {
 									
 									<div className="pagination mb-30" style={{ marginTop: "15px" }} >
 										<div className="ui pagination tiny blue menu">
-											<a className={`${paginaActual === 1 ? "disabled" : "" } item`} item onClick={ () => this.changePage("first", paginaActual)} >{flechas.dobleFlechaIzq}</a>
-											<a className={`${paginaActual === 1 ? "disabled" : "" } item`} onClick={ () => this.changePage("prev", paginaActual)} >{flechas.flechaIzq}</a>
+											<a className={`${paginaActual === 1 ? "disabled" : "" } item`} onClick={ () => this.changePage("first", paginaActual)} >{flechas.dobleFlechaIzq}</a>
+											{paginaActual === 1 ? <div className="disabled item" >{ flechas.flechaIzq }</div> 
+											: <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { flechas.flechaIzq } </a>}
 											{
 											  paginaActual === 1 ? '' : <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { paginaActual-1 } </a>
 											}
@@ -186,7 +190,9 @@ export default class Shop extends Component {
 											>
 												{ paginaActual+1 } 
 											</a>
-											<a className={`${paginaActual === dataCompleta.last_page ? "disabled" : "" } item`} onClick={ () => this.changePage("next", paginaActual)} >{flechas.flechaDer}</a>
+											{paginaActual === dataCompleta.last_page ? <div className="disabled item" >{ flechas.flechaDer }</div>
+											: <a className="item" onClick={ () => this.changePage("next", paginaActual)} >{flechas.flechaDer}</a>
+										    }
 											<a className={`${paginaActual === dataCompleta.last_page ? "disabled" : "" } item`} onClick={ () => this.changePage("last", paginaActual)} >{flechas.dobleFlechaDer}</a>
 										</div>
 									</div>

@@ -132,9 +132,9 @@ class Hit extends Component {
 						<div className="d-flex justify-content-between">
 						<h2 className="text-danger">${hit.precio_producto}</h2>
 						</div>
-						<h4 className="text-dark">{textTruncate(hit.codigo, 25)}</h4>
+						<h4 className="text-dark">{hit.codigo}</h4>
 						<p className="mb-5 text-muted font-xs">
-							{textTruncate(hit.descripcion, 70)}
+							{hit.descripcion}
 						</p>
 					</div>
 					
