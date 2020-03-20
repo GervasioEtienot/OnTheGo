@@ -12,6 +12,7 @@ import { Button, Hidden } from '@material-ui/core';
 import Filtros from '../../../../apis/Filtros';
 import Collapse from '@material-ui/core/Collapse';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import FiltroAccesorios from './FiltroAccesorios';
 
 
 
@@ -34,10 +35,23 @@ class Filters extends Component {
       modelsToFilter: ''
       
    }
-   
-   componentDidMount() {
+   componentWillMount(){
+      const { categoria } = this.props;
+      this.cargar(categoria);
+   }
+   componentWillReceiveProps(nextProps){
+      const { categoria } = this.props;
+            
+      if(nextProps !== categoria){
+         this.getFilters(nextProps.categoria)
+      }
+      else {
+         this.getFilters(categoria);
+      }
+   }
+   cargar(cater) {
       const { marcas, color, quality, chequeados, colorChecked, qualityChecked } = this.state;
-      this.getFilters();
+      this.getFilters(cater);
       let auxMarcas = [];
       for (let i=0; i < marcas.length; i++) {
          auxMarcas[i] = false;
@@ -54,6 +68,20 @@ class Filters extends Component {
       // console.log(chequeados);
       // console.log(colorChecked);
       // console.log(qualityChecked);
+   }
+
+   async getFilters(categoria){
+      this.setState({ loading: true });
+      
+      const response = await Filtros.get(categoria,{
+         params: {
+            // maxResults: 30,
+            // q: `${termino}`
+            
+         }
+      });
+         console.log(response.data);
+         this.setState( { filtrosRecibidos: response.data, marcas: response.data.brand, color: response.data.color, quality: response.data.quality, loading: false } );
    }
 
    agreeToFilter(aFiltrar, tipo, borrarModelsToFilter){
@@ -170,24 +198,15 @@ class Filters extends Component {
       this.agreeToFilter(f, 'quality');
    }
 
-   async getFilters(){
-      
-      this.setState({ loading: true });
-      
-      const response = await Filtros.get('partes',{
-         params: {
-            // maxResults: 30,
-            // q: `${termino}`
-            
-         }
-      });
-         console.log(response.data);
-         this.setState( { filtrosRecibidos: response.data, marcas: response.data.brand, color: response.data.color, quality: response.data.quality, loading: false } );
-   }
+   
    
    render(){
       const { marcas, chequeados, color, colorChecked, quality, qualityChecked, loading, models, modelChecked, showModels } = this.state;
+      const { categoria } = this.props;
       return (
+         <div>
+         {categoria === 'partes' ? 
+         (
          <div className="filters-wrapper">
             <RctCard>
                <RctCardContent>
@@ -235,7 +254,7 @@ class Filters extends Component {
                                                    onChange={() => { this.handleChangeModels(index) }} 
                                                    value={modelChecked[index]} 
                                                 />
-                                       <label style={{ marginLeft: "5px" }}> {filtro/* .toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1) */} </label>
+                                       <label style={{ marginLeft: "5px" }}> {filtro} </label>
                                     </div>
                                  );
                              }) 
@@ -266,7 +285,7 @@ class Filters extends Component {
                                                 onChange={() => { this.handleChangeColor(index) }} 
                                                 value={colorChecked[index]} 
                                              />
-                                    <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                    <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
                                  </div>
                               );
                            }) 
@@ -296,7 +315,7 @@ class Filters extends Component {
                                                 onChange={() => { this.handleChangeQuality(index) }} 
                                                 value={qualityChecked[index]} 
                                              />
-                                    <label style={{ marginLeft: "5px" }}> {filtro.toLowerCase().charAt(0).toUpperCase() + filtro.toLowerCase().substring(1)} </label>
+                                    <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
                                  </div>
                               );
                            }) 
@@ -307,28 +326,15 @@ class Filters extends Component {
                   </div>
                </RctCardContent>
             </RctCard>
-            {
-            // <RctCard>
-            //    <RctCardContent>
-            //       {/* <Panel header="Rating Menu">
-            //          <RatingMenu
-            //             attribute="rating"
-            //             min={1}
-            //             max={5}
-            //             translations={{
-            //                ratingLabel: ""
-            //             }}
-            //          />
-            //       </Panel> */}
-            //    </RctCardContent>
-            // </RctCard>
-            // <RctCard>
-            //    <RctCardContent>
-            //    {/* <ClearRefinements /> */}
-            //    </RctCardContent>
-            // </RctCard> 
-               }
          </div>
+         ) : ''}
+         {categoria === 'accesorios' ? <FiltroAccesorios 
+                                                  filtros={this.state.filtrosRecibidos}
+                                                  loading={loading} 
+                                       /> 
+                                     : '' 
+         }
+        </div>
       )
    }
 }

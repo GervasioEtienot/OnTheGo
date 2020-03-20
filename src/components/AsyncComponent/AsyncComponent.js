@@ -23,8 +23,17 @@ const AsyncCartComponent = Loadable({
 	loading: () => <RctPageLoader />,
 });
 
+/*---------------- Session ------------------*/
+
+// Session Login
+const AsyncSessionLoginComponent = Loadable({
+	loader: () => import("Routes/session/login"),
+	loading: () => <RctPageLoader />,
+});
+
 
 export { 
 	AsyncShopComponent,
-	AsyncCartComponent
+	AsyncCartComponent,
+	AsyncSessionLoginComponent,
 };

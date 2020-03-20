@@ -23,6 +23,7 @@ import IntlMessages from 'Util/IntlMessages';
 // page title bar
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 import Axios from 'axios';
+import qs from 'qs';
 import SweetAlert from 'react-bootstrap-sweetalert'
 
 // Api de prueba
@@ -79,6 +80,23 @@ class Carts extends Component {
         });
       }
       this.setState({ [key]: true });
+   }
+
+   probando(){
+      const data = qs.stringify({
+         email: 'onthego@mail.com',
+         password: 'PrimerProyecto',
+      });
+       const headers = {
+         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+       };
+       Axios.post(
+         'http://149.56.237.70:81/carrito/guardar',
+         data,
+         headers
+       ).then(result => { console.log(result);
+        }).catch(error => console.log('Ocurrió el siguiente error: ' + error)
+        );
    }
 
    render() {
@@ -146,6 +164,9 @@ class Carts extends Component {
                               {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
                                  <IntlMessages id="components.checkout" />
                               </Button> */}
+                              <Button variant="contained" size="large" color="secondary" className="text-white" onClick={() => this.probando()} >
+                                 Probando
+                              </Button>
                               <Button variant="contained" size="large" color="primary" className="text-white" onClick={() => this.openAlert('success')} >
                                  <IntlMessages id="components.checkout" />
                               </Button>

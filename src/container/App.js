@@ -9,11 +9,6 @@ import { NotificationContainer } from 'react-notifications';
 // rct theme provider
 import RctThemeProvider from './RctThemeProvider';
 
-//Horizontal Layout
-import HorizontalLayout from './HorizontalLayout';
-
-//Agency Layout
-import AgencyLayout from './AgencyLayout';
 
 //Main App
 import RctDefaultLayout from './DefaultLayout';
@@ -22,21 +17,38 @@ import RctDefaultLayout from './DefaultLayout';
 import RctBoxedLayout from './RctBoxedLayout';
 // CRM layout
 import CRMLayout from './CRMLayout';
+
+// async components
+import {
+   AsyncSessionLoginComponent,
+   
+} from 'Components/AsyncComponent/AsyncComponent';
+
 /**
  * Initial Path To Check Whether User Is Logged In Or Not
  */
-const InitialPath = ({ component: Component, ...rest }) =>
+const InitialPath = ({ component: Component, authUser, ...rest }) =>
    <Route
       {...rest}
-      render={props => <Component {...props} />}
+      render={props =>
+         authUser
+            ? <Component {...props} />
+            : <Redirect
+               to={{
+                  pathname: '/session/login',
+                  state: { from: props.location }
+               }}
+            />}
    />;
-
 class App extends Component {
    render() {
       const { location, match, user } = this.props;
       if (location.pathname === '/') {
-       //  return <Redirect to={'/app/dashboard/ecommerce'} />;
-         return <Redirect to={'/app/ecommerce/accesorios/accesorios'} />;
+         if (user === null) {
+            return (<Redirect to={'/session/login'} />);
+         } else {
+            return (<Redirect to={'/app/ecommerce/accesorios/accesorios'} />);
+         }
       }
       return (
          <RctThemeProvider>
@@ -46,10 +58,8 @@ class App extends Component {
                authUser={user}
                component={RctDefaultLayout}
             />
-            <Route path="/horizontal" component={HorizontalLayout} />
-            <Route path="/agency" component={AgencyLayout} />
-            <Route path="/boxed" component={RctBoxedLayout} />
-            <Route path="/dashboard" component={CRMLayout} />
+            
+            <Route path="/session/login" component={AsyncSessionLoginComponent} />
          </RctThemeProvider>
       );
    }

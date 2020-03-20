@@ -143,7 +143,7 @@ export default class Shop extends Component {
 						</div>
 						<div className="row">
 							<div className="col-lg-3 col-md-4 d-none d-md-block">
-								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} />
+								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={match.params.categoria} />
 							</div>
 							<div className="col-lg-9 col-md-8 col-sm-12">
 								<div className="shop-content">
