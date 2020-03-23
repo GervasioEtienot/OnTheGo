@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -65,7 +65,7 @@ class TransactionList extends Component {
                </Tabs>
             </AppBar>
             <Scrollbars className="rct-scroll" autoHeight autoHeightMin={100} autoHeightMax={420} autoHide>
-               <SwipeableViews
+               {/* <SwipeableViews
                   axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                   index={this.state.value}
                   onChangeIndex={this.handleChangeIndex}>
@@ -147,7 +147,7 @@ class TransactionList extends Component {
                         </Table>
                      </TabContainer>
                   </div>
-               </SwipeableViews>
+               </SwipeableViews> */}
             </Scrollbars>
          </div>
       );

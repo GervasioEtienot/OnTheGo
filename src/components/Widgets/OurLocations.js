@@ -2,7 +2,7 @@
  * Our Loactions Widget
  */
 import React, { Component } from 'react';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -135,7 +135,7 @@ class OurLocations extends Component {
 						<Tab label={this.getCountryName(location.locationId)} key={key} />
 					))}
 				</Tabs>
-				<SwipeableViews
+				{/* <SwipeableViews
 					index={this.state.value}
 					onChangeIndex={this.handleChangeIndex}
 				>
@@ -144,7 +144,7 @@ class OurLocations extends Component {
 							<ShowLocation data={location} />
 						</TabContainer>
 					))}
-				</SwipeableViews>
+				</SwipeableViews> */}
 			</div>
 		);
 	}

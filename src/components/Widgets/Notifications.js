@@ -3,7 +3,7 @@
  */
 import React, { Fragment, Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -116,53 +116,55 @@ class Notifications extends Component {
                </Tabs>
             </AppBar>
             <Scrollbars className="rct-scroll" autoHeight autoHeightMin={100} autoHeightMax={375} autoHide>
-               <SwipeableViews
-                  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                  index={this.state.value}
-                  onChangeIndex={this.handleChangeIndex}>
-                  <div className="card mb-0 notification-box">
-                     <TabContainer dir={theme.direction}>
-                        <ul className="list-inline mb-0">
-                           {notifications && notifications.map((notification, key) => (
-                              <li className="d-flex justify-content-between" key={key}>
-                                 <div className="align-items-start">
-                                    <p className="mb-5 message-head">
-                                       {this.getNotificationName(notification.notificationId)}
-                                       {notification.date}
-                                    </p>
-                                    <h5 className="mb-5">{notification.userName}</h5>
-                                    <p className="mb-0 text-muted">{notification.notification}</p>
-                                 </div>
-                                 <div className="align-items-end notify-user">
-                                    <img src={notification.userAvatar} alt="notify user" className="rounded-circle" width="50" height="50" />
-                                 </div>
-                              </li>
-                           ))}
-                        </ul>
-                     </TabContainer>
-                  </div>
-                  <div className="card mb-0 notification-box">
-                     <TabContainer dir={theme.direction}>
-                        <ul className="list-inline mb-0">
-                           {messages && messages.map((message, key) => (
-                              <li className="d-flex justify-content-between" key={key}>
-                                 <div className="align-items-start">
-                                    <p className="mb-5 message-head">
-                                       <span className="text-primary mr-5">
-                                          <i className="zmdi zmdi-comment-alt-text"></i> <IntlMessages id="widgets.messages" /></span> {message.date}
-                                    </p>
-                                    <h5 className="mb-5">{message.from.userName}</h5>
-                                    <p className="mb-0 text-muted">{message.message}</p>
-                                 </div>
-                                 <div className="align-items-end notify-user">
-                                    <img src={message.from.userAvatar} alt="notify user" className="rounded-circle" width="50" height="50" />
-                                 </div>
-                              </li>
-                           ))}
-                        </ul>
-                     </TabContainer>
-                  </div>
-               </SwipeableViews>
+               {
+               // <SwipeableViews
+               //    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+               //    index={this.state.value}
+               //    onChangeIndex={this.handleChangeIndex}>
+               //    <div className="card mb-0 notification-box">
+               //       <TabContainer dir={theme.direction}>
+               //          <ul className="list-inline mb-0">
+               //             {notifications && notifications.map((notification, key) => (
+               //                <li className="d-flex justify-content-between" key={key}>
+               //                   <div className="align-items-start">
+               //                      <p className="mb-5 message-head">
+               //                         {this.getNotificationName(notification.notificationId)}
+               //                         {notification.date}
+               //                      </p>
+               //                      <h5 className="mb-5">{notification.userName}</h5>
+               //                      <p className="mb-0 text-muted">{notification.notification}</p>
+               //                   </div>
+               //                   <div className="align-items-end notify-user">
+               //                      <img src={notification.userAvatar} alt="notify user" className="rounded-circle" width="50" height="50" />
+               //                   </div>
+               //                </li>
+               //             ))}
+               //          </ul>
+               //       </TabContainer>
+               //    </div>
+               //    <div className="card mb-0 notification-box">
+               //       <TabContainer dir={theme.direction}>
+               //          <ul className="list-inline mb-0">
+               //             {messages && messages.map((message, key) => (
+               //                <li className="d-flex justify-content-between" key={key}>
+               //                   <div className="align-items-start">
+               //                      <p className="mb-5 message-head">
+               //                         <span className="text-primary mr-5">
+               //                            <i className="zmdi zmdi-comment-alt-text"></i> <IntlMessages id="widgets.messages" /></span> {message.date}
+               //                      </p>
+               //                      <h5 className="mb-5">{message.from.userName}</h5>
+               //                      <p className="mb-0 text-muted">{message.message}</p>
+               //                   </div>
+               //                   <div className="align-items-end notify-user">
+               //                      <img src={message.from.userAvatar} alt="notify user" className="rounded-circle" width="50" height="50" />
+               //                   </div>
+               //                </li>
+               //             ))}
+               //          </ul>
+               //       </TabContainer>
+               //    </div>
+               // </SwipeableViews>
+            }
             </Scrollbars>
          </Fragment>
       );
