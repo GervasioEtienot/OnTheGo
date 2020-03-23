@@ -17,9 +17,9 @@ const FiltroAccesorios = (props) => {
         aux[index] = !marcasChequeadas[index];
         setMarcasChequeadas(aux)
         
-        // let f = this.checkFilters(qualityChecked, quality);
-        // console.log(f);
-        // // this.props.onFiltrarTermino(filtrar);
+        let f = props.checkFilters(marcasChequeadas, props.filtros.marca);
+        console.log(f);
+        
         // this.agreeToFilter(f, 'quality');
      }
 
@@ -29,9 +29,9 @@ const FiltroAccesorios = (props) => {
         aux[index] = !tiposChequeados[index];
         setTiposChequeados(aux)
         
-        // let f = this.checkFilters(qualityChecked, quality);
-        // console.log(f);
-        // // this.props.onFiltrarTermino(filtrar);
+        let f = props.checkFilters(tiposChequeados, props.filtros.tipo);
+        console.log(f);
+        
         // this.agreeToFilter(f, 'quality');
      }
     

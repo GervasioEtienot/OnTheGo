@@ -33,7 +33,7 @@ export default {
                "new_item": false,
                "menu_title": "sidebar.lensun",
                "menu_icon": "zmdi zmdi-bookmark",
-               "categoria": "lensum"
+               "categoria": "lensun"
             }, 
             {
                "path": "/app/ecommerce/promos",
