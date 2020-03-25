@@ -55,7 +55,6 @@ class Filters extends Component {
       if(categoria === 'baterias' || categoria === 'lensun'){
          category = 'partes'
       }
-      debugger;
       const response = await Filtros.get(category ,{
          params: {
             // maxResults: 30,

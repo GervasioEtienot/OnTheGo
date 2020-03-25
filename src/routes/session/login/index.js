@@ -69,10 +69,10 @@ class Signin extends Component {
                                  <img src={AppConfig.appLogo} alt="session-logo" className="img-fluid" width="110" height="35" />
                               </Link>
                            </div>
-                           <div>
+                           {/* <div>
                               <a className="mr-15" onClick={() => this.onUserSignUp()}>Create New account?</a>
                               <Button variant="contained" className="btn-light" onClick={() => this.onUserSignUp()}>Sign Up</Button>
-                           </div>
+                           </div> */}
                         </div>
                      </div>
                   </Toolbar>
@@ -83,8 +83,8 @@ class Signin extends Component {
                         <div className="col-sm-7 col-md-7 col-lg-8">
                            <div className="session-body text-center">
                               <div className="session-head mb-30">
-                                 <h2 className="font-weight-bold">Get started with {AppConfig.brandName}</h2>
-                                 <p className="mb-0">Most powerful ReactJS admin panel</p>
+                                 <h2 className="font-weight-bold">Comienza con {AppConfig.brandName}</h2>
+                                 <p className="mb-0">Realiza tu compra de la manera más fácil</p>
                               </div>
                               <Form>
                                  <FormGroup className="has-wrapper">
@@ -102,11 +102,11 @@ class Signin extends Component {
                                        variant="contained"
                                        size="large"
                                        onClick={() => this.onUserLogin()}>
-                                       Sign In
-                        </Button>
+                                       Iniciar Sesión
+                                    </Button>
                                  </FormGroup>
                               </Form>
-                              <p className="mb-20">or sign in with</p>
+                              {/* <p className="mb-20">or sign in with</p>
                               <Fab size="small" variant="round" className="btn-facebook mr-15 mb-20 text-white"
                                  onClick={() => this.props.signinUserWithFacebook(this.props.history)}
                               >
@@ -127,12 +127,12 @@ class Signin extends Component {
                               >
                                  <i className="zmdi zmdi-github-alt"></i>
                               </Fab>
-                              <p className="text-muted">By signing up you agree to {AppConfig.brandName}</p>
-                              <p><a target="_blank" href="#/terms-condition" className="text-muted">Terms of Service</a></p>
+                              <p className="text-muted">By signing up you agree to {AppConfig.brandName}</p> */}
+                              <p><a target="_blank" href="#/terms-condition" className="text-muted">Términos de Servicio</a></p>
                            </div>
                         </div>
                         <div className="col-sm-5 col-md-5 col-lg-4">
-                           <SessionSlider />
+                           {/* <SessionSlider /> */}
                         </div>
                      </div>
                   </div>
