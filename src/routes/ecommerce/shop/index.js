@@ -59,26 +59,32 @@ export default class Shop extends Component {
 	
 	componentWillReceiveProps(nextProps) {
 		const { paginaActual } = this.state;
-		
-		console.log(nextProps.match.params, paginaActual);
-			
+					
 		this.busquedaDePrueba(nextProps.match.params);
 	}
 
 	async busquedaDePrueba({ categoria }, actualPage, term) {
 	  const { paginaActual, filtros } = this.state;
-	  console.log("lo que recibo: " + categoria);
-	  	  
-	  const respuesta = await Productos.get(categoria,{
+	  const params = {
 		params: {
 			page: actualPage === 0 ? paginaActual : actualPage,
 			marca: term === undefined ? filtros[0] : term[0],
 			modelo: term === undefined ? filtros[1] : term[1],
 			color: term === undefined ? filtros[2] : term[2],
 			calidad: term === undefined ? filtros[3] : term[3]
-		}
-	});
-		console.log(respuesta.data);
+		},
+		headers: {
+            'Content-Type': 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
+            "Authorization": localStorage.getItem('user_id')
+          }
+	}
+	  console.log(params);
+	  try {	  	  
+	  const respuesta = await Productos.get(categoria , params);
+
+	  } catch(err){
+		console.log(err);}
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
 	
 	}
@@ -205,3 +211,4 @@ export default class Shop extends Component {
 		)
 	}
 }
+

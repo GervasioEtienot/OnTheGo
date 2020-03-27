@@ -101,6 +101,13 @@ class Carts extends Component {
       
    }
 
+   // async probandoMocky(){
+   //    const response = await axios.get('http://www.mocky.io/v2/5e7bd5742d0000610011a7d0');
+   //    console.log(response.data);
+   //    console.log(this.props.cart);
+                 
+   // }
+
    render() {
       const { cart, deleteItemFromCart, match } = this.props;
       const { success } = this.state;
@@ -168,6 +175,9 @@ class Carts extends Component {
                               </Button> */}
                               <Button variant="contained" size="large" color="secondary" className="text-white" onClick={() => this.probando()} >
                                  Probando
+                              </Button>
+                              <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/historial">
+                                 <IntlMessages id="sidebar.historial" />
                               </Button>
                               <Button variant="contained" size="large" color="primary" className="text-white" onClick={() => this.openAlert('success')} >
                                  <IntlMessages id="components.checkout" />

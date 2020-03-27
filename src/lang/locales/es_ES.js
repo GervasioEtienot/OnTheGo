@@ -717,6 +717,7 @@ module.exports = {
    "widgets.checklist": "Checklist",
    "sidebar.shop": "tienda",
    "sidebar.cart": "Carro",
+   "sidebar.historial": "Historial",
    "sidebar.checkout": "Revisa",
    "components.product": "Producto",
    "components.availables": "Disponibles",

@@ -52,17 +52,25 @@ class Filters extends Component {
    async getFilters(categoria){
       this.setState({ loading: true });
       let category = categoria
-      if(categoria === 'baterias' || categoria === 'lensun'){
-         category = 'partes'
+      if(categoria !== 'accesorios'){
+         category = ''
       }
-      const response = await Filtros.get(category ,{
+      else {
+         category = "/accesos"
+      }
+      debugger;
+      const response = await Filtros.get(category /* ,{
          params: {
             // maxResults: 30,
             // q: `${termino}`
             
+         },
+         headers: {
+            "Content-Type": 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
          }
-      });
-         console.log(response.data);
+      } */);
+         console.log(response);
          this.setState( { filtrosRecibidos: response.data, loading: false } );
    }
 

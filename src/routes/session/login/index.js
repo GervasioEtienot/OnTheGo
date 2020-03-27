@@ -31,8 +31,8 @@ import {
 class Signin extends Component {
 
    state = {
-      email: 'demo@example.com',
-      password: ''  // test#123
+      email: 'test@test.com',
+      password: '123123'  // test#123
    }
 
    /**

@@ -8,7 +8,8 @@ import Shop from './shop';
 // async components
 import { 
 	AsyncShopComponent,
-	AsyncCartComponent
+	AsyncCartComponent,
+	AsyncHistorialComponent
 } from 'Components/AsyncComponent/AsyncComponent';
 
 const Ecommerce = ({ match }) => {
@@ -27,6 +28,7 @@ const Ecommerce = ({ match }) => {
 				<Route exact path={`${match.url}/promos/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/liquidacion/:categoria`} component={Shop} />
 				<Route path={`${match.url}/cart`} component={AsyncCartComponent} />
+				<Route path={`${match.url}/historial`} component={AsyncHistorialComponent} />
 			</Switch>
 		</div>
 	);

@@ -23,6 +23,12 @@ const AsyncCartComponent = Loadable({
 	loading: () => <RctPageLoader />,
 });
 
+// historial
+const AsyncHistorialComponent = Loadable({
+	loader: () => import("Routes/ecommerce/historial"),
+	loading: () => <RctPageLoader />,
+});
+
 /*---------------- Session ------------------*/
 
 // Session Login
@@ -35,5 +41,6 @@ const AsyncSessionLoginComponent = Loadable({
 export { 
 	AsyncShopComponent,
 	AsyncCartComponent,
+	AsyncHistorialComponent,
 	AsyncSessionLoginComponent,
 };

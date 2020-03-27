@@ -14,16 +14,33 @@ import {
    SIGNUP_USER_SUCCESS,
    SIGNUP_USER_FAILURE
 } from 'Actions/types';
-
+import axios from 'axios';
 /**
  * Redux Action To Sigin User With Firebase
  */
 export const signinUserInFirebase = (user, history) => (dispatch) => {
    dispatch({ type: LOGIN_USER });
-   firebase.auth()
-      .signInWithEmailAndPassword(user.email, user.password)
+   const data = {
+      "email": user.email,
+      "password": user.password,
+      "remember_me": true
+   };
+    const headers = {
+      'Content-Type': 'application/json',
+      "X-Requested-With": "XMLHttpRequest"
+    };
+
+   // firebase.auth()
+   //    .signInWithEmailAndPassword(user.email, user.password)
+      axios.post(
+         'http://149.56.237.70:81/api/auth/login',
+         data,
+         headers
+      )
       .then((user) => {
-         localStorage.setItem("user_id", "user-id");
+         localStorage.setItem("user_id", `${user.data.token_type} ${user.data.access_token}`);
+         console.log(user.data);
+         
          dispatch({ type: LOGIN_USER_SUCCESS, payload: localStorage.getItem('user_id') });
          history.push('/');
          NotificationManager.success('User Login Successfully!');
@@ -38,7 +55,17 @@ export const signinUserInFirebase = (user, history) => (dispatch) => {
  * Redux Action To Signout User From  Firebase
  */
 export const logoutUserFromFirebase = () => (dispatch) => {
-   firebase.auth().signOut()
+   // firebase.auth().signOut()
+   axios.get(
+      'http://149.56.237.70:81/api/auth/logout',
+       {
+          headers: {
+            'Content-Type': 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
+            "Authorization": localStorage.getItem('user_id')
+          }
+       } 
+   )
       .then(() => {
          dispatch({ type: LOGOUT_USER });
          localStorage.removeItem('user_id');
