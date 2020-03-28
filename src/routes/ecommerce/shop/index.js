@@ -30,7 +30,7 @@ import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 
 // Api de prueba
 import Productos from '../../../apis/Productos';
-
+import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -80,12 +80,25 @@ export default class Shop extends Component {
           }
 	}
 	  console.log(params);
-	  try {	  	  
-	  const respuesta = await Productos.get(categoria , params);
-
-	  } catch(err){
-		console.log(err);}
+	  	  	  
+	//   const respuesta = await Productos.get(categoria , params);
+	axios.get(`http://149.56.237.70:81/shop/${categoria}`,
+		 {
+			headers: {
+			  'Content-Type': 'application/json',
+			  "X-Requested-With": "XMLHttpRequest",
+			  "Authorization": localStorage.getItem('user_id')
+			}
+		 } 
+	 )
+	 .then((respuesta) => {
+		debugger;
+		console.log(respuesta);
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
+	 })
+	 .catch((error) => {
+		console.log(error);
+	 })
 	
 	}
 	filtrarTermino(term){

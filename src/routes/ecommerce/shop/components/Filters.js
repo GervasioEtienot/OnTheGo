@@ -56,9 +56,8 @@ class Filters extends Component {
          category = ''
       }
       else {
-         category = "/accesos"
+         category = "/accesories"
       }
-      debugger;
       const response = await Filtros.get(category /* ,{
          params: {
             // maxResults: 30,
