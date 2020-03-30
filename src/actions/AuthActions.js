@@ -2,8 +2,8 @@
  * Auth Actions
  * Auth Action With Google, Facebook, Twitter and Github
  */
-import firebase from 'firebase/app';
-import 'firebase/auth';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 import { NotificationManager } from 'react-notifications';
 import {
    LOGIN_USER,
@@ -79,7 +79,7 @@ export const logoutUserFromFirebase = () => (dispatch) => {
 /**
  * Redux Action To Signup User In Firebase
  */
-export const signupUserInFirebase = (user, history) => (dispatch) => {
+/* export const signupUserInFirebase = (user, history) => (dispatch) => {
    dispatch({ type: SIGNUP_USER });
    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then((success) => {
@@ -92,12 +92,12 @@ export const signupUserInFirebase = (user, history) => (dispatch) => {
          dispatch({ type: SIGNUP_USER_FAILURE });
          NotificationManager.error(error.message);
       })
-}
+} */
 
 /**
  * Redux Action To Signin User In Firebase With Facebook
  */
-export const signinUserWithFacebook = (history) => (dispatch) => {
+/* export const signinUserWithFacebook = (history) => (dispatch) => {
    dispatch({ type: LOGIN_USER });
    const provider = new firebase.auth.FacebookAuthProvider();
    firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -109,12 +109,12 @@ export const signinUserWithFacebook = (history) => (dispatch) => {
       dispatch({ type: LOGIN_USER_FAILURE });
       NotificationManager.error(error.message);
    });
-}
+} */
 
 /**
  * Redux Action To Signin User In Firebase With Google
  */
-export const signinUserWithGoogle = (history) => (dispatch) => {
+/* export const signinUserWithGoogle = (history) => (dispatch) => {
    dispatch({ type: LOGIN_USER });
    const provider = new firebase.auth.GoogleAuthProvider();
    firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -126,12 +126,12 @@ export const signinUserWithGoogle = (history) => (dispatch) => {
       dispatch({ type: LOGIN_USER_FAILURE });
       NotificationManager.error(error.message);
    });
-}
+} */
 
 /**
  * Redux Action To Signin User In Firebase With Github
  */
-export const signinUserWithGithub = (history) => (dispatch) => {
+/* export const signinUserWithGithub = (history) => (dispatch) => {
    dispatch({ type: LOGIN_USER });
    const provider = new firebase.auth.GithubAuthProvider();
    firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -143,12 +143,12 @@ export const signinUserWithGithub = (history) => (dispatch) => {
       dispatch({ type: LOGIN_USER_FAILURE });
       NotificationManager.error(error.message);
    });
-}
+} */
 
 /**
  * Redux Action To Signin User In Firebase With Twitter
  */
-export const signinUserWithTwitter = (history) => (dispatch) => {
+/* export const signinUserWithTwitter = (history) => (dispatch) => {
    dispatch({ type: LOGIN_USER });
    const provider = new firebase.auth.TwitterAuthProvider();
    firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -160,4 +160,4 @@ export const signinUserWithTwitter = (history) => (dispatch) => {
       dispatch({ type: LOGIN_USER_FAILURE });
       NotificationManager.error(error.message);
    });
-}
+} */

@@ -68,38 +68,22 @@ class Carts extends Component {
 
 	openAlert(key) {
       const { cart } = this.props;
-      if (cart) {
+      if (cart.length > 0) {
          console.log(cart);
          EnviarCarrito.post('', {
             carrito: cart,
           })
           .then(response => {
             console.log(response);
+            this.setState({ [key]: true });
           }).catch(e => {
             console.log(e);
         });
       }
-      this.setState({ [key]: true });
+      // this.setState({ [key]: true });
    }
 
-   probando(){
-      const data = qs.stringify({
-         email: 'onthego@mail.com',
-         password: 'PrimerProyecto',
-      });
-       const headers = {
-         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-       };
-       axios.post(
-         'http://149.56.237.70:81/carrito/confirmar',
-         data,
-         headers
-       ).then(result => { console.log(result);
-        }).catch(error => console.log('Ocurrió el siguiente error: ' + error)
-        );
-      
-      
-   }
+   
 
    // async probandoMocky(){
    //    const response = await axios.get('http://www.mocky.io/v2/5e7bd5742d0000610011a7d0');
@@ -173,9 +157,6 @@ class Carts extends Component {
                               {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
                                  <IntlMessages id="components.checkout" />
                               </Button> */}
-                              <Button variant="contained" size="large" color="secondary" className="text-white" onClick={() => this.probando()} >
-                                 Probando
-                              </Button>
                               <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/historial">
                                  <IntlMessages id="sidebar.historial" />
                               </Button>

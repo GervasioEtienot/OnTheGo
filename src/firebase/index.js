@@ -3,12 +3,12 @@
  * Reactify comes with built in firebase login feature
  * You Need To Add Your Firsebase App Account Details Here
  */
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
+// import 'firebase/database';
 
 // Initialize Firebase 
-const config = {
+/* const config = {
    apiKey: "AIzaSyD_2FLh1f_BJyKdzeqMvF-oB9Av2cLG6ps", // Your Api key will be here
    authDomain: "reactify-61b82.firebaseapp.com", // Your auth domain
    databaseURL: "https://reactify-61b82.firebaseio.com", // data base url
@@ -33,4 +33,4 @@ export {
    facebookAuthProvider,
    twitterAuthProvider,
    database
-};
+}; */

@@ -82,7 +82,7 @@ export default class Shop extends Component {
 	  console.log(params);
 	  	  	  
 	//   const respuesta = await Productos.get(categoria , params);
-	axios.get(`http://149.56.237.70:81/shop/${categoria}`,
+	axios.get(`http://149.56.237.70:81/api/shop/${categoria}`,
 		 {
 			headers: {
 			  'Content-Type': 'application/json',
@@ -92,7 +92,6 @@ export default class Shop extends Component {
 		 } 
 	 )
 	 .then((respuesta) => {
-		debugger;
 		console.log(respuesta);
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
 	 })

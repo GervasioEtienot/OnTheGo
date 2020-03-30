@@ -151,8 +151,8 @@ const mapStateToProps = ({ authUser }) => {
 
 export default connect(mapStateToProps, {
    signinUserInFirebase,
-   signinUserWithFacebook,
-   signinUserWithGoogle,
-   signinUserWithGithub,
-   signinUserWithTwitter
+   // signinUserWithFacebook,
+   // signinUserWithGoogle,
+   // signinUserWithGithub,
+   // signinUserWithTwitter
 })(Signin);
