@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Table, Input } from 'reactstrap';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // Card Component
 import { RctCard, RctCardContent } from 'Components/RctCard';
@@ -63,21 +63,27 @@ class Carts extends Component {
    //    this.openAlert('success');
    // }
    onConfirm(key) {
-      this.setState({ [key]: false })
+      this.setState({ [key]: false });
+      return (<Redirect to={'/app/ecommerce/historial'} />);
    }
 
 	openAlert(key) {
       const { cart } = this.props;
       if (cart.length > 0) {
          console.log(cart);
-         EnviarCarrito.post('', {
-            carrito: cart,
+         EnviarCarrito.get('checkout', {
+            params: cart,
+            headers: {
+               'Content-Type': 'application/json',
+               "X-Requested-With": "XMLHttpRequest",
+               "Authorization": localStorage.getItem('user_id')
+             }
           })
           .then(response => {
             console.log(response);
             this.setState({ [key]: true });
           }).catch(e => {
-            console.log(e);
+            console.log("El error es:" + e);
         });
       }
       // this.setState({ [key]: true });
@@ -157,9 +163,6 @@ class Carts extends Component {
                               {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
                                  <IntlMessages id="components.checkout" />
                               </Button> */}
-                              <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/historial">
-                                 <IntlMessages id="sidebar.historial" />
-                              </Button>
                               <Button variant="contained" size="large" color="primary" className="text-white" onClick={() => this.openAlert('success')} >
                                  <IntlMessages id="components.checkout" />
                               </Button>

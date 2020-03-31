@@ -31,17 +31,29 @@ const Historial = (props) => {
     },[]);
 
     const getResponse = async () => {
-        const response = await axios.get('http://www.mocky.io/v2/5e7d06df350000de2006a31b');
-        console.log(response.data.carts);
+        const response = await axios.get('http://149.56.237.70:81/api/cart/history',{
+            headers: {
+               'Content-Type': 'application/json',
+               "X-Requested-With": "XMLHttpRequest",
+               "Authorization": localStorage.getItem('user_id')
+            }
+        }
+        );
+        console.log(response.data);
         setCarritos(response.data.carts);
         setCargando(false); 
     }
 
     //Is Cart Empty
    const isCartEmpty = () => {
-      if (carritos.length === 0) {
+      if(carritos == null){
          return true;
-    }
+      }
+      else{
+         if (carritos.length === 0) {
+            return true;
+       }
+      }
     }
 
     const mostrarCarrito = (index) => {
@@ -78,11 +90,11 @@ const Historial = (props) => {
                           <React.Fragment>
                               <tr key={key}>
                                  <td className="w-10 text-center">{carro.id}</td>
-                                 <td className="w-10 text-center">{carro.fechaDeCompra}</td>
+                                 <td className="w-10 text-center">{carro.created_at}</td>
                                  <td className="text-bold text-center">
-                                    <span className={`badge ${carro.estado}`}>{carro.estado}</span>
+                                    <span className={`badge ${carro.status}`}>{carro.status}</span>
                                  </td>
-                                 <td className="text-danger text-center">$ {carro.precioCarrito}</td>
+                                 <td className="text-danger text-center">$ {carro.total_price}</td>
                                  <td className="w-10 text-center">
                                     <Button variant="contained" color="primary" onClick={ () => mostrarCarrito(key) } >
                                        <i className="zmdi zmdi-shopping-cart"></i>
@@ -97,7 +109,7 @@ const Historial = (props) => {
                           <tr>
                              <td colSpan="6" className="text-center h-25">
                                 <span className="d-block font-5x mb-30 text-danger"><i className="zmdi zmdi-shopping-cart"></i></span>
-                                <span className="mb-20 font-3x"><IntlMessages id="components.CartEmptyText" /></span>
+                                <span className="mb-20 font-3x"><IntlMessages id="components.historyEmptyText" /></span>
                              </td>
                           </tr>
                        

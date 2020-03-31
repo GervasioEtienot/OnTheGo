@@ -1,15 +1,15 @@
-.entregado{
+.Entregado{
     background-color: #00D014;
 }
 
-.pendiente{
+.Pendiente{
     background-color: #FFB70F;
 }
 
-.preparando{
+.Preparando{
     background-color: #00D0BD;
 }
 
-.cancelado{
+.Cancelado{
     background-color: #FF3739;
 }

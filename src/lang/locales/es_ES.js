@@ -734,6 +734,7 @@ module.exports = {
    "components.billingAddress": "Dirección de Envio",
    "components.ShippingAddressText": "La dirección de envío es la misma que la dirección de facturación.",
    "components.CartEmptyText": "¡Su cesta está vacía!",
+   "components.historyEmptyText": "¡No a realizado compras aún!",
    "components.NoItemFound": "No se encontró ningún artículo",
    "components.goToShop": "Ir a la tienda",
    "components.cardNumber": "Número de tarjeta",
