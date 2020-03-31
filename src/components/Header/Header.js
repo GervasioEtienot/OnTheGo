@@ -11,6 +11,7 @@ import screenfull from 'screenfull';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 // actions
 import { collapsedSidebarAction } from 'Actions';
@@ -20,6 +21,9 @@ import SearchForm from './SearchForm';
 import MobileSearchForm from './MobileSearchForm';
 import Cart from './Cart';
 import Notifications from './Notifications';
+
+// intl messages
+import IntlMessages from 'Util/IntlMessages';
 
 
 class Header extends Component {
@@ -116,6 +120,9 @@ class Header extends Component {
 						}
 					</div>
 					<ul className="navbar-right list-inline mb-0">
+						<Button  size="medium"  component={Link} to="/app/ecommerce/historial">
+							<IntlMessages id="sidebar.historial" />
+						</Button>
 					    <Cart />
 					    <li className="list-inline-item">
 							<Tooltip title="Pantalla completa" placement="bottom">

@@ -11,8 +11,7 @@ import Filtros from '../../../../apis/Filtros';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FiltroAccesorios from './FiltroAccesorios';
-import FiltroPartes from './FiltroPartes';
-import FiltroBatLen from './FiltroBatLen';
+import FiltrosGenerales from './FiltrosGenerales';
 
 
 
@@ -69,7 +68,7 @@ class Filters extends Component {
             "X-Requested-With": "XMLHttpRequest",
          }
       } */);
-         console.log(response);
+         console.log(response.data);
          this.setState( { filtrosRecibidos: response.data, loading: false } );
    }
 
@@ -128,7 +127,7 @@ class Filters extends Component {
                                        /> 
                                      : '' 
          }
-         {categoria === 'partes' ? <FiltroPartes 
+         {categoria !== 'accesorios' ? <FiltrosGenerales 
                                                   filtros={this.state.filtrosRecibidos}
                                                   loading={loading}
                                                   checkFilters={this.checkFilters}
@@ -136,14 +135,7 @@ class Filters extends Component {
                                        /> 
                                      : '' 
          }
-         {categoria === 'baterias' || categoria === 'lensun' ? <FiltroBatLen 
-                                                                     filtros={this.state.filtrosRecibidos}
-                                                                     loading={loading}
-                                                                     checkFilters={this.checkFilters}
-                                                                     onAgreeToFilter={this.agreeToFilter.bind(this)} 
-                                                            /> 
-                                                         : '' 
-         }
+         
         </div>
       )
    }

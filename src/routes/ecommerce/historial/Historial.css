@@ -1,0 +1,15 @@
+.entregado{
+    background-color: #00D014;
+}
+
+.pendiente{
+    background-color: #FFB70F;
+}
+
+.preparando{
+    background-color: #00D0BD;
+}
+
+.cancelado{
+    background-color: #FF3739;
+}

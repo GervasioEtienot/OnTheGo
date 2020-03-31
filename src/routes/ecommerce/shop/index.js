@@ -82,14 +82,14 @@ export default class Shop extends Component {
 	  console.log(params);
 	  	  	  
 	//   const respuesta = await Productos.get(categoria , params);
-	axios.get(`http://149.56.237.70:81/api/shop/${categoria}`,
-		 {
-			headers: {
-			  'Content-Type': 'application/json',
-			  "X-Requested-With": "XMLHttpRequest",
-			  "Authorization": localStorage.getItem('user_id')
-			}
-		 } 
+	axios.get(`http://149.56.237.70:81/api/shop/${categoria}`, params
+		//  {
+		// 	headers: {
+		// 	  'Content-Type': 'application/json',
+		// 	  "X-Requested-With": "XMLHttpRequest",
+		// 	  "Authorization": localStorage.getItem('user_id')
+		// 	}
+		//  } 
 	 )
 	 .then((respuesta) => {
 		console.log(respuesta);

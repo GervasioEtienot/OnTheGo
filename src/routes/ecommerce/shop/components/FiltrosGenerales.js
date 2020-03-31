@@ -7,7 +7,7 @@ import Collapse from '@material-ui/core/Collapse';
 
 
 
-const FiltroPartes = (props) => {
+const FiltrosGenerales = (props) => {
     const [marcasChequeadas, setMarcasChequeadas] = useState([]);
     const [coloresChequeados, setColoresChequeados] = useState([]);
     const [calidadesChequeadas, setCalidadesChequeadas] = useState([]);
@@ -203,4 +203,4 @@ const FiltroPartes = (props) => {
     );
 }
 
-export default FiltroPartes;
+export default FiltrosGenerales;

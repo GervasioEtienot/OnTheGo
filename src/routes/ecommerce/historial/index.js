@@ -19,6 +19,7 @@ import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 
 import axios from 'axios';
 import CartHisto from './CartHisto';
+import './Historial.css';
 
 const Historial = (props) => {
     const [carritos, setCarritos] = useState([]);
@@ -54,7 +55,7 @@ const Historial = (props) => {
       console.log(showCart);
        
     }
-
+    
     return (
         <div className="cart-wrapper">
            <PageTitleBar title={<IntlMessages id="sidebar.historial" />} match={props.match} />
@@ -78,7 +79,9 @@ const Historial = (props) => {
                               <tr key={key}>
                                  <td className="w-10 text-center">{carro.id}</td>
                                  <td className="w-10 text-center">{carro.fechaDeCompra}</td>
-                                 <td className="text-bold text-center">{carro.estado}</td>
+                                 <td className="text-bold text-center">
+                                    <span className={`badge ${carro.estado}`}>{carro.estado}</span>
+                                 </td>
                                  <td className="text-danger text-center">$ {carro.precioCarrito}</td>
                                  <td className="w-10 text-center">
                                     <Button variant="contained" color="primary" onClick={ () => mostrarCarrito(key) } >
