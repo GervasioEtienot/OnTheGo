@@ -33,17 +33,18 @@ class Hit extends Component {
 
 	//Add Item to cart
 	onPressAddToCart(cartItem, e) {
+		const { cantidad } = this.state;
 		this.setState({ loading: true })
-		console.log(cartItem);
-		cartItem.precio_producto = parseFloat(cartItem.precio_producto);
-		console.log(cartItem);
+		if(cartItem.cantidad_deposito_item > 0){
+			cartItem.precio_producto = parseFloat(cartItem.precio_producto);
+			setTimeout(() => {
+				this.props.onAddItemToCart(cartItem);
+			}, 1000)
+			e.preventDefault();
+			this.onChangeQuantity(cantidad);
+		}
 		
-		
-		setTimeout(() => {
-			this.props.onAddItemToCart(cartItem);
-		}, 1000)
-		e.preventDefault();
-		this.setState({showCantidad: true})
+		this.setState({showCantidad: false, loading: false })
 	}
 
 	
@@ -107,20 +108,20 @@ class Hit extends Component {
 								max={hit.cantidad_deposito_item}
 								min={0}
 								onChange={(e) => {
-											this.onChangeQuantity(e.target.value);
+											// this.onChangeQuantity(e.target.value);
 											this.setState({ cantidad: e.target.value });
 										}}
 								style={{ maxWidth: '90px', display:"inline", marginLeft:"5px"}}
 							/>
 						</div>
 						<div style={{display: "block", textAlign: "center", margin: "2rem 0" }}>
-							<Button disabled={ hit.cantidad_deposito_item === 0 ? true : false } color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.setState({showCantidad: false})} >Confirmar</Button>
+							<Button disabled={ hit.cantidad_deposito_item === 0 ? true : false } color="primary" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.onPressAddToCart(hit, e)} >Confirmar</Button>
 							<Button color="default" variant="contained" style={{margin: "0 5px"}} onClick={ (e) => this.cancelarItem(e) } >Cancelar</Button>
 						</div>
 					</Collapse>
 					<div className="d-flex align-items-end">
 						{!this.isItemExistInCart(hit.id) ? (
-							<a hidden={showCantidad} href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.onPressAddToCart(hit, e) }>
+							<a hidden={showCantidad} href="#" className="bg-primary text-center w-100 cart-link text-white py-2" onClick={(e) => this.setState({showCantidad: true}) }>
 								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> : 'Agregar al carrito'}
 							</a>
 						) : (
