@@ -31,7 +31,8 @@ import EnviarCarrito from '../../../apis/EnviarCarrito';
 
 class Carts extends Component {
    state = {
-      success: false
+      success: false,
+      redirect: false
    }
 
    onChangeQuantity(quantity, cartItem) {
@@ -57,22 +58,22 @@ class Carts extends Component {
          return true;
       }
    }
-
-   // enviarPedido(){
-   //    // Hacer POST request
-   //    this.openAlert('success');
-   // }
+     
    onConfirm(key) {
-      this.setState({ [key]: false });
-      return (<Redirect to={'/app/ecommerce/historial'} />);
+      this.setState({ [key]: false, redirect: true });
    }
 
 	openAlert(key) {
-      const { cart } = this.props;
+      const { cart, deleteItemFromCart } = this.props;
       if (cart.length > 0) {
          console.log(cart);
+         let data = {
+            "cart": cart
+         }
+         console.log(data);
+         
          EnviarCarrito.get('checkout', {
-            params: cart,
+            params: data,
             headers: {
                'Content-Type': 'application/json',
                "X-Requested-With": "XMLHttpRequest",
@@ -81,7 +82,8 @@ class Carts extends Component {
           })
           .then(response => {
             console.log(response);
-            this.setState({ [key]: true });
+            cart.map( item => deleteItemFromCart(item) );
+            this.setState({ [key]: true});
           }).catch(e => {
             console.log("El error es:" + e);
         });
@@ -100,7 +102,12 @@ class Carts extends Component {
 
    render() {
       const { cart, deleteItemFromCart, match } = this.props;
-      const { success } = this.state;
+      const { success, redirect } = this.state;
+      
+      if(redirect){
+         return (<Redirect to={'/app/ecommerce/historial'} />);
+      }
+      
       return (
          <div className="cart-wrapper">
             <PageTitleBar title={<IntlMessages id="sidebar.cart" />} match={match} />
@@ -173,6 +180,7 @@ class Carts extends Component {
                                  btnSize="sm"
                                  onConfirm={() => this.onConfirm('success')}
                               />
+                                                                                             
                            </td>
                         </tr>
                      </tfoot>

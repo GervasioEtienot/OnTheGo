@@ -11,7 +11,8 @@ import screenfull from 'screenfull';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import { Button } from 'reactstrap';
 
 // actions
 import { collapsedSidebarAction } from 'Actions';
@@ -120,10 +121,13 @@ class Header extends Component {
 						}
 					</div>
 					<ul className="navbar-right list-inline mb-0">
-						<Button  size="medium"  component={Link} to="/app/ecommerce/historial">
+						{/* <Button  size="medium"  component={Link} to="/app/ecommerce/historial" className="upgrade-btn tour-step-4 text-white">
 							<IntlMessages id="sidebar.historial" />
-						</Button>
-					    <Cart />
+						</Button> */}
+						<Link to="/app/ecommerce/historial">
+						   <Button outline color="secondary"> <IntlMessages id="sidebar.historial" /> </Button>
+						</Link>
+						<Cart />
 					    <li className="list-inline-item">
 							<Tooltip title="Pantalla completa" placement="bottom">
 								<IconButton aria-label="settings" onClick={() => this.toggleScreenFull()}>

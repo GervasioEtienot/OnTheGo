@@ -34,6 +34,11 @@ class Hit extends Component {
 	//Add Item to cart
 	onPressAddToCart(cartItem, e) {
 		this.setState({ loading: true })
+		console.log(cartItem);
+		cartItem.precio_producto = parseFloat(cartItem.precio_producto);
+		console.log(cartItem);
+		
+		
 		setTimeout(() => {
 			this.props.onAddItemToCart(cartItem);
 		}, 1000)
