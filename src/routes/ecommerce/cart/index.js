@@ -71,6 +71,8 @@ class Carts extends Component {
             "cart": cart
          }
          console.log(data);
+         // console.log(JSON.parse(data));
+         
          
          EnviarCarrito.get('checkout', {
             params: data,
