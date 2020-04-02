@@ -25,6 +25,7 @@ const Historial = (props) => {
     const [carritos, setCarritos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [showCart, setShowCart] = useState(null);
+    const [detalleCarro, setDetalleCarro] = useState([]);
 
     useEffect(() => {
         getResponse();
@@ -56,7 +57,28 @@ const Historial = (props) => {
       }
     }
 
-    const mostrarCarrito = (index) => {
+    const isDetailEmpty = () => {
+      if(detalleCarro == null){
+         return true;
+      }
+      else{
+         if (detalleCarro.length === 0) {
+            return true;
+       }
+      }
+     }
+
+    const mostrarCarrito = async (index, idCart) => {
+      
+      const detailRes = await axios.get(`http://149.56.237.70:81/api/cart/${idCart}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
+            "Authorization": localStorage.getItem('user_id')
+         }
+      });
+      console.log(detailRes.data);
+      setDetalleCarro(detailRes.data.cart);
       if(showCart !== index){
          setShowCart(index);
       }
@@ -64,8 +86,6 @@ const Historial = (props) => {
          setShowCart(null);
       }
         
-      console.log(showCart);
-       
     }
     
     return (
@@ -96,12 +116,12 @@ const Historial = (props) => {
                                  </td>
                                  <td className="text-danger text-center">$ {carro.total_price}</td>
                                  <td className="w-10 text-center">
-                                    <Button variant="contained" color="primary" onClick={ () => mostrarCarrito(key) } >
+                                    <Button variant="contained" color="primary" onClick={ () => mostrarCarrito(key, carro.id) } >
                                        <i className="zmdi zmdi-shopping-cart"></i>
                                     </Button>
                                  </td>
                               </tr>
-                              {showCart === key ? <CartHisto cart={carro.cart}/> : ''}
+                              {showCart === key && !isDetailEmpty() ? <CartHisto cart={detalleCarro}/> : ''}
                           </React.Fragment>
                         ))   
                      : (
