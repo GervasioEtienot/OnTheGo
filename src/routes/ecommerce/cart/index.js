@@ -70,10 +70,32 @@ class Carts extends Component {
          let data = {
             "cart": cart
          }
+         // let data = {
+         //    "cart":[
+         //                     {
+         //                       "id": 5,
+         //                       "codigo": "PAR-ALC-OTI6030-T-NG-O",
+         //                       "descripcion": "PARTES DE CELULARES (REPUESTOS)",
+         //                       "precio_producto": 4.1,
+         //                       "cantidad_deposito_item": 3,
+         //                       "productQuantity": "2",
+         //                       "totalPrice": 8.2
+         //                     },
+         //                     {
+         //                       "id": 9,
+         //                       "codigo": "PAR-ALC-IX6040-LT-NG-O",
+         //                       "descripcion": "PARTES DE CELULARES (REPUESTOS)",
+         //                       "precio_producto": 20.45,
+         //                       "cantidad_deposito_item": 4,
+         //                       "productQuantity": "3",
+         //                       "totalPrice": 61.35
+         //                     }
+         //                 ]
+         //   }
          console.log(data);
          
          EnviarCarrito.get('checkout', {
-            params: data,
+            params: JSON.stringify(data),
             headers: {
                'Content-Type': 'application/json',
                "X-Requested-With": "XMLHttpRequest",
