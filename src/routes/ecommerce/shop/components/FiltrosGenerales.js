@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import { RctCard, RctCardContent } from 'Components/RctCard';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,7 +13,10 @@ const FiltrosGenerales = (props) => {
     const [calidadesChequeadas, setCalidadesChequeadas] = useState([]);
     const [modelosChequeados, setModelosChequeados] = useState([]);
     const [mostrarModelos, setMostrarModelos] = useState(false);
-     
+    
+    useEffect(() => {
+      return () => props.onAgreeToFilter('borrarFiltros');
+    },[]);
     
     const handleChangeMarca = (index) => {
         let borrarModelsToFilter = false

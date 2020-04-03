@@ -100,6 +100,9 @@ class Filters extends Component {
          case "type":   arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter, brandAccToFilter, aFiltrar ]
                         this.setState({ typesToFilter: aFiltrar });
                         break;
+         default:       arrayDeFiltros = [ "", "", "", "" , "", ""];
+                        this.setState({ brandsToFilter: '', modelsToFilter: '', colorsToFilter: '', qualitysToFilter: '', brandAccToFilter: '', typesToFilter: '' });
+                        break;
       }
             
       // console.log(arrayDeFiltros);

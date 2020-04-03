@@ -47,7 +47,7 @@ export default class Shop extends Component {
 			 loading: true,
 			 paginaActual: 1,
 			 dataCompleta: {},
-			 filtros: ['', '', '', '']
+			 filtros: ['', '', '', '', '', '']
 			}
 
     componentWillMount(){
@@ -71,7 +71,9 @@ export default class Shop extends Component {
 			marca: term === undefined ? filtros[0] : term[0],
 			modelo: term === undefined ? filtros[1] : term[1],
 			color: term === undefined ? filtros[2] : term[2],
-			calidad: term === undefined ? filtros[3] : term[3]
+			calidad: term === undefined ? filtros[3] : term[3],
+			marcaAcc: term === undefined ? filtros[4] : term[4],
+			tipo: term === undefined ? filtros[5] : term[5]
 		},
 		headers: {
             'Content-Type': 'application/json',
