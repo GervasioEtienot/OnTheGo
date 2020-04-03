@@ -79,7 +79,7 @@ export default class Shop extends Component {
             "Authorization": localStorage.getItem('user_id')
           }
 	}
-	  console.log(params);
+	//   console.log(params);
 	  	  	  
 	//   const respuesta = await Productos.get(categoria , params);
 	axios.get(`http://149.56.237.70:81/api/shop/${categoria}`, params
@@ -92,7 +92,7 @@ export default class Shop extends Component {
 		//  } 
 	 )
 	 .then((respuesta) => {
-		console.log(respuesta);
+		// console.log(respuesta);
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
 	 })
 	 .catch((error) => {
@@ -183,7 +183,7 @@ export default class Shop extends Component {
 											{
 											   videos.map((video, index) => {
 											     return(
-													<Grid item xs={4}>
+													<Grid key={index} item xs={4}>
 														<Hit hit={video} key={index} />
 													</Grid>
 											     );

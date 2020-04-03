@@ -77,6 +77,10 @@ const FiltrosGenerales = (props) => {
         props.onAgreeToFilter(f, 'quality');
      }
     
+    const esUnArray = () => {
+       return Array.isArray(props.filtros[`${props.filtros.brand[marcasChequeadas.indexOf(true)].toLowerCase()}`]);
+    }
+
     return(
         
              
@@ -92,7 +96,7 @@ const FiltrosGenerales = (props) => {
                            
                            props.filtros.brand.map((filtro, index) => {
                               return (
-                                 <div /* className='ui checkbox' */ >
+                                 <div key={index} >
                                     <input 
                                                 type='checkbox'
                                                 id= {filtro}
@@ -116,10 +120,10 @@ const FiltrosGenerales = (props) => {
                      <div style={{ marginBottom:"5px", fontWeight:"700" }} >MODELO</div>
                      <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto'  }} >
                         <FormGroup >
-                           {marcasChequeadas.indexOf(true) !== -1 ? ( 
+                           {marcasChequeadas.indexOf(true) !== -1 && esUnArray() ? ( 
                             props.filtros[`${props.filtros.brand[marcasChequeadas.indexOf(true)].toLowerCase()}`].map((filtro, index) => {
                                  return (
-                                    <div /* className='ui checkbox' */ >
+                                    <div key={index} >
                                        <input 
                                                    // checked={chequeados[index]} 
                                                    type='checkbox'
@@ -150,7 +154,7 @@ const FiltrosGenerales = (props) => {
                            
                            props.filtros.color.map((filtro, index) => {
                               return (
-                                 <div /* className='ui checkbox' */ >
+                                 <div key={index} >
                                     <input 
                                                 type='checkbox'
                                                 id= {filtro}
@@ -179,7 +183,7 @@ const FiltrosGenerales = (props) => {
                            
                            props.filtros.quality.map((filtro, index) => {
                               return (
-                                 <div /* className='ui checkbox' */ >
+                                 <div key={index} >
                                     <input 
                                                 type='checkbox'
                                                 id= {filtro}

@@ -20,7 +20,7 @@ const FiltroAccesorios = (props) => {
         let f = props.checkFilters(marcasChequeadas, props.filtros.marca);
         console.log(f);
         
-        // this.agreeToFilter(f, 'quality');
+        props.onAgreeToFilter(f, 'brandAcc');
      }
 
      const handleChangeTipo = (index) => {
@@ -32,7 +32,7 @@ const FiltroAccesorios = (props) => {
         let f = props.checkFilters(tiposChequeados, props.filtros.tipo);
         console.log(f);
         
-        // this.agreeToFilter(f, 'quality');
+        props.onAgreeToFilter(f, 'type');
      }
     
     
@@ -51,7 +51,7 @@ const FiltroAccesorios = (props) => {
                            
                            props.filtros.marca.map((filtro, index) => {
                               return (
-                                 <div /* className='ui checkbox' */ >
+                                 <div key={index} >
                                     <input 
                                                 type='checkbox'
                                                 id= {filtro}
@@ -80,7 +80,7 @@ const FiltroAccesorios = (props) => {
                            
                            props.filtros.tipo.map((filtro, index) => {
                               return (
-                                 <div /* className='ui checkbox' */ >
+                                 <div key={index} >
                                     <input 
                                                 type='checkbox'
                                                 id= {filtro}

@@ -11,7 +11,7 @@ import IntlMessages from 'Util/IntlMessages';
 
 // get display string
 const getDisplayString = (sub) => {
-   console.log(sub);
+   // console.log(sub);
    // debugger;
    const arr = sub.split("-");
 
@@ -37,7 +37,7 @@ const PageTitleBar = ({ title, match, enableBreadCrumb }) => {
    const path = match.path.substr(1);
    const prePath = path.includes("cart") || path.includes("historial") ? path : path.slice(0,path.indexOf(':')-1);
    const prePath1 = `${prePath.slice(0, prePath.indexOf('/'))}${prePath.slice(13)}`
-   console.log(path);
+   // console.log(path);
    
    const subPath = prePath1.split('/');
    return (

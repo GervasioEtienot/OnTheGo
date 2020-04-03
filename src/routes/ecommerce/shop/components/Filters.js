@@ -24,6 +24,8 @@ class Filters extends Component {
       colorsToFilter: '',
       qualitysToFilter: '',
       modelsToFilter: '',
+      brandAccToFilter: '',
+      typesToFilter: ''
       
    }
    componentDidMount(){
@@ -33,7 +35,7 @@ class Filters extends Component {
    }
    componentWillReceiveProps(nextProps){
       const { categoria } = this.props;
-      console.log(categoria + nextProps.categoria);
+      // console.log(categoria + nextProps.categoria);
             
       if(nextProps.categoria !== categoria){
          this.getFilters(nextProps.categoria)
@@ -68,34 +70,39 @@ class Filters extends Component {
             "X-Requested-With": "XMLHttpRequest",
          }
       } */);
-         console.log(response.data);
+         // console.log(response.data);
          this.setState( { filtrosRecibidos: response.data, loading: false } );
    }
 
    
    agreeToFilter(aFiltrar, tipo, borrarModelsToFilter){
-      const { brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter } = this.state;
-      let arrayDeFiltros = [ "", "", "", "" ]
+      const { brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter, brandAccToFilter, typesToFilter } = this.state;
+      let arrayDeFiltros = [ "", "", "", "" , "", ""]
       switch(tipo){
          case "brand": if(borrarModelsToFilter){
-                           arrayDeFiltros = [ aFiltrar, "", colorsToFilter, qualitysToFilter ]
+                           arrayDeFiltros = [ aFiltrar, "", colorsToFilter, qualitysToFilter, brandAccToFilter, typesToFilter ]
                         }
-                        else{ arrayDeFiltros = [ aFiltrar, modelsToFilter, colorsToFilter, qualitysToFilter ] }
+                        else{ arrayDeFiltros = [ aFiltrar, modelsToFilter, colorsToFilter, qualitysToFilter, brandAccToFilter, typesToFilter ] }
                         this.setState({ brandsToFilter: aFiltrar });
                         break;
-         case "models": arrayDeFiltros = [ brandsToFilter, aFiltrar, colorsToFilter, qualitysToFilter ]
+         case "models": arrayDeFiltros = [ brandsToFilter, aFiltrar, colorsToFilter, qualitysToFilter, brandAccToFilter, typesToFilter ]
                         this.setState({ modelsToFilter: aFiltrar });
                         break;
-         case "color": arrayDeFiltros = [ brandsToFilter, modelsToFilter, aFiltrar, qualitysToFilter ]
+         case "color": arrayDeFiltros = [ brandsToFilter, modelsToFilter, aFiltrar, qualitysToFilter, brandAccToFilter, typesToFilter ]
                         this.setState({ colorsToFilter: aFiltrar });
                         break;
-         case "quality": arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, aFiltrar ]
+         case "quality": arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, aFiltrar, brandAccToFilter, typesToFilter ]
                         this.setState({ qualitysToFilter: aFiltrar });
                         break;
-         
+         case "brandAcc": arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter, aFiltrar, typesToFilter ]
+                        this.setState({ brandAccToFilter: aFiltrar });
+                        break;
+         case "type":   arrayDeFiltros = [ brandsToFilter, modelsToFilter, colorsToFilter, qualitysToFilter, brandAccToFilter, aFiltrar ]
+                        this.setState({ typesToFilter: aFiltrar });
+                        break;
       }
             
-      console.log(arrayDeFiltros);
+      // console.log(arrayDeFiltros);
             
       this.props.onFiltrarTermino(arrayDeFiltros);
 
