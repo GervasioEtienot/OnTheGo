@@ -101,13 +101,13 @@ const Historial = (props) => {
                           <th className="w-10 text-center"><IntlMessages id="components.dateOfPurchase" /></th>
                           <th className="w-10 text-center"><IntlMessages id="components.status" /></th>
                           <th className="w-10 text-center"><IntlMessages id="components.cartPrice" /></th>
-                          <th className="w-10 text-center">Ver</th>
+                          <th className="w-10 text-center"> </th>
                           {/* <th className="w-10 text-center"><IntlMessages id="components.removeProduct" /></th> */}
                        </tr>
                     </thead>
                     <tbody >
                     {!isCartEmpty() ? carritos.map((carro, key) => (
-                          <React.Fragment>
+                          <React.Fragment key={key}>
                               <tr key={key}>
                                  <td className="w-10 text-center">{carro.id}</td>
                                  <td className="w-10 text-center">{carro.created_at}</td>
@@ -117,7 +117,7 @@ const Historial = (props) => {
                                  <td className="text-danger text-center">$ {carro.total_price}</td>
                                  <td className="w-10 text-center">
                                     <Button variant="contained" color="primary" onClick={ () => mostrarCarrito(key, carro.id) } >
-                                       <i className="zmdi zmdi-shopping-cart"></i>
+                                       <i className="zmdi zmdi-search"></i>
                                     </Button>
                                  </td>
                               </tr>

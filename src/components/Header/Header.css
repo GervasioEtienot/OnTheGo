@@ -1,0 +1,11 @@
+p:hover {
+    background-color: rgb(227, 230, 236);
+}
+
+.linkHisto {
+    border-radius: 0.5em;
+    /* color: #727891; */
+    text-align: center;
+    padding: 6px;
+}
+

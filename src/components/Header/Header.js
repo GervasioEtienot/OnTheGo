@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import screenfull from 'screenfull';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
+import HistoryIcon from '@material-ui/icons/History';
 import { withRouter } from 'react-router-dom';
 // import Button from '@material-ui/core/Button';
 import { Button } from 'reactstrap';
@@ -25,6 +26,7 @@ import Notifications from './Notifications';
 
 // intl messages
 import IntlMessages from 'Util/IntlMessages';
+import './Header.css';
 
 
 class Header extends Component {
@@ -33,7 +35,7 @@ class Header extends Component {
 		customizer: false,
 		isMobileSearchFormVisible: false
 	}
-
+    
 	// function to change the state of collapsed sidebar
 	onToggleNavCollapsed = (event) => {
 		const val = !this.props.navCollapsed;
@@ -75,6 +77,7 @@ class Header extends Component {
 	render() {
 		const { isMobileSearchFormVisible } = this.state;
 		const { horizontalMenu, agencyMenu} = this.props;
+		
 		return (
 			<AppBar position="static" className="rct-header">
 				<Toolbar className="d-flex justify-content-between w-100 pl-0">
@@ -124,8 +127,9 @@ class Header extends Component {
 						{/* <Button  size="medium"  component={Link} to="/app/ecommerce/historial" className="upgrade-btn tour-step-4 text-white">
 							<IntlMessages id="sidebar.historial" />
 						</Button> */}
-						<Link to="/app/ecommerce/historial">
-						   <Button outline color="secondary"> <IntlMessages id="sidebar.historial" /> </Button>
+						<Link to="/app/ecommerce/historial" >
+						   {/* <Button outline color="secondary"> <IntlMessages id="sidebar.historial" /> </Button> */}
+							<p className="linkHisto" >Historial</p>
 						</Link>
 						<Cart />
 					    <li className="list-inline-item">
@@ -150,3 +154,4 @@ const mapStateToProps = ({ settings }) => {
 export default withRouter(connect(mapStateToProps, {
 	collapsedSidebarAction
 })(Header));
+

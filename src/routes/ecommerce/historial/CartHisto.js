@@ -18,6 +18,7 @@ import IntlMessages from 'Util/IntlMessages';
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 
 import axios from 'axios';
+import './CartHisto.css';
 
 const CartHisto = (props) => {
     
@@ -36,27 +37,27 @@ const CartHisto = (props) => {
 
     return (
         <tr className="cart-wrapper">
-            <td colSpan="4">
+            <td colSpan="5">
               <RctCard>
                 <RctCardContent noPadding>
                     <Table hover responsive className="mb-0">
-                        <thead>
-                            <tr>
-                            <th className="w-10"></th>
-                            <th className="w-50"><IntlMessages id="components.product" /></th>
+                        <thead className= 'tablaDetalle' >
+                            <tr className= 'tablaDetalle'>
+                            {/* <th className="w-10"></th> */}
+                            <th className="w-40"><IntlMessages id="components.product" /></th>
                             {/* <th className="w-10 text-center"><IntlMessages id="components.availables" /></th> */}
-                            <th className="w-10 text-center"><IntlMessages id="components.quantity" /></th>
-                            <th className="w-10 text-center"><IntlMessages id="widgets.price" /></th>
-                            <th className="w-10 text-center"><IntlMessages id="components.totalPrice" /></th>
+                            <th className="w-20 text-center"><IntlMessages id="components.quantity" /></th>
+                            <th className="w-20 text-center"><IntlMessages id="widgets.price" /></th>
+                            <th className="w-20 text-center"><IntlMessages id="components.totalPrice" /></th>
                             {/* <th className="w-10 text-center"><IntlMessages id="components.removeProduct" /></th> */}
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className= 'tablaDetalle tbodyDetalle' >
                             { mapeo() ? carro.map((item, index) => (
-                                <tr key={index}>
-                                    <td className="w-10" ></td>
-                                    <td className="w-50">
-                                        <h3>{item.name}</h3>
+                                <tr key={index} className= 'tablaDetalle' >
+                                    {/* <td className="w-10" ></td> */}
+                                    <td className="w-40">
+                                        <h5>{item.name}</h5>
                                         {/* <span className="fs-14 d-block text-muted">{cart.descripcion}</span> */}
                                         {/* <span className="fs-14 d-block text-muted">{cart.brand}</span> */}
                                     </td>

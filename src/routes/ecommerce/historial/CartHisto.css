@@ -1,0 +1,14 @@
+.tablaDetalle {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+/* thead {
+    width: calc( 100% - 1em );
+    display: block;
+} */
+.tbodyDetalle {
+    display: block;
+    height: '100%';
+    max-height: 15em;
+}
