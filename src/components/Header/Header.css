@@ -1,11 +1,17 @@
-p:hover {
-    background-color: rgb(227, 230, 236);
+.MuiAppBar-colorPrimary .linkHisto:hover {
+    /* background-color: rgb(227, 230, 236); */
+    color: #727891;
 }
 
-.linkHisto {
+
+
+.linkHisto{
     border-radius: 0.5em;
     /* color: #727891; */
     text-align: center;
     padding: 6px;
 }
 
+.MuiAppBar-colorPrimary .linkHisto{
+    color: #5D92F4;
+}

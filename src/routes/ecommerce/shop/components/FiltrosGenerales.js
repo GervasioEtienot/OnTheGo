@@ -104,7 +104,8 @@ const FiltrosGenerales = (props) => {
                                                 type='checkbox'
                                                 id= {filtro}
                                                 onChange={() => { handleChangeMarca(index) }} 
-                                                value={marcasChequeadas[index]} 
+                                                value={filtro}
+                                                checked={marcasChequeadas[index]} 
                                              />
                                     <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
                                  </div>
@@ -132,7 +133,8 @@ const FiltrosGenerales = (props) => {
                                                    type='checkbox'
                                                    id= {filtro}
                                                    onChange={() => { handleChangeModelos(index) }} 
-                                                   value={modelosChequeados[index]} 
+                                                   value={filtro}
+                                                   checked={modelosChequeados[index]} 
                                                 />
                                        <label style={{ marginLeft: "5px" }}> {filtro} </label>
                                     </div>
@@ -162,7 +164,8 @@ const FiltrosGenerales = (props) => {
                                                 type='checkbox'
                                                 id= {filtro}
                                                 onChange={() => { handleChangeColor(index) }} 
-                                                value={coloresChequeados[index]} 
+                                                value={filtro}
+                                                checked={coloresChequeados[index]} 
                                              />
                                     <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
                                  </div>
@@ -191,7 +194,8 @@ const FiltrosGenerales = (props) => {
                                                 type='checkbox'
                                                 id= {filtro}
                                                 onChange={() => { handleChangeCalidad(index) }} 
-                                                value={calidadesChequeadas[index]} 
+                                                value={filtro}
+                                                checked={calidadesChequeadas[index]} 
                                              />
                                     <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
                                  </div>
