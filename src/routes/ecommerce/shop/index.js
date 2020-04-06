@@ -2,18 +2,8 @@
  * Shop Page
  */
 import React, { Component } from 'react';
-import algoliasearch from 'algoliasearch/lite';
-/* import {
-	InstantSearch,
-	Hits,
-	Stats,
-	SortBy,
-	Pagination,
-	Configure,
-	MenuSelect,
-	Panel,
-	SearchBox
-} from 'react-instantsearch-dom'; */
+import { connect } from 'react-redux';
+
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -41,7 +31,7 @@ import Grid from '@material-ui/core/Grid';
 	'6be0576ff61c053d5f9a3225e2a90f76'
 ); */
 
-export default class Shop extends Component {
+class Shop extends Component {
 	state = {
 		     videos: [],
 			 loading: true,
@@ -65,6 +55,7 @@ export default class Shop extends Component {
 
 	async busquedaDePrueba({ categoria }, actualPage, term) {
 	  const { paginaActual, filtros } = this.state;
+	  const { wordToSearch } = this.props;
 	  const params = {
 		params: {
 			page: actualPage === 0 ? paginaActual : actualPage,
@@ -96,6 +87,8 @@ export default class Shop extends Component {
 	 .then((respuesta) => {
 		// console.log(respuesta);
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
+		console.log(wordToSearch);
+		
 	 })
 	 .catch((error) => {
 		console.log(error);
@@ -225,4 +218,11 @@ export default class Shop extends Component {
 		)
 	}
 }
+
+const mapStateToProps = ({ ecommerce }) => {
+	const { wordToSearch } = ecommerce;
+	return { wordToSearch };
+}
+
+export default connect(mapStateToProps)(Shop);
 
