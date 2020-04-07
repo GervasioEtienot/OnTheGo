@@ -3,7 +3,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap';
 import Button from '@material-ui/core/Button';
 import { Badge } from 'reactstrap';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,6 +22,15 @@ import { deleteItemFromCart } from "Actions";
 import IntlMessages from 'Util/IntlMessages';
 
 class Carts extends Component {
+
+	state = {
+		dropdownOpen: false,
+	};
+
+	toggle = () => {
+		// debugger;
+		this.setState( { dropdownOpen: !this.state.dropdownOpen });
+	}
 
 	//Get Total Price
 	getTotalPrice() {
@@ -44,8 +53,8 @@ class Carts extends Component {
 	render() {
 		const { cart, deleteItemFromCart, location } = this.props;
 		return (
-			<UncontrolledDropdown nav className="list-inline-item cart-dropdown">
-				<DropdownToggle nav className="p-0">
+			<Dropdown nav className="list-inline-item cart-dropdown" isOpen={this.state.dropdownOpen} toggle={() => this.toggle()}>
+				<DropdownToggle nav className="p-0" >
 					<Tooltip title="Carro" placement="bottom">
 						<IconButton aria-label="bag">
 							<i className="zmdi zmdi-shopping-cart"></i>
@@ -101,23 +110,24 @@ class Carts extends Component {
 									<div className="dropdown-foot d-flex justify-content-between align-items-center p-2 bg-white rounded-bottom">
 										<div>
 											<Button
-												variant="raised"
+												variant="contained"
 												component={Link}
 												to={`/${getAppLayout(location)}/ecommerce/cart`}
 												color="primary"
 												className="mr-10 btn-xs bg-primary text-white"
+												onClick={ () => this.toggle() }
 											>
 												<IntlMessages id="components.viewCart" />
 											</Button>
-											<Button
-												variant="raised"
+											{/* <Button
+												variant="contained"
 												component={Link}
 												to={`/${getAppLayout(location)}/ecommerce/checkout`}
 												color="secondary"
 												className="btn-xs text-white"
 											>
 												<IntlMessages id="components.checkout" />
-											</Button>
+											</Button> */}
 										</div>
 										<span className="fw-normal text-dark font-weight-bold font-xs">
 											<IntlMessages id="widgets.total" /> $ {this.getTotalPrice()}
@@ -128,7 +138,7 @@ class Carts extends Component {
 						}
 					</div>
 				</DropdownMenu>
-			</UncontrolledDropdown>
+			</Dropdown>
 		)
 	}
 }

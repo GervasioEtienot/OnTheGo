@@ -59,16 +59,18 @@ export default (state = INIT_STATE, action) => {
 
 		case ON_ADD_ITEM_TO_CART:
 			let newCartItem = {
-				id:action.payload.id,
-				codigo: action.payload.codigo,
+				id:action.payload.hitItem.id,
+				codigo: action.payload.hitItem.codigo,
 				// image: action.payload.image,
-				descripcion: action.payload.descripcion,
+				descripcion: action.payload.hitItem.descripcion,
 				// brand: action.payload.brand,
-				precio_producto: action.payload.precio_producto,
-				cantidad_deposito_item: action.payload.cantidad_deposito_item,
-				productQuantity: 1,
-				totalPrice: action.payload.precio_producto
+				precio_producto: action.payload.hitItem.precio_producto,
+				cantidad_deposito_item: action.payload.hitItem.cantidad_deposito_item,
+				productQuantity: action.payload.cantidad,
+				totalPrice: Math.round(parseFloat(action.payload.hitItem.precio_producto) * parseFloat(action.payload.cantidad)*1000)/1000
 			};
+			console.log(newCartItem.precio_producto);
+			
 			return update(state, {
 				cart: {
 					$push: [newCartItem]

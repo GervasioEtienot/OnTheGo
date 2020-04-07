@@ -15,9 +15,9 @@ export const onChangeProductQuantity = (quantity, cartItem) => ({
    payload: { quantity, cartItem }
 })
 
-export const onAddItemToCart = (hitItem) => ({
+export const onAddItemToCart = (hitItem, cantidad) => ({
    type: ON_ADD_ITEM_TO_CART,
-   payload: hitItem
+   payload: { hitItem, cantidad }
 })
 
 export const searchProduct = (word) => (dispatch) => {

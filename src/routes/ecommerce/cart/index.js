@@ -131,8 +131,8 @@ class Carts extends Component {
                            <tr key={key}>
                               <td className="w-10 text-center"><img src={require('../../../assets/img/product-2.png')} alt="products" className="media-object" width="100" height="100" /></td>
                               <td className="w-50">
-                                 <h3>{textTruncate(cart.codigo, 40)}</h3>
-                                 <span className="fs-14 d-block text-muted">{textTruncate(cart.descripcion, 80)}</span>
+                                 <h3>{cart.codigo}</h3>
+                                 <span className="fs-14 d-block text-muted">{cart.descripcion}</span>
                                  {/* <span className="fs-14 d-block text-muted">{cart.brand}</span> */}
                               </td>
                               <td className="text-bold text-center">{cart.cantidad_deposito_item}</td>
@@ -171,7 +171,12 @@ class Carts extends Component {
                               {/* <Button variant="contained" size="large" color="primary" className="text-white" component={Link} to="/app/ecommerce/checkout">
                                  <IntlMessages id="components.checkout" />
                               </Button> */}
-                              <Button variant="contained" size="large" color="primary" className="text-white" onClick={() => this.openAlert('success')} >
+                              <Button variant="contained" 
+                                       size="large" 
+                                       color="primary"  
+                                       onClick={() => this.openAlert('success')}
+                                       disabled={ this.isCartEmpty() ? true : false } 
+                                       >
                                  <IntlMessages id="components.checkout" />
                               </Button>
                               <SweetAlert

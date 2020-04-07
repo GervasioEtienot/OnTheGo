@@ -25,12 +25,6 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
  
-
-/* const client = algoliasearch(
-	'latency',
-	'6be0576ff61c053d5f9a3225e2a90f76'
-); */
-
 class Shop extends Component {
 	state = {
 		     videos: [],
@@ -76,18 +70,12 @@ class Shop extends Component {
 	  	  	  
 	//   const respuesta = await Productos.get(categoria , params);
 	axios.get(`http://149.56.237.70:81/api/shop/${categoria}`, params
-		//  {
-		// 	headers: {
-		// 	  'Content-Type': 'application/json',
-		// 	  "X-Requested-With": "XMLHttpRequest",
-		// 	  "Authorization": localStorage.getItem('user_id')
-		// 	}
-		//  } 
+		 
 	 )
 	 .then((respuesta) => {
 		// console.log(respuesta);
 		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
-		console.log(wordToSearch);
+		// console.log(wordToSearch);
 		
 	 })
 	 .catch((error) => {
