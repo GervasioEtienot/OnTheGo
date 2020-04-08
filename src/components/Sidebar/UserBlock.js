@@ -17,13 +17,34 @@ import { logoutUserFromFirebase } from 'Actions';
 // intl messages
 import IntlMessages from 'Util/IntlMessages';
 
+import axios from 'axios';
+
+
 class UserBlock extends Component {
 
 	state = {
 		userDropdownMenu: false,
-		isSupportModal: false
+		isSupportModal: false,
+		usuario: {}
 	}
 
+	componentDidMount(){
+		axios.get("http://149.56.237.70:81/api/auth/user",{
+			headers: {
+				'Content-Type': 'application/json',
+				"X-Requested-With": "XMLHttpRequest",
+				"Authorization": localStorage.getItem('user_id')
+			  }
+		})
+		.then((user) => {
+			this.setState({ usuario: user.data });
+			console.log(user.data);
+			
+		})
+		 .catch((error) => {
+			console.log(error);
+		 })
+	}
 	/**
 	 * Logout User
 	 */
@@ -61,6 +82,7 @@ class UserBlock extends Component {
 	}
 
 	render() {
+		const { usuario } = this.state;
 		return (
 			<div className="top-sidebar">
 				<div className="sidebar-user-block">
@@ -83,21 +105,21 @@ class UserBlock extends Component {
 								/>
 							</div>
 							<div className="user-info">
-								<span className="user-name ml-4">Ignacio Monasterio</span>
+								<span className="user-name ml-4">{usuario.name ? usuario.name : 'Cargando...' }</span>
 								<i className="zmdi zmdi-chevron-down dropdown-icon mx-4"></i>
 							</div>
 						</DropdownToggle>
 						<DropdownMenu>
 							<ul className="list-unstyled mb-0">
 								<li className="p-15 border-bottom user-profile-top bg-primary rounded-top">
-									<p className="text-white mb-0 fs-14">Ignacio Monasterio</p>
-									<span className="text-white fs-14">info@example.com</span>
+									<p className="text-white mb-0 fs-14">{usuario.name ? usuario.name : 'Cargando...' }</p>
+									<span className="text-white fs-14">{usuario.email ? usuario.email : 'Cargando...' }</span>
 								</li>
 								<li>
-									<Link to={{
+									<Link /* to={{
 										pathname: '/app/users/user-profile-1',
 										state: { activeTab: 0 }
-									}}>
+									}} */ >
 										<i className="zmdi zmdi-account text-primary mr-3"></i>
 										<span><IntlMessages id="widgets.profile" /></span>
 									</Link>
