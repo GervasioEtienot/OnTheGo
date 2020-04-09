@@ -3,7 +3,7 @@
 */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
@@ -21,11 +21,11 @@ import { configureStore } from './store';
 const MainApp = () => (
 	<Provider store={configureStore()}>
 		<MuiPickersUtilsProvider utils={MomentUtils}>
-			<Router>
+			<HashRouter hashType="slash">
 				<Switch>
 					<Route path="/" component={App} />
 				</Switch>
-			</Router>
+			</HashRouter>
 		</MuiPickersUtilsProvider>
 	</Provider>
 );

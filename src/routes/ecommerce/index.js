@@ -5,6 +5,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import Shop from './shop';
+import Liquidacion from './Liquidacion';
 // async components
 import { 
 	AsyncShopComponent,
@@ -26,7 +27,7 @@ const Ecommerce = ({ match }) => {
 				<Route exact path={`${match.url}/baterias/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/Lensun/:categoria`} component={Shop} />
 				<Route exact path={`${match.url}/promos/:categoria`} component={Shop} />
-				<Route exact path={`${match.url}/liquidacion/:categoria`} component={Shop} />
+				<Route exact path={`${match.url}/liquidacion/:categoria`} component={Liquidacion} />
 				<Route path={`${match.url}/cart`} component={AsyncCartComponent} />
 				<Route path={`${match.url}/historial`} component={AsyncHistorialComponent} />
 			</Switch>

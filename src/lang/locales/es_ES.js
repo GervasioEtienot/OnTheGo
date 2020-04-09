@@ -120,6 +120,8 @@ module.exports = {
    "widgets.trafficSources": "Fuentes de tráfico",
    "widgets.RecentOrders": "órdenes recientes",
    "widgets.topSellings": "Mejores ventas",
+   "widgets.liquidaciones": "Liquidaciones",
+   "widgets.units": "Unidades",
    "widgets.productReports": "Informes de productos",
    "widgets.productStats": "Estadísticas del producto",
    "widgets.ComposeEmail": "Escribir correo",
