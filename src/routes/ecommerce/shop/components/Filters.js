@@ -143,7 +143,8 @@ class Filters extends Component {
                                                   filtros={this.state.filtrosRecibidos}
                                                   loading={loading}
                                                   checkFilters={this.checkFilters}
-                                                  onAgreeToFilter={this.agreeToFilter.bind(this)} 
+                                                  onAgreeToFilter={this.agreeToFilter.bind(this)}
+                                                  category={categoria} 
                                        /> 
                                      : '' 
          }

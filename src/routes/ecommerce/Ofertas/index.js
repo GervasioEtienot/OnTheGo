@@ -85,11 +85,11 @@ const Ofertas = (props) => {
                 }
                 {
                   loading == true ? 'Cargando...'  : (
-                    <Grid container spacing={3}>
+                    <Grid container justify="center" spacing={6}>
                         {
                           products && products.map((product, index) => {
                             return(
-                              <Grid key={index} item xs={4}>
+                              <Grid key={index} item xs={3}>
                                 <RctCollapsibleCard fullBlock >  
                                   <TopSelling product={product} category={props.match.params.categoria}/>
                                 </RctCollapsibleCard>

@@ -148,66 +148,74 @@ const FiltrosGenerales = (props) => {
                   </RctCardContent>
                </RctCard>
             </Collapse>
-            <RctCard>
-               <RctCardContent>
-                  <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
-                     <FormGroup >
-                        
-                        { props.loading ? <CircularProgress /> 
-                        : ( 
-                           
-                           props.filtros.color.map((filtro, index) => {
-                              return (
-                                 <div key={index} >
-                                    <input 
-                                                type='checkbox'
-                                                id= {filtro}
-                                                onChange={() => { handleChangeColor(index) }} 
-                                                value={filtro}
-                                                checked={coloresChequeados[index]} 
-                                             />
-                                    <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
-                                 </div>
-                              );
-                           }) 
-                        ) 
-                        }
+            {props.category === 'batteries' || props.category === 'lensun' ? '' 
+               : (
+                  <RctCard>
+                     <RctCardContent>
+                        <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
+                        <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                           <FormGroup >
                               
-                     </FormGroup>
-                  </div>
-               </RctCardContent>
-            </RctCard>
-            <RctCard>
-               <RctCardContent>
-                  <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
-                     <FormGroup >
-                        
-                        { props.loading ? <CircularProgress /> 
-                        : ( 
-                           
-                           props.filtros.quality.map((filtro, index) => {
-                              return (
-                                 <div key={index} >
-                                    <input 
-                                                type='checkbox'
-                                                id= {filtro}
-                                                onChange={() => { handleChangeCalidad(index) }} 
-                                                value={filtro}
-                                                checked={calidadesChequeadas[index]} 
-                                             />
-                                    <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
-                                 </div>
-                              );
-                           }) 
-                        ) 
-                        }
+                              { props.loading ? <CircularProgress /> 
+                              : ( 
+                                 
+                                 props.filtros.color.map((filtro, index) => {
+                                    return (
+                                       <div key={index} >
+                                          <input 
+                                                      type='checkbox'
+                                                      id= {filtro}
+                                                      onChange={() => { handleChangeColor(index) }} 
+                                                      value={filtro}
+                                                      checked={coloresChequeados[index]} 
+                                                   />
+                                          <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
+                                       </div>
+                                    );
+                                 }) 
+                              ) 
+                              }
+                                    
+                           </FormGroup>
+                        </div>
+                     </RctCardContent>
+                  </RctCard>
+                  )
+               }
+            {props.category === 'batteries' || props.category === 'lensun' ? '' 
+               : (
+                  <RctCard>
+                     <RctCardContent>
+                        <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
+                        <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                           <FormGroup >
                               
-                     </FormGroup>
-                  </div>
-               </RctCardContent>
-            </RctCard>
+                              { props.loading ? <CircularProgress /> 
+                              : ( 
+                                 
+                                 props.filtros.quality.map((filtro, index) => {
+                                    return (
+                                       <div key={index} >
+                                          <input 
+                                                      type='checkbox'
+                                                      id= {filtro}
+                                                      onChange={() => { handleChangeCalidad(index) }} 
+                                                      value={filtro}
+                                                      checked={calidadesChequeadas[index]} 
+                                                   />
+                                          <label style={{ marginLeft: "5px" }}> {filtro.charAt(0) + filtro.toLowerCase().substring(1)} </label>
+                                       </div>
+                                    );
+                                 }) 
+                              ) 
+                              }
+                                    
+                           </FormGroup>
+                        </div>
+                     </RctCardContent>
+                  </RctCard>
+                  )
+               }
             </div>
             
         

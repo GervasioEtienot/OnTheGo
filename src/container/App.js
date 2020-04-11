@@ -47,7 +47,7 @@ class App extends Component {
          if (user === null) {
             return (<Redirect to={'/session/login'} />);
          } else {
-            return (<Redirect to={'/app/ecommerce/accesorios/accesorios'} />);
+            return (<Redirect to={'/app/ecommerce/accessories/accessories'} />);
          }
       }
       return (
