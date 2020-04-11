@@ -3,7 +3,7 @@
  */
 import React, { Component } from "react";
 import Slider from "react-slick";
-
+import StarIcon from '@material-ui/icons/Star';
 // api
 import axios from 'axios';
 
@@ -41,20 +41,35 @@ const TopSelling = (props) => {
 								<img src={Foto} width="600" alt="headphone device" className="img-fluid d-block" />
 							</div>
 							<div className="product-content text-center">
-								<h3>{product.codigo}</h3>
-                                <h5 style={{ textDecorationLine:"line-through" }}>${product.precio_producto}</h5>
-                                <h3 className="text-pink">${Math.round((parseFloat(product.descuento)+100)*product.precio_producto)/100}</h3>
+								<h3>{product.code}</h3>
+								<h5>{product.des_sale || product.des_offer}</h5>
+								{props.category === 'offers' ? (
+									<h5 style={{ textDecorationLine:"line-through" }}>
+										${Math.round(product.price_offer/(1-product.percent_offer/100)*100)/100}
+									</h5>
+									) : ''
+								}
+								<h3 className="text-pink">${product.price_sale || product.price_offer}</h3>
 							</div>
 						</div>
 						<div className="rct-block-footer clearfix">
-							<div className="float-left">
-								<h6><IntlMessages id="widgets.units" /></h6>
-								<h3>{product.cantidad_paquete}</h3>
-							</div>
+							{props.category === 'offers' ? (
+								<div className="float-left">
+									<h6><IntlMessages id="widgets.discount" /></h6>
+									<h3>-{product.percent_offer}%</h3>
+								</div>) 
+								: ''
+							}
+							{props.category === 'sales' ? (
+								<div className="float-left">
+									<h6><IntlMessages id="widgets.units" /></h6>
+									<h3>{product.qty_sale}</h3>
+								</div>) 
+								: ''
+							}
 							<div className="float-right">
-								<h6>Descuento</h6>
-								<h3>{product.descuento}</h3>
-							</div>
+								<StarIcon color="secondary" fontSize="large"/>
+							</div> 
 						</div>
 						</div>
 					))}

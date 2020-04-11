@@ -53,12 +53,14 @@ class Filters extends Component {
    async getFilters(categoria){
       this.setState({ loading: true });
       let category = categoria
-      if(categoria !== 'accesorios'){
+      
+      if(categoria !== 'accessories'){
          category = ''
       }
       else {
-         category = "/accesories"
+         category = "/accessories"
       }
+      
       const response = await Filtros.get(category /* ,{
          params: {
             // maxResults: 30,
@@ -129,7 +131,7 @@ class Filters extends Component {
       return (
          <div>
          
-         {categoria === 'accesorios' ? <FiltroAccesorios 
+         {categoria === 'accessories' ? <FiltroAccesorios 
                                                   filtros={this.state.filtrosRecibidos}
                                                   loading={loading}
                                                   checkFilters={this.checkFilters}
@@ -137,7 +139,7 @@ class Filters extends Component {
                                        /> 
                                      : '' 
          }
-         {categoria !== 'accesorios' ? <FiltrosGenerales 
+         {categoria !== 'accessories' ? <FiltrosGenerales 
                                                   filtros={this.state.filtrosRecibidos}
                                                   loading={loading}
                                                   checkFilters={this.checkFilters}

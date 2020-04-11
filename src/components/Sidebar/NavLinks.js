@@ -8,25 +8,25 @@ export default {
          "new_item": false,
          "child_routes":  [
              {
-               "path": "/app/ecommerce/accesorios",
+               "path": "/app/ecommerce/accessories",
                "new_item": false,
-               "menu_title": "sidebar.accesorios",
+               "menu_title": "sidebar.accessories",
                "menu_icon": "zmdi zmdi-headset",
-               "categoria": "accesorios"
+               "categoria": "accessories"
             }, 
             {
-               "path": "/app/ecommerce/partes",
+               "path": "/app/ecommerce/parts",
                "new_item": false,
-               "menu_title": "sidebar.partes",
+               "menu_title": "sidebar.parts",
                "menu_icon": "zmdi zmdi-smartphone-iphone",
-               "categoria": "partes"
+               "categoria": "parts"
             },
             {
-               "path": "/app/ecommerce/baterias",
+               "path": "/app/ecommerce/batteries",
                "new_item": false,
-               "menu_title": "sidebar.baterias",
+               "menu_title": "sidebar.batteries",
                "menu_icon": "zmdi zmdi-battery-flash",
-               "categoria": "baterias"
+               "categoria": "batteries"
             },
             {
                "path": "/app/ecommerce/Lensun",
@@ -36,18 +36,18 @@ export default {
                "categoria": "lensun"
             }, 
             {
-               "path": "/app/ecommerce/promos",
+               "path": "/app/ecommerce/offers",
                "new_item": false,
-               "menu_title": "sidebar.promos",
+               "menu_title": "sidebar.offers",
                "menu_icon": "zmdi zmdi-star",
-               "categoria": "promos"
+               "categoria": "offers"
             }, 
             {
-               "path": "/app/ecommerce/liquidacion",
+               "path": "/app/ecommerce/sales",
                "new_item": false,
-               "menu_title": "sidebar.liquidacion",
+               "menu_title": "sidebar.sales",
                "menu_icon": "zmdi zmdi-local-offer",
-               "categoria": "liquidacion"
+               "categoria": "sales"
             } 
          ]
       }

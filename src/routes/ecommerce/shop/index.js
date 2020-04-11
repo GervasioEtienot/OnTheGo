@@ -27,7 +27,7 @@ import Grid from '@material-ui/core/Grid';
  
 class Shop extends Component {
 	state = {
-		     videos: [],
+		     products: [],
 			 loading: true,
 			 paginaActual: 1,
 			 dataCompleta: {},
@@ -73,8 +73,8 @@ class Shop extends Component {
 		 
 	 )
 	 .then((respuesta) => {
-		// console.log(respuesta);
-		this.setState( { dataCompleta: respuesta.data, videos: respuesta.data.data, loading: false } );
+		console.log(respuesta);
+		this.setState( { dataCompleta: respuesta.data.data, products: respuesta.data.data, loading: false } );
 		// console.log(wordToSearch);
 		
 	 })
@@ -115,7 +115,7 @@ class Shop extends Component {
 
 	render() {
 		const { match } = this.props;
-		const { videos, loading, paginaActual, dataCompleta } = this.state;
+		const { products, loading, paginaActual, dataCompleta } = this.state;
 		const flechas = {
 			flechaIzq: "<",
 			flechaDer: ">",
@@ -164,10 +164,10 @@ class Shop extends Component {
 									{loading == true ? 'Cargando...'  : ( 
 										<Grid container spacing={3}>
 											{
-											   videos.map((video, index) => {
+											   Array.isArray(products) && products.map((product, index) => {
 											     return(
 													<Grid key={index} item xs={4}>
-														<Hit hit={video} key={index} />
+														<Hit hit={product} key={index} />
 													</Grid>
 											     );
 											   })
