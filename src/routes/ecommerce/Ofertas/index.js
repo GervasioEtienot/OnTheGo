@@ -29,7 +29,7 @@ import TopSelling from './TopSelling';
  
 const Ofertas = (props) => {
     
-    const [products, setProducts] = useState(data);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
         
     useEffect(() => {
@@ -66,12 +66,12 @@ const Ofertas = (props) => {
 							{/* <div className="col-lg-3 col-md-4 d-none d-md-block">
 								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={match.params.categoria} />
 							</div> */}
-                {loading == true ? 'Cargando...'  : ( 
+                {/* loading == true ? 'Cargando...'  : ( 
                                       <React.Fragment>
-                                          <div className="col-sm-12 col-md-4 col-lg-4 w-xs-full"></div>
+                                          <div className="col-sm-12 col-md-3 col-lg-3 w-xs-full"></div>
                                           <RctCollapsibleCard
                                               colClasses="col-sm-12 col-md-4 col-lg-4 w-xs-full"
-                                              heading={<IntlMessages id="widgets.liquidaciones" />}
+                                              // heading={<IntlMessages id="widgets.liquidaciones" />}
                                               // collapsible
                                               // reloadable
                                               // closeable
@@ -81,7 +81,24 @@ const Ofertas = (props) => {
                                           </RctCollapsibleCard>
                                           <div className="col-sm-12 col-md-4 col-lg-4 w-xs-full"></div>
                                       </React.Fragment>
-                                      )
+                                      ) */
+                }
+                {
+                  loading == true ? 'Cargando...'  : (
+                    <Grid container spacing={3}>
+                        {
+                          products && products.map((product, index) => {
+                            return(
+                              <Grid key={index} item xs={4}>
+                                <RctCollapsibleCard fullBlock >  
+                                  <TopSelling product={product} category={props.match.params.categoria}/>
+                                </RctCollapsibleCard>
+                              </Grid>
+                            );
+                          })
+                        }
+                    </Grid>
+                  )
                 }
 						</div>
 					

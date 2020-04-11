@@ -103,7 +103,7 @@ const Historial = (props) => {
                               <th className="w-10 text-center"><IntlMessages id="components.dateOfPurchase" /></th>
                               <th className="w-10 text-center"><IntlMessages id="components.status" /></th>
                               <th className="w-10 text-center"><IntlMessages id="components.cartPrice" /></th>
-                              <th className="w-10 text-center"> </th>
+                              <th className="w-10 text-center"></th>
                               {/* <th className="w-10 text-center"><IntlMessages id="components.removeProduct" /></th> */}
                            </tr>
                         </thead>
@@ -123,7 +123,7 @@ const Historial = (props) => {
                                                 </Button>
                                              </td>
                                           </tr>
-                                          {showCart === key && !isDetailEmpty() ? <CartHisto cart={detalleCarro}/> : ''}
+                                          {showCart === key && !isDetailEmpty() ? <CartHisto cart={detalleCarro}/> : null}
                                     </React.Fragment>
                                     ))   
                                  : (

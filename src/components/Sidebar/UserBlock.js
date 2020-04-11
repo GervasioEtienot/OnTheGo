@@ -115,15 +115,15 @@ class UserBlock extends Component {
 									<p className="text-white mb-0 fs-14">{usuario.name ? usuario.name : 'Cargando...' }</p>
 									<span className="text-white fs-14">{usuario.email ? usuario.email : 'Cargando...' }</span>
 								</li>
-								<li>
-									<Link /* to={{
+								{/* <li>
+									<Link to={{
 										pathname: '/app/users/user-profile-1',
 										state: { activeTab: 0 }
-									}} */ >
+									}} >
 										<i className="zmdi zmdi-account text-primary mr-3"></i>
 										<span><IntlMessages id="widgets.profile" /></span>
 									</Link>
-								</li>
+								</li> */}
 								{/* <li>
 									<Link to={{
 										pathname: '/app/users/user-profile-1',
