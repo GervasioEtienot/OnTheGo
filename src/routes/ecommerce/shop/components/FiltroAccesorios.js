@@ -3,7 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import { RctCard, RctCardContent } from 'Components/RctCard';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
+import './Filters.css';
 
 
 const FiltroAccesorios = (props) => {
@@ -11,8 +11,17 @@ const FiltroAccesorios = (props) => {
     const [tiposChequeados, setTiposChequeados] = useState([]);
      
     useEffect(() => {
+      cleanFilters();
+      if(props.onCleanFilters){
+         props.onCleanFiltersChange();
+      }
       return () => props.onAgreeToFilter('borrarFiltros');
-    },[]);
+    },[props.onCleanFilters]);
+
+    const cleanFilters = () => {
+      setMarcasChequeadas(marcasChequeadas.fill(false));
+      setTiposChequeados(tiposChequeados.fill(false));
+   }
 
     const handleChangeMarca = (index) => {
         
@@ -46,7 +55,7 @@ const FiltroAccesorios = (props) => {
             <RctCard>
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >MARCA</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                  <div className='filterContainer'>
                      <FormGroup >
                         
                         { props.loading ? <CircularProgress /> 
@@ -76,7 +85,7 @@ const FiltroAccesorios = (props) => {
             <RctCard>
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >TIPO</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                  <div className='filterContainer'>
                      <FormGroup >
                         
                         { props.loading ? <CircularProgress /> 

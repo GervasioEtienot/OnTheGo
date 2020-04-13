@@ -111,7 +111,7 @@ class Header extends Component {
 									</li>
 								}
 								<li className="list-inline-item search-icon d-inline-block">
-									<SearchForm />
+									{/* <SearchForm /> */}
 									<IconButton mini="true" className="search-icon-btn" onClick={() => this.openMobileSearchForm()}>
 										<i className="zmdi zmdi-search"></i>
 									</IconButton>

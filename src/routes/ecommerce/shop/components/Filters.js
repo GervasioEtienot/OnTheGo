@@ -7,6 +7,8 @@ import React, { Component } from 'react';
 // Card Component
 import { RctCard, RctCardContent } from 'Components/RctCard';
 
+import { Button, Badge } from 'reactstrap';
+
 import Filtros from '../../../../apis/Filtros';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -25,7 +27,8 @@ class Filters extends Component {
       qualitysToFilter: '',
       modelsToFilter: '',
       brandAccToFilter: '',
-      typesToFilter: ''
+      typesToFilter: '',
+      cleanFilters: false
       
    }
    componentDidMount(){
@@ -43,6 +46,9 @@ class Filters extends Component {
             
    }
 
+   cleanFiltersChange(){
+      this.setState({ cleanFilters: false });
+   }
    
    cargar(cater) {
       const { marcas, color, quality, chequeados, colorChecked, qualityChecked } = this.state;
@@ -130,25 +136,33 @@ class Filters extends Component {
       const { categoria } = this.props;
       return (
          <div>
-         
-         {categoria === 'accessories' ? <FiltroAccesorios 
-                                                  filtros={this.state.filtrosRecibidos}
-                                                  loading={loading}
-                                                  checkFilters={this.checkFilters}
-                                                  onAgreeToFilter={this.agreeToFilter.bind(this)} 
-                                       /> 
-                                     : '' 
-         }
-         {categoria !== 'accessories' ? <FiltrosGenerales 
-                                                  filtros={this.state.filtrosRecibidos}
-                                                  loading={loading}
-                                                  checkFilters={this.checkFilters}
-                                                  onAgreeToFilter={this.agreeToFilter.bind(this)}
-                                                  category={categoria} 
-                                       /> 
-                                     : '' 
-         }
-         
+            <div className="cleanFilters">
+               <Button color="primary" outline size="sm" block onClick={() => this.setState({ cleanFilters: true }) }>
+                  Limpiar filtros
+               </Button>
+            </div>
+            {categoria === 'accessories' ? <FiltroAccesorios 
+                                                   filtros={this.state.filtrosRecibidos}
+                                                   loading={loading}
+                                                   checkFilters={this.checkFilters}
+                                                   onAgreeToFilter={this.agreeToFilter.bind(this)}
+                                                   onCleanFilters={this.state.cleanFilters}
+                                                   onCleanFiltersChange={this.cleanFiltersChange.bind(this)} 
+                                          /> 
+                                       : '' 
+            }
+            {categoria !== 'accessories' ? <FiltrosGenerales 
+                                                   filtros={this.state.filtrosRecibidos}
+                                                   loading={loading}
+                                                   checkFilters={this.checkFilters}
+                                                   onAgreeToFilter={this.agreeToFilter.bind(this)}
+                                                   category={categoria}
+                                                   onCleanFilters={this.state.cleanFilters}
+                                                   onCleanFiltersChange={this.cleanFiltersChange.bind(this)} 
+                                          /> 
+                                       : '' 
+            }
+            
         </div>
       )
    }

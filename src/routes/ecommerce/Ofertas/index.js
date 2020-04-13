@@ -25,12 +25,13 @@ import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
 import TopSelling from './TopSelling';
+import { CircularProgress } from '@material-ui/core';
 
  
 const Ofertas = (props) => {
     
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
         
     useEffect(() => {
         getProducts(props.match.params);
@@ -61,7 +62,11 @@ const Ofertas = (props) => {
 				<PageTitleBar title={<IntlMessages id={`sidebar.${props.match.params.categoria}`} />} match={props.match} />
 				<div className="ais-InstantSearch">
 					
-						
+					{loading == true ? (
+            <div style={{ textAlign: 'center', padding: '2em' }}>
+                <CircularProgress size='3em'/>
+            </div>)
+            : (	
 						<div className="row" >
 							{/* <div className="col-lg-3 col-md-4 d-none d-md-block">
 								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={match.params.categoria} />
@@ -83,25 +88,22 @@ const Ofertas = (props) => {
                                       </React.Fragment>
                                       ) */
                 }
-                {
-                  loading == true ? 'Cargando...'  : (
-                    <Grid container justify="center" spacing={6}>
-                        {
-                          products && products.map((product, index) => {
-                            return(
-                              <Grid key={index} item xs={3}>
-                                <RctCollapsibleCard fullBlock >  
-                                  <TopSelling product={product} category={props.match.params.categoria}/>
-                                </RctCollapsibleCard>
-                              </Grid>
-                            );
-                          })
-                        }
-                    </Grid>
-                  )
-                }
-						</div>
-					
+                <Grid container justify="center" spacing={6}>
+                    {
+                      products && products.map((product, index) => {
+                        return(
+                          <Grid key={index} item xs={3}>
+                            <RctCollapsibleCard fullBlock >  
+                              <TopSelling product={product} category={props.match.params.categoria}/>
+                            </RctCollapsibleCard>
+                          </Grid>
+                        );
+                      })
+                    }
+                </Grid>
+            </div>
+            )
+          }
 				</div>
 			</div>
 		)

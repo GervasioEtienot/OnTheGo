@@ -71,7 +71,7 @@ const CartHisto = (props) => {
                                         </IconButton>
                                     </td> */}
                                 </tr>
-                            )) : '' 
+                            )) : null 
                             }
                         </tbody>
                         

@@ -3,7 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import { RctCard, RctCardContent } from 'Components/RctCard';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
-
+import './Filters.css';
 
 
 
@@ -15,9 +15,20 @@ const FiltrosGenerales = (props) => {
     const [mostrarModelos, setMostrarModelos] = useState(false);
     
     useEffect(() => {
+      cleanFilters();
+      if(props.onCleanFilters){
+         props.onCleanFiltersChange();
+      }
       return () => props.onAgreeToFilter('borrarFiltros');
-    },[]);
+    },[props.category, props.onCleanFilters]);
     
+    const cleanFilters = () => {
+       setMarcasChequeadas(marcasChequeadas.fill(false));
+       setColoresChequeados(coloresChequeados.fill(false));
+       setCalidadesChequeadas(calidadesChequeadas.fill(false));
+       setModelosChequeados(modelosChequeados.fill(false));
+    }
+
     const handleChangeMarca = (index) => {
         let borrarModelsToFilter = false
         let aux = marcasChequeadas;
@@ -91,7 +102,7 @@ const FiltrosGenerales = (props) => {
             <RctCard>
                <RctCardContent>
                   <div style={{ marginBottom:"5px", fontWeight:"700" }} >MARCA</div>
-                  <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                  <div className='filterContainer'>
                      <FormGroup >
                         
                         { props.loading ? <CircularProgress /> 
@@ -122,7 +133,7 @@ const FiltrosGenerales = (props) => {
                <RctCard className="brand">
                   <RctCardContent>
                      <div style={{ marginBottom:"5px", fontWeight:"700" }} >MODELO</div>
-                     <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto'  }} >
+                     <div className='filterContainer' >
                         <FormGroup >
                            {marcasChequeadas.indexOf(true) !== -1 && esUnArray() ? ( 
                             props.filtros[`${props.filtros.brand[marcasChequeadas.indexOf(true)].toLowerCase()}`].map((filtro, index) => {
@@ -153,7 +164,7 @@ const FiltrosGenerales = (props) => {
                   <RctCard>
                      <RctCardContent>
                         <div style={{ marginBottom:"5px", fontWeight:"700" }} >COLOR</div>
-                        <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                        <div className='filterContainer'>
                            <FormGroup >
                               
                               { props.loading ? <CircularProgress /> 
@@ -187,7 +198,7 @@ const FiltrosGenerales = (props) => {
                   <RctCard>
                      <RctCardContent>
                         <div style={{ marginBottom:"5px", fontWeight:"700" }} >CALIDAD</div>
-                        <div style={{ maxHeight: '12em', height: '100%', overflowY: 'auto' }}>
+                        <div className='filterContainer'>
                            <FormGroup >
                               
                               { props.loading ? <CircularProgress /> 
