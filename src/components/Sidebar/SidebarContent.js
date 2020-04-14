@@ -11,6 +11,7 @@ import IntlMessages from 'Util/IntlMessages';
 import NavMenuItem from './NavMenuItem';
 import { NavLink } from 'react-router-dom';      // Agregado de prueba
 import ListItem from '@material-ui/core/ListItem';  // Agregado de prueba
+import classNames from 'classnames';
 
 // redux actions
 import { onToggleMenu } from 'Actions';
@@ -55,7 +56,7 @@ class SidebarContent extends Component {
                            
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
-                                 <ListItem button component="li" key={index} className= "list-item">
+                                 <ListItem button component="li" key={index} className={`list-item ${classNames({ 'item-active': subMenu.open })}`}>
                                     <NavLink to={`${subMenu.path}/${subMenu.categoria}`} activeClassName="item-active" >
                                        <ListItemIcon className="menu-icon" style={{minWidth: 29}}>
                                           <i className={subMenu.menu_icon}></i> 

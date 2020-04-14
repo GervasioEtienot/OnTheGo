@@ -128,9 +128,7 @@ class Hit extends Component {
 						{!this.isItemExistInCart(hit.id) ? (
 							<a hidden={showCantidad}  
 								className="bg-primary text-center w-100 cart-link text-white py-2" 
-								onClick={(e) => {debugger;
-												 this.setState({showCantidad: true})
-												} }
+								onClick={(e) => this.setState({showCantidad: true}) }
 								>
 								{loading ? <CircularProgress className="text-white" color="inherit" size={20} /> 
 								: 'Agregar al carrito'}

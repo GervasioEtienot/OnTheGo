@@ -14,8 +14,6 @@ import { RctCard, RctCardContent } from 'Components/RctCard';
 //Actions
 import { deleteItemFromCart, onChangeProductQuantity } from "Actions";
 
-//Helper
-import { textTruncate } from "Helpers/helpers";
 
 // intl messages
 import IntlMessages from 'Util/IntlMessages';
@@ -24,15 +22,18 @@ import IntlMessages from 'Util/IntlMessages';
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 import axios from 'axios';
 import qs from 'qs';
-import SweetAlert from 'react-bootstrap-sweetalert'
+import SweetAlert from 'react-bootstrap-sweetalert';
+
 
 // Api de prueba
 import EnviarCarrito from '../../../apis/EnviarCarrito';
+import { LinearProgress } from '@material-ui/core';
 
 class Carts extends Component {
    state = {
       success: false,
-      redirect: false
+      redirect: false,
+      showProgress: false
    }
 
    onChangeQuantity(quantity, cartItem) {
@@ -84,7 +85,7 @@ class Carts extends Component {
           .then(response => {
             console.log(response);
             cart.map( item => deleteItemFromCart(item) );
-            this.setState({ [key]: true});
+            this.setState({ showProgress: false, [key]: true});
           }).catch(e => {
             console.log("El error es:" + e);
         });
@@ -103,7 +104,7 @@ class Carts extends Component {
 
    render() {
       const { cart, deleteItemFromCart, match } = this.props;
-      const { success, redirect } = this.state;
+      const { success, redirect, showProgress } = this.state;
       
       if(redirect){
          return (<Redirect to={'/app/ecommerce/historial'} />);
@@ -174,7 +175,10 @@ class Carts extends Component {
                               <Button variant="contained" 
                                        size="large" 
                                        color="primary"  
-                                       onClick={() => this.openAlert('success')}
+                                       onClick={() => {
+                                                      this.setState({ showProgress: true });   
+                                                      this.openAlert('success')
+                                                   }}
                                        disabled={ this.isCartEmpty() ? true : false } 
                                        >
                                  <IntlMessages id="components.checkout" />
@@ -191,6 +195,13 @@ class Carts extends Component {
                         </tr>
                      </tfoot>
                   </Table>
+                  {showProgress && (
+                     <div>
+                        <LinearProgress />
+                        Realizando pedido...
+                     </div>
+                     )
+                  }
                </RctCardContent>
             </RctCard>
          </div>
