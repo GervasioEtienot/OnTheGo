@@ -35,11 +35,13 @@ const getUrlString = (path, sub, index) => {
 
 const PageTitleBar = ({ title, match, enableBreadCrumb }) => {
    const path = match.path.substr(1);
-   const prePath = path.includes("cart") || path.includes("historial") ? path : path.slice(0,path.indexOf(':')-1);
+   /* const prePath = path.includes("cart") || path.includes("historial") ? path : path.slice(0,path.indexOf(':')-1);
    const prePath1 = `${prePath.slice(0, prePath.indexOf('/'))}${prePath.slice(13)}`
-   // console.log(path);
-   
-   const subPath = prePath1.split('/');
+      
+   const subPath = prePath1.split('/'); */
+
+   const subPath = path.split('/');
+   subPath.splice(1,1);
    return (
       <div className="page-title d-flex justify-content-between align-items-center">
          {title &&

@@ -34,11 +34,11 @@ const Ofertas = (props) => {
     const [loading, setLoading] = useState(true);
         
     useEffect(() => {
-        getProducts(props.match.params);
-    },[props.match.params]);
+        getProducts(props.categoria);
+    },[props.categoria]);
     // http://www.mocky.io/v2/5e8e4145300000700064baa7
   const getProducts = async () => {
-        axios.get(`http://149.56.237.70:81/api/shop/${props.match.params.categoria}`,{
+        axios.get(`http://149.56.237.70:81/api/shop/${props.categoria}`,{
           headers: {
             'Content-Type': 'application/json',
             "X-Requested-With": "XMLHttpRequest",
@@ -59,7 +59,7 @@ const Ofertas = (props) => {
   
 		return (
 			<div className="shop-wrapper">
-				<PageTitleBar title={<IntlMessages id={`sidebar.${props.match.params.categoria}`} />} match={props.match} />
+				<PageTitleBar title={<IntlMessages id={`sidebar.${props.categoria}`} />} match={props.match} />
 				<div className="ais-InstantSearch">
 					
 					{loading == true ? (
@@ -94,7 +94,7 @@ const Ofertas = (props) => {
                         return(
                           <Grid key={index} item xs={3}>
                             <RctCollapsibleCard fullBlock >  
-                              <TopSelling product={product} category={props.match.params.categoria}/>
+                              <TopSelling product={product} category={props.categoria}/>
                             </RctCollapsibleCard>
                           </Grid>
                         );

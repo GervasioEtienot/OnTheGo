@@ -36,18 +36,26 @@ class Shop extends Component {
 
     componentWillMount(){
 	    const { paginaActual } = this.state;
-		const { match } = this.props;
-	//   debugger;
-	  this.busquedaDePrueba(match.params, paginaActual);
+	// 	const { match } = this.props;
+	//   let cat = match.url.split("/")
+	//   console.log(cat[3]);
+	//   if(cat[3] === 'Lensun'){
+	// 	  cat[3] = 'lensun'
+	//   }
+	  
+	  this.busquedaDePrueba(this.props.categoria, paginaActual);
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		const { paginaActual } = this.state;
+		let cate = this.props.categoria;
+		if(nextProps.categoria){
+			cate = nextProps.categoria;
+		}	
 					
-		this.busquedaDePrueba(nextProps.match.params);
+		this.busquedaDePrueba(cate);
 	}
 
-	async busquedaDePrueba({ categoria }, actualPage, term) {
+	async busquedaDePrueba( categoria, actualPage, term) {
 	  const { paginaActual, filtros } = this.state;
 	  const { wordToSearch } = this.props;
 	  const params = {
@@ -89,7 +97,7 @@ class Shop extends Component {
 		   this.setState({ filtros: term });
 		   console.log(term);
 		     
-		   this.busquedaDePrueba(match.params, 0, term);
+		   this.busquedaDePrueba(this.props.categoria, 0, term);
 	   
 	}
 	
@@ -110,7 +118,7 @@ class Shop extends Component {
 			              this.setState( (prevState) => { return { paginaActual: dataCompleta.last_page } });
 			              break;
 		}
-		this.busquedaDePrueba(match.params, actualPage);
+		this.busquedaDePrueba(this.props.categoria, actualPage);
 	}
 
 	render() {
@@ -124,7 +132,7 @@ class Shop extends Component {
 		}
 		return (
 			<div className="shop-wrapper">
-				<PageTitleBar title={<IntlMessages id="sidebar.shop" />} match={match} />
+				<PageTitleBar title={<IntlMessages id={`sidebar.${this.props.categoria ? this.props.categoria : 'shop'}`} />} match={match} />
 				<div className="ais-InstantSearch">
 					
 						<div className="mb-30 filter-sm-wrap d-block d-md-none">
@@ -144,7 +152,7 @@ class Shop extends Component {
 						</div>
 						<div className="row">
 							<div className="col-lg-3 col-md-4 d-none d-md-block">
-								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={match.params.categoria} />
+								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={this.props.categoria} />
 							</div>
 							<div className="col-lg-9 col-md-8 col-sm-12">
 								<div className="shop-content">

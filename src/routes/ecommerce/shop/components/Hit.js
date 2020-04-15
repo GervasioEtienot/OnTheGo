@@ -9,18 +9,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // Card Component
 import { RctCard } from 'Components/RctCard';
 
-import { Button, Backdrop } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Actions
 import { onAddItemToCart, onChangeProductQuantity, deleteItemFromCart } from "../../../../actions/EcommerceActions";
 
-//Helper
-import { textTruncate } from "Helpers/helpers"
-import { Dialog } from '@material-ui/core';
-
-import Modal from '../../../../components/Modal';
-import { Table, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 import Collapse from '@material-ui/core/Collapse';
 import Foto from './Foto'; 
 import './Hit.css';

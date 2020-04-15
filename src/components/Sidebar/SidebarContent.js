@@ -57,7 +57,9 @@ class SidebarContent extends Component {
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
                                  <ListItem button component="li" key={index} className={`list-item ${classNames({ 'item-active': subMenu.open })}`}>
-                                    <NavLink to={`${subMenu.path}/${subMenu.categoria}`} activeClassName="item-active" >
+                                    <NavLink to={`${subMenu.path}`} activeClassName="item-active" activeStyle={{
+                                        fontWeight: "bold"
+                                      }} >
                                        <ListItemIcon className="menu-icon" style={{minWidth: 29}}>
                                           <i className={subMenu.menu_icon}></i> 
                                        </ListItemIcon> 
@@ -88,3 +90,4 @@ const mapStateToProps = ({ sidebar }) => {
 export default withRouter(connect(mapStateToProps, {
     onToggleMenu
 })(SidebarContent));
+
