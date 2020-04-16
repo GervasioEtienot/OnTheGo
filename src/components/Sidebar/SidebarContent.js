@@ -11,10 +11,14 @@ import IntlMessages from 'Util/IntlMessages';
 import NavMenuItem from './NavMenuItem';
 import { NavLink } from 'react-router-dom';      // Agregado de prueba
 import ListItem from '@material-ui/core/ListItem';  // Agregado de prueba
+import Divider from '@material-ui/core/Divider';
 import classNames from 'classnames';
 
 // redux actions
 import { onToggleMenu } from 'Actions';
+
+
+import SidebarFilters from './sidebarFilters/SidebarFilters';
 
 class SidebarContent extends Component {
 
@@ -34,6 +38,12 @@ class SidebarContent extends Component {
 
     render() {
         const { sidebarMenus } = this.props.sidebar;
+        const { location } = this.props;
+        const path = location.pathname.substr(1);
+        const subPath = path.split('/');
+        // subPath.splice(1,1);
+        console.log(subPath[2]);
+        
         return (
             <div className="rct-sidebar-nav">
                 <nav className="navigation">
@@ -56,7 +66,7 @@ class SidebarContent extends Component {
                            
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
-                                 <ListItem button component="li" key={index} className={`list-item ${classNames({ 'item-active': subMenu.open })}`}>
+                                 <ListItem button component="li" key={index} className={`list-item ${classNames({ 'item-active': subMenu.open })}`} >
                                     <NavLink to={`${subMenu.path}`} activeClassName="item-active" activeStyle={{
                                         fontWeight: "bold"
                                       }} >
@@ -77,6 +87,10 @@ class SidebarContent extends Component {
                            })}
                         </List>
                 </nav>
+                <div style={{ marginRight: "2em", marginTop: "2em" }} >
+                    <h5 className="ui horizontal divider header" >Filtros</h5>
+                    <SidebarFilters categoria={subPath[2]} />
+                </div>
             </div>
         );
     }

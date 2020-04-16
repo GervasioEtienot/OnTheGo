@@ -1,0 +1,25 @@
+.filterContainer {
+    overflow-y: hidden;
+    height: 100%;
+    max-height: 12em;
+}
+
+.filterContainer:hover {
+    overflow-y: auto;
+}
+
+.cleanFilters {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.sidebarFilters {
+    border-style: solid;
+    border-color: rgb(199, 198, 198);
+    border-radius: 6px;
+    border-width: 1px;
+    padding: 10px;
+    margin-bottom: 2em;
+}

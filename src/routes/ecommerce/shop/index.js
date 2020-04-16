@@ -50,14 +50,14 @@ class Shop extends Component {
 		let cate = this.props.categoria;
 		if(nextProps.categoria){
 			cate = nextProps.categoria;
-		}	
-					
-		this.busquedaDePrueba(cate);
+		}
+							
+		this.busquedaDePrueba(cate, 0, nextProps.wordToSearch);
 	}
 
 	async busquedaDePrueba( categoria, actualPage, term) {
 	  const { paginaActual, filtros } = this.state;
-	  const { wordToSearch } = this.props;
+	  
 	  const params = {
 		params: {
 			page: actualPage === 0 ? paginaActual : actualPage,
@@ -91,15 +91,16 @@ class Shop extends Component {
 	 })
 	
 	}
-	filtrarTermino(term){
-	   const { match } = this.props;
+// No se usa mientras los filtros estén en la sidebar
+	/* filtrarTermino(term){
+		const { wordToSearch } = this.props;
 	       
-		   this.setState({ filtros: term });
-		   console.log(term);
+		   this.setState({ filtros: wordToSearch });
+		   console.log(wordToSearch);
 		     
-		   this.busquedaDePrueba(this.props.categoria, 0, term);
+		   this.busquedaDePrueba(this.props.categoria, 0, wordToSearch);
 	   
-	}
+	} */
 	
 	changePage = (pagToGo, actualPage) => {
 	   const { dataCompleta } = this.state;
@@ -151,10 +152,10 @@ class Shop extends Component {
 							</ExpansionPanel>
 						</div>
 						<div className="row">
-							<div className="col-lg-3 col-md-4 d-none d-md-block">
+							{/* <div className="col-lg-3 col-md-4 d-none d-md-block">
 								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={this.props.categoria} />
-							</div>
-							<div className="col-lg-9 col-md-8 col-sm-12">
+							</div> */}
+							<div className="col-lg-12 col-md-8 col-sm-12">
 								<div className="shop-content">
 									{/* <div className="stats-info d-flex mb-30 justify-content-between align-items-center">
 										<div className="app-selectbox-sm w-30">
@@ -170,11 +171,11 @@ class Shop extends Component {
 									/> */}
 									
 									{loading == true ? 'Cargando...'  : ( 
-										<Grid container spacing={3}>
+										<Grid container spacing={4}>
 											{
 											   Array.isArray(products) && products.map((product, index) => {
 											     return(
-													<Grid key={index} item xs={4}>
+													<Grid key={index} item xs={3}>
 														<Hit hit={product} key={index} />
 													</Grid>
 											     );
@@ -183,31 +184,33 @@ class Shop extends Component {
 										</Grid>
 										)
 									}
-									
-									<div className="pagination mb-30" style={{ marginTop: "15px" }} >
-										<div className="ui pagination tiny blue menu">
-											<a className={`${paginaActual === 1 ? "disabled" : "" } item`} onClick={ () => this.changePage("first", paginaActual)} >{flechas.dobleFlechaIzq}</a>
-											{paginaActual === 1 ? <div className="disabled item" >{ flechas.flechaIzq }</div> 
-											: <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { flechas.flechaIzq } </a>}
-											{
-											  paginaActual === 1 ? '' : <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { paginaActual-1 } </a>
-											}
-											<a className="active item">{ paginaActual }</a>
-											<a className="item" 
-											   hidden={paginaActual === dataCompleta.last_page ? true : false }
-											   onClick={ () => this.changePage("next", paginaActual)} 
-											>
-												{ paginaActual+1 } 
-											</a>
-											{paginaActual === dataCompleta.last_page ? <div className="disabled item" >{ flechas.flechaDer }</div>
-											: <a className="item" onClick={ () => this.changePage("next", paginaActual)} >{flechas.flechaDer}</a>
-										    }
-											<a className={`${paginaActual === dataCompleta.last_page ? "disabled" : "" } item`} onClick={ () => this.changePage("last", paginaActual)} >{flechas.dobleFlechaDer}</a>
+						</div>	
+									<div className="text-center">
+										<div className="pagination mb-30" style={{ marginTop: "15px" }} >
+											<div className="ui pagination tiny blue menu">
+												<a className={`${paginaActual === 1 ? "disabled" : "" } item`} onClick={ () => this.changePage("first", paginaActual)} >{flechas.dobleFlechaIzq}</a>
+												{paginaActual === 1 ? <div className="disabled item" >{ flechas.flechaIzq }</div> 
+												: <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { flechas.flechaIzq } </a>}
+												{
+												paginaActual === 1 ? '' : <a className="item" onClick={ () => this.changePage("prev", paginaActual)} > { paginaActual-1 } </a>
+												}
+												<a className="active item">{ paginaActual }</a>
+												<a className="item" 
+													hidden={paginaActual === dataCompleta.last_page ? true : false }
+													onClick={ () => this.changePage("next", paginaActual)} 
+													>
+													{ paginaActual+1 } 
+												</a>
+												{paginaActual === dataCompleta.last_page ? <div className="disabled item" >{ flechas.flechaDer }</div>
+												: <a className="item" onClick={ () => this.changePage("next", paginaActual)} >{flechas.flechaDer}</a>
+												}
+												<a className={`${paginaActual === dataCompleta.last_page ? "disabled" : "" } item`} onClick={ () => this.changePage("last", paginaActual)} >{flechas.dobleFlechaDer}</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						
 					
 				</div>
 			</div>
