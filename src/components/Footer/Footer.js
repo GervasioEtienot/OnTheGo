@@ -15,7 +15,7 @@ const Footer = () => (
 	<div className="rct-footer d-flex justify-content-between align-items-center">
 		<ul className="list-inline footer-menus mb-0">
 			<li className="list-inline-item">
-				<Button component={Link} to="/app/ecommerce/accessories/accessories"><IntlMessages id="sidebar.gettingStarted" /></Button>
+				<Button component={Link} to="/app/ecommerce/accessories"><IntlMessages id="sidebar.gettingStarted" /></Button>
 			</li>
 			<li className="list-inline-item">
 				<Button component={Link} to="/app/about-us"><IntlMessages id="sidebar.aboutUs" /></Button>
