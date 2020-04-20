@@ -14,6 +14,8 @@ import ListItem from '@material-ui/core/ListItem';  // Agregado de prueba
 import Divider from '@material-ui/core/Divider';
 import classNames from 'classnames';
 
+import './Sidebar.css';
+
 // redux actions
 import { onToggleMenu } from 'Actions';
 
@@ -67,7 +69,7 @@ class SidebarContent extends Component {
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
                                  <ListItem button component="li" key={index} className={`list-item ${classNames({ 'item-active': subMenu.open })}`} >
-                                    <NavLink to={`${subMenu.path}`} activeClassName="item-active" activeStyle={{
+                                    <NavLink id="sidebarItem" to={`${subMenu.path}`} activeClassName="item-active" activeStyle={{
                                         fontWeight: "bold"
                                       }} >
                                        <ListItemIcon className="menu-icon" style={{minWidth: 29}}>

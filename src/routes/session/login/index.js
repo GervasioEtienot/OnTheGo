@@ -95,6 +95,13 @@ class Signin extends Component {
                                     <Input value={password} type="Password" name="user-pwd" id="pwd" className="has-input input-lg" placeholder="Password" onChange={(event) => this.setState({ password: event.target.value })} />
                                     <span className="has-icon"><i className="ti-lock"></i></span>
                                  </FormGroup>
+                                 {this.props.wrongData ? (
+                                    <div class="ui negative message">
+                                       <div class="header">Datos incorrectos!</div>
+                                       <p>Verifica correo y contraseña ingresados</p>
+                                    </div>)
+                                    : ''
+                                 }
                                  <FormGroup className="mb-15">
                                     <Button
                                        color="primary"
@@ -145,8 +152,8 @@ class Signin extends Component {
 
 // map state to props
 const mapStateToProps = ({ authUser }) => {
-   const { user, loading } = authUser;
-   return { user, loading }
+   const { user, loading, wrongData } = authUser;
+   return { user, loading, wrongData }
 }
 
 export default connect(mapStateToProps, {

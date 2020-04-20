@@ -16,7 +16,8 @@ import {
  */
 const INIT_STATE = {
     user: localStorage.getItem('user_id'),
-    loading: false
+    loading: false,
+    wrongData: false
 };
 
 export default (state = INIT_STATE, action) => {
@@ -26,10 +27,10 @@ export default (state = INIT_STATE, action) => {
             return { ...state, loading: true };
 
         case LOGIN_USER_SUCCESS:
-            return { ...state, loading: false, user: action.payload };
+            return { ...state, loading: false, user: action.payload, wrongData: false };
 
         case LOGIN_USER_FAILURE:
-            return { ...state, loading: false };
+            return { ...state, loading: false, wrongData: true };
 
         case LOGOUT_USER:
             return { ...state, user: null };
