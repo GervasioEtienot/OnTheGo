@@ -31,8 +31,8 @@ import {
 class Signin extends Component {
 
    state = {
-      email: 'test@test.com',
-      password: '123123'  // test#123
+      email: '',
+      password: '',  // test#123
    }
 
    /**
@@ -88,13 +88,20 @@ class Signin extends Component {
                               </div>
                               <Form>
                                  <FormGroup className="has-wrapper">
-                                    <Input type="mail" value={email} name="user-mail" id="user-mail" className="has-input input-lg" placeholder="Enter Email Address" onChange={(event) => this.setState({ email: event.target.value })} />
+                                    <Input type="mail" value={email} name="user-mail" id="user-mail" className="has-input input-lg" placeholder="Correo electrónico" onChange={(event) => this.setState({ email: event.target.value })} />
                                     <span className="has-icon"><i className="ti-email"></i></span>
                                  </FormGroup>
                                  <FormGroup className="has-wrapper">
-                                    <Input value={password} type="Password" name="user-pwd" id="pwd" className="has-input input-lg" placeholder="Password" onChange={(event) => this.setState({ password: event.target.value })} />
+                                    <Input value={password} type="Password" name="user-pwd" id="pwd" className="has-input input-lg" placeholder="Contraseña" onChange={(event) => this.setState({ password: event.target.value })} />
                                     <span className="has-icon"><i className="ti-lock"></i></span>
                                  </FormGroup>
+                                 {this.props.wrongData ? (
+                                    <div className="ui negative message">
+                                       <div className="header">Datos incorrectos! </div>
+                                       <p>Compruebe su correo o contraseña </p>
+                                    </div>)
+                                    : ''
+                                 }
                                  <FormGroup className="mb-15">
                                     <Button
                                        color="primary"
@@ -145,8 +152,8 @@ class Signin extends Component {
 
 // map state to props
 const mapStateToProps = ({ authUser }) => {
-   const { user, loading } = authUser;
-   return { user, loading }
+   const { user, loading, wrongData } = authUser;
+   return { user, loading, wrongData }
 }
 
 export default connect(mapStateToProps, {

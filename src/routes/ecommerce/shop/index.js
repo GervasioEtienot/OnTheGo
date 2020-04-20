@@ -82,7 +82,7 @@ class Shop extends Component {
 	 )
 	 .then((respuesta) => {
 		console.log(respuesta);
-		this.setState( { dataCompleta: respuesta.data.data, products: respuesta.data.data, loading: false } );
+		this.setState( { dataCompleta: respuesta.data, products: respuesta.data.data, loading: false } );
 		// console.log(wordToSearch);
 		
 	 })
