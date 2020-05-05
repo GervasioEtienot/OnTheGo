@@ -92,7 +92,7 @@ const Ofertas = (props) => {
                     {
                       products && products.map((product, index) => {
                         return(
-                          <Grid key={index} item xs={3}>
+                          <Grid key={index} item xs={8} sm={4} md={3} lg={3} xl={3}>
                             <RctCollapsibleCard fullBlock >  
                               <TopSelling product={product} category={props.categoria}/>
                             </RctCollapsibleCard>

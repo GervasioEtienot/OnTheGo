@@ -155,7 +155,7 @@ class Shop extends Component {
 							{/* <div className="col-lg-3 col-md-4 d-none d-md-block">
 								<Filters onFiltrarTermino={ this.filtrarTermino.bind(this)} categoria={this.props.categoria} />
 							</div> */}
-							<div className="col-lg-12 col-md-8 col-sm-12">
+						<div className="col-lg-12 col-md-12 col-sm-12">  {/*Para filtros dentro del shop content className= "col-lg-12 col-md-8 col-sm-12" */}
 								<div className="shop-content">
 									{/* <div className="stats-info d-flex mb-30 justify-content-between align-items-center">
 										<div className="app-selectbox-sm w-30">
@@ -171,11 +171,11 @@ class Shop extends Component {
 									/> */}
 									
 									{loading == true ? 'Cargando...'  : ( 
-										<Grid container spacing={4}>
+										<Grid container spacing={2} justify="center">
 											{
 											   Array.isArray(products) && products.map((product, index) => {
 											     return(
-													<Grid key={index} item xs={3}>
+													<Grid key={index} item xs={6} sm={4} md={3} lg={3} xl={3}>
 														<Hit hit={product} key={index} />
 													</Grid>
 											     );
