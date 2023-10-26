@@ -102,13 +102,23 @@ class Header extends Component {
 										</Tooltip>
 									</li>
 								}
+								<li className="list-inline-item search-icon d-inline-block">
+									<SearchForm />
+									<IconButton mini="true" className="search-icon-btn" onClick={() => this.openMobileSearchForm()}>
+										<i className="zmdi zmdi-search"></i>
+									</IconButton>
+									<MobileSearchForm
+										isOpen={isMobileSearchFormVisible}
+										onClose={() => this.setState({ isMobileSearchFormVisible: false })}
+									/>
+								</li>
 							</ul>
 						}
 					</div>
 					<ul className="navbar-right list-inline mb-0">
 					    <Cart />
 					    <li className="list-inline-item">
-							<Tooltip title="Full Screen" placement="bottom">
+							<Tooltip title="Pantalla completa" placement="bottom">
 								<IconButton aria-label="settings" onClick={() => this.toggleScreenFull()}>
 									<i className="zmdi zmdi-crop-free"></i>
 								</IconButton>

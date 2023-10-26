@@ -73,7 +73,7 @@ class UserBlock extends Component {
 							tag="div"
 							className="d-flex align-items-center"
 						>
-							<div className="user-profile">
+							<div hidden={true} className="user-profile">
 								<img
 									src={require('Assets/avatars/user-15.jpg')}
 									alt="user profile"
@@ -83,14 +83,14 @@ class UserBlock extends Component {
 								/>
 							</div>
 							<div className="user-info">
-								<span className="user-name ml-4">Lucile Beck</span>
+								<span className="user-name ml-4">Ignacio Monasterio</span>
 								<i className="zmdi zmdi-chevron-down dropdown-icon mx-4"></i>
 							</div>
 						</DropdownToggle>
 						<DropdownMenu>
 							<ul className="list-unstyled mb-0">
 								<li className="p-15 border-bottom user-profile-top bg-primary rounded-top">
-									<p className="text-white mb-0 fs-14">Lucile Beck</p>
+									<p className="text-white mb-0 fs-14">Ignacio Monasterio</p>
 									<span className="text-white fs-14">info@example.com</span>
 								</li>
 								<li>
@@ -102,7 +102,7 @@ class UserBlock extends Component {
 										<span><IntlMessages id="widgets.profile" /></span>
 									</Link>
 								</li>
-								<li>
+								{/* <li>
 									<Link to={{
 										pathname: '/app/users/user-profile-1',
 										state: { activeTab: 2 }
@@ -118,7 +118,7 @@ class UserBlock extends Component {
 										<span><IntlMessages id="sidebar.feedback" /></span>
 										<Badge color="info" className="pull-right">1</Badge>
 									</Link>
-								</li>
+								</li> */}
 								<li className="border-top">
 									<a  href="#">
 										<i className="zmdi zmdi-power text-danger mr-3"></i>

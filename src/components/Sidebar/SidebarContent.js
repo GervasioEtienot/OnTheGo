@@ -2,8 +2,7 @@
  * Sidebar Content
  */
 import React, { Component } from 'react';
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import { List, ListItemIcon } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -25,6 +24,12 @@ class SidebarContent extends Component {
         }
         this.props.onToggleMenu(data);
     }
+
+   /*  seleccionarIcono(icon){
+        switch(icon){
+            case ''
+        }
+    } */
 
     render() {
         const { sidebarMenus } = this.props.sidebar;
@@ -50,9 +55,12 @@ class SidebarContent extends Component {
                            
                            {sidebarMenus.category1.child_routes.map((subMenu, index) => {
                               return (
-                                 <ListItem button component="li" key={index}>
-                                    <NavLink to={subMenu.path} activeClassName="item-active" >
-                                       <span className="menu">
+                                 <ListItem button component="li" key={index} className= "list-item">
+                                    <NavLink to={`${subMenu.path}/${subMenu.categoria}`} activeClassName="item-active" >
+                                       <ListItemIcon className="menu-icon" style={{minWidth: 29}}>
+                                          <i className={subMenu.menu_icon}></i> 
+                                       </ListItemIcon> 
+                                       <span className="menu text-capitalize">
                                           <IntlMessages id={subMenu.menu_title} />
                                        </span>
                                        {subMenu.new_item && subMenu.new_item === true ?

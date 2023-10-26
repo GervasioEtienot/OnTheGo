@@ -8,7 +8,7 @@ export default class SearchForm extends Component {
 	render() {
 		return (
 			<div className="search-wrapper">
-				<Input type="search" className="search-input-lg" placeholder="Search.." />
+				<Input type="search" className="search-input-lg" placeholder="Buscar.." />
 			</div>
 		)
 	}
